@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Guestbook_task" default="generate_javadoc" basedir=".">
+    <target name="init" description="Initialize properties.">
+        <echo message="Initializing properties." />
+		<property name="prop" value="prop"/>
+		<property name="webDir" value="web"/>
+		<property name="webInfDir" value="${webDir}/WEB-INF"/>     
+        <property name="sourceDir" value="src/java" />
+        <property name="classDir" value="${webInfDir}/classes" />
+		<property name="libDir" value="${webInfDir}/lib" />	
+		<property name="projectName" value="Guestbook" />
+		<property name="javadoc" value="doc" />			
+        <echo>Initialized</echo>
+    </target>	
+	<target name="clean" depends="init">
+        <delete dir="${classDir}" />
+    </target>
+    <target name="prepare" depends="clean">
+        <mkdir dir="${classDir}" />
+		<copy todir="${classDir}"> 
+			<fileset dir="${prop}" /> 
+		</copy> 
+    </target>
+    <target name="compile" depends="prepare" description="Compile Java files">
+        <echo message="Compiling the Java files"/>
+        <javac destdir="${classDir}" > 
+			<src path="${sourceDir}"/>
+			<classpath>
+				<fileset dir="${libDir}">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+        <echo>Compiled</echo>
+    </target>
+    <target name="pack" depends="compile" description="Packing Web Project">
+        <echo message="Packing Web Project"/>
+        <war destfile="${projectName}.war" >
+			<fileset dir="${webDir}" />
+		</war>
+    </target>
+	
+	<target name="generate_javadoc" depends="pack" description="Generates javadoc for project source files">
+    <delete dir="${javadoc}"/>
+    <mkdir dir="${javadoc}"/>
+    
+    <javadoc destdir="${javadoc}"
+             stylesheetfile="${basedir}/javadocstyle.css" 
+             Encoding="Cp1251" charset="Cp1251" Locale="ru_RU"
+             windowtitle="Проект гостевая книга"
+             Overview="${basedir}/overview.html" >
+      <fileset dir="${sourceDir}" defaultexcludes="yes">
+        <include name="**/**"/>
+        <exclude name="**/*.bat"/>
+        <exclude name="**/*.properties"/>
+        <exclude name="**/*.html"/>
+      </fileset>
+      <doctitle><![CDATA[<h3>Задача &quot;Проект гостевая книга&quot;</h3>]]></doctitle>
+      <bottom><![CDATA[<i>Copyright &#169; Дикий Александр Николаевич</i>]]></bottom>
+      <classpath>
+        <fileset dir="${libDir}">
+          <include name="**/*.jar"/>
+        </fileset>
+      </classpath>
+    </javadoc>
+  </target>
+</project>
