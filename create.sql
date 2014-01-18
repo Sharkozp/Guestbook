@@ -58,7 +58,7 @@ CREATE TABLE t_moderator
 
 );
 
-INSERT INTO T_USER (username,pwd_digest,admin) values ('root','11886-2826124110125-98-95-10564-315099-119-16-65-72065','1');
+INSERT INTO T_USER (username,pwd_digest,admin) values ('root','-36118-23-16-640110-113-111-98128192102-37-7057-126-9-123','1');
 INSERT INTO T_GUESTBOOK VALUES ('gbsystem','Запись для администрирования всеми книгами',1);
 INSERT INTO T_GUESTBOOK VALUES ('education','Книга education',2);
 INSERT INTO t_moderator (username,guestbook_name) VALUES ('root', 'gbsystem');
