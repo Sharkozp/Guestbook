@@ -5,10 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 /**
- * Action - Интерфейс Action.
+ * Action - РРЅС‚РµСЂС„РµР№СЃ Action.
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public interface Action {
 

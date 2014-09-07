@@ -11,23 +11,23 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 
 /**
- * AddMessageAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
- * получение и проверку сообщения, обрезку до 4 байт.
+ * AddMessageAction - РїРѕРґРєР»Р°СЃСЃ. Р РµР°Р»РёР·СѓРµС‚ РѕРґРёРЅ РјРµС‚РѕРґ perfom(). РџРѕРґРєР»Р°СЃСЃ РІС‹РїРѕР»РЅСЏРµС‚
+ * РїРѕР»СѓС‡РµРЅРёРµ Рё РїСЂРѕРІРµСЂРєСѓ СЃРѕРѕР±С‰РµРЅРёСЏ, РѕР±СЂРµР·РєСѓ РґРѕ 4 Р±Р°Р№С‚.
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class AddMessageAction extends AbstractGuestbookAction {
 
     public static final Logger log = Logger.getLogger(AddMessageAction.class);
 
     /**
-     * Метод выполняет получение и проверку сообщения, обрезку до 4 байт.
+     * РњРµС‚РѕРґ РІС‹РїРѕР»РЅСЏРµС‚ РїРѕР»СѓС‡РµРЅРёРµ Рё РїСЂРѕРІРµСЂРєСѓ СЃРѕРѕР±С‰РµРЅРёСЏ, РѕР±СЂРµР·РєСѓ РґРѕ 4 Р±Р°Р№С‚.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
-     * @param datasource Источник данных для пула данных
-     * @return URL-адрес
+     * @param request Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІР»РµС‚Сѓ
+     * @param response РћС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
+     * @param datasource РСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С… РґР»СЏ РїСѓР»Р° РґР°РЅРЅС‹С…
+     * @return URL-Р°РґСЂРµСЃ
      */
     @Override
     public String perform(HttpServletRequest request,

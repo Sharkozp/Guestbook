@@ -46,7 +46,7 @@
     
     <javadoc destdir="${javadoc}"
              stylesheetfile="${basedir}/javadocstyle.css" 
-             Encoding="Cp1251" charset="Cp1251" Locale="ru_RU"
+             Encoding="UTF-8" charset="UTF-8" Locale="ru_RU"
              windowtitle="Проект гостевая книга"
              Overview="${basedir}/overview.html" >
       <fileset dir="${sourceDir}" defaultexcludes="yes">

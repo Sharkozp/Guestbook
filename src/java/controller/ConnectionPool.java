@@ -6,10 +6,10 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.log4j.Logger;
 
 /**
- * Класс пул соединений. Реализация паттерна Singleton.
+ * РљР»Р°СЃСЃ РїСѓР» СЃРѕРµРґРёРЅРµРЅРёР№. Р РµР°Р»РёР·Р°С†РёСЏ РїР°С‚С‚РµСЂРЅР° Singleton.
  *
  * @version 1.0
- * @author Дикий А.Н.
+ * @author Р”РёРєРёР№ Рђ.Рќ.
  */
 public class ConnectionPool {
 
@@ -17,27 +17,27 @@ public class ConnectionPool {
     PropertiesClass propClass;
     private static final ConnectionPool instance = new ConnectionPool();
     /**
-     * Логирование класса ConnectionPool.class
+     * Р›РѕРіРёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° ConnectionPool.class
      */
     public static final Logger log = Logger.getLogger(ConnectionPool.class);
 
     /**
-     * Экземпляр класса
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
      */
     private ConnectionPool() {
     }
 
     /**
-     * Статический метод возвращает единственный экземпляр данного класса
+     * РЎС‚Р°С‚РёС‡РµСЃРєРёР№ РјРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ СЌРєР·РµРјРїР»СЏСЂ РґР°РЅРЅРѕРіРѕ РєР»Р°СЃСЃР°
      *
-     * @return единственный экземпляр данного класса
+     * @return РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ СЌРєР·РµРјРїР»СЏСЂ РґР°РЅРЅРѕРіРѕ РєР»Р°СЃСЃР°
      */
     public static ConnectionPool getInstance() {
         return instance;
     }
 
     /**
-     * Метод принимает все свойства из файла для создания пула соединений
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РІСЃРµ СЃРІРѕР№СЃС‚РІР° РёР· С„Р°Р№Р»Р° РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РїСѓР»Р° СЃРѕРµРґРёРЅРµРЅРёР№
      */
     public void setProperties() {
         propClass = PropertiesClass.getInstance();
@@ -52,7 +52,7 @@ public class ConnectionPool {
     }
 
     /**
-     * Метод создания пула соединений
+     * РњРµС‚РѕРґ СЃРѕР·РґР°РЅРёСЏ РїСѓР»Р° СЃРѕРµРґРёРЅРµРЅРёР№
      *
      * @param dbDriver
      * @param dbURL
@@ -66,7 +66,7 @@ public class ConnectionPool {
     }
 
     /**
-     * Метод закрывает все соединения с базой данных
+     * РњРµС‚РѕРґ Р·Р°РєСЂС‹РІР°РµС‚ РІСЃРµ СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С…
      *
      * @param dataSource
      * @throws SQLException
@@ -77,7 +77,7 @@ public class ConnectionPool {
     }
 
     /**
-     * Метод возвращает источник данных
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…
      *
      * @return
      */

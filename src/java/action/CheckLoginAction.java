@@ -12,25 +12,25 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 
 /**
- * CheckLoginAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
- * проверку введенных данных и от результата переадресует на определенную
- * страницу.
+ * CheckLoginAction - РїРѕРґРєР»Р°СЃСЃ. Р РµР°Р»РёР·СѓРµС‚ РѕРґРёРЅ РјРµС‚РѕРґ perfom(). РџРѕРґРєР»Р°СЃСЃ РІС‹РїРѕР»РЅСЏРµС‚
+ * РїСЂРѕРІРµСЂРєСѓ РІРІРµРґРµРЅРЅС‹С… РґР°РЅРЅС‹С… Рё РѕС‚ СЂРµР·СѓР»СЊС‚Р°С‚Р° РїРµСЂРµР°РґСЂРµСЃСѓРµС‚ РЅР° РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ
+ * СЃС‚СЂР°РЅРёС†Сѓ.
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class CheckLoginAction extends AbstractGuestbookAction {
 
     public static final Logger log = Logger.getLogger(CheckLoginAction.class);
 
     /**
-     * Метод выполняет проверку введенных данных и от результата переадресует на
-     * определенную страницу.
+     * РњРµС‚РѕРґ РІС‹РїРѕР»РЅСЏРµС‚ РїСЂРѕРІРµСЂРєСѓ РІРІРµРґРµРЅРЅС‹С… РґР°РЅРЅС‹С… Рё РѕС‚ СЂРµР·СѓР»СЊС‚Р°С‚Р° РїРµСЂРµР°РґСЂРµСЃСѓРµС‚ РЅР°
+     * РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
-     * @param datasource Источник данных для пула данных
-     * @return URL-адрес
+     * @param request Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІР»РµС‚Сѓ
+     * @param response РћС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
+     * @param datasource РСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С… РґР»СЏ РїСѓР»Р° РґР°РЅРЅС‹С…
+     * @return URL-Р°РґСЂРµСЃ
      */
     @Override
     public String perform(HttpServletRequest request,
@@ -40,7 +40,7 @@ public class CheckLoginAction extends AbstractGuestbookAction {
         HttpSession session = request.getSession();
 
         /**
-         * Возврат со страницы login.jsp при нажатии конпки продолжить
+         * Р’РѕР·РІСЂР°С‚ СЃРѕ СЃС‚СЂР°РЅРёС†С‹ login.jsp РїСЂРё РЅР°Р¶Р°С‚РёРё РєРѕРЅРїРєРё РїСЂРѕРґРѕР»Р¶РёС‚СЊ
          */
         UserBean uBean = (UserBean) session.getAttribute("uBean");
         if (uBean == null) {
@@ -50,7 +50,7 @@ public class CheckLoginAction extends AbstractGuestbookAction {
         String userName = request.getParameter("login");
         String password = request.getParameter("password");
 
-        //если заполнены проверяем введеные данные
+        //РµСЃР»Рё Р·Р°РїРѕР»РЅРµРЅС‹ РїСЂРѕРІРµСЂСЏРµРј РІРІРµРґРµРЅС‹Рµ РґР°РЅРЅС‹Рµ
         uBean.setUserName(userName);
         try {
             uBean.setPwdDigest(password);
@@ -59,8 +59,8 @@ public class CheckLoginAction extends AbstractGuestbookAction {
         }
 
         /**
-         * Если пользователь существует с парой логин, пароль выполняем вход и
-         * записываем в сессию объект Login
+         * Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃСѓС‰РµСЃС‚РІСѓРµС‚ СЃ РїР°СЂРѕР№ Р»РѕРіРёРЅ, РїР°СЂРѕР»СЊ РІС‹РїРѕР»РЅСЏРµРј РІС…РѕРґ Рё
+         * Р·Р°РїРёСЃС‹РІР°РµРј РІ СЃРµСЃСЃРёСЋ РѕР±СЉРµРєС‚ Login
          */
         if (uBean.isUserExist()) {
             ModeratorBean modBean = new ModeratorBean();
@@ -82,7 +82,7 @@ public class CheckLoginAction extends AbstractGuestbookAction {
             gBean.getListOfGuestbook();
             session.setAttribute("gBean", gBean);
         } else {
-            //Иначе выбрасываем ошибку на страницу login.jsp
+            //РРЅР°С‡Рµ РІС‹Р±СЂР°СЃС‹РІР°РµРј РѕС€РёР±РєСѓ РЅР° СЃС‚СЂР°РЅРёС†Сѓ login.jsp
             page = "login";
             uBean.setError(true);
             session.setAttribute("uBean", uBean);

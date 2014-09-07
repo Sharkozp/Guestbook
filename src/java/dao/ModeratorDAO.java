@@ -10,10 +10,10 @@ import otherpack.Moderator;
 import org.apache.log4j.Logger;
 
 /**
- * Паттерн DAO обслуживающий базу данных и модераторов книг
+ * РџР°С‚С‚РµСЂРЅ DAO РѕР±СЃР»СѓР¶РёРІР°СЋС‰РёР№ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… Рё РјРѕРґРµСЂР°С‚РѕСЂРѕРІ РєРЅРёРі
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class ModeratorDAO {
 
@@ -23,12 +23,12 @@ public class ModeratorDAO {
     private String insert = "insert into T_MODERATOR (USERNAME,GUESTBOOK_NAME) values(?,?)";
     private String delete = "delete from T_MODERATOR where ID=?";
     /**
-     * Логирование класса ModeratorDAO.class
+     * Р›РѕРіРёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° ModeratorDAO.class
      */
     public static final Logger log = Logger.getLogger(ModeratorDAO.class);
 
     /**
-     * Экземпляр класса
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
      *
      * @param dataSource
      * @throws SQLException
@@ -38,10 +38,10 @@ public class ModeratorDAO {
     }
 
     /**
-     * Метод добавляет в базу нового модератора по учетному имени к новой книге
+     * РњРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РІ Р±Р°Р·Сѓ РЅРѕРІРѕРіРѕ РјРѕРґРµСЂР°С‚РѕСЂР° РїРѕ СѓС‡РµС‚РЅРѕРјСѓ РёРјРµРЅРё Рє РЅРѕРІРѕР№ РєРЅРёРіРµ
      *
-     * @param userName учетное имя
-     * @param guestbook имя гостевой книги
+     * @param userName СѓС‡РµС‚РЅРѕРµ РёРјСЏ
+     * @param guestbook РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
      */
     public void addModerator(String userName, String guestbook) {
         try {
@@ -56,11 +56,11 @@ public class ModeratorDAO {
     }
 
     /**
-     * Метод проверяет в базе является пользователь модератором данной книги
+     * РњРµС‚РѕРґ РїСЂРѕРІРµСЂСЏРµС‚ РІ Р±Р°Р·Рµ СЏРІР»СЏРµС‚СЃСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РјРѕРґРµСЂР°С‚РѕСЂРѕРј РґР°РЅРЅРѕР№ РєРЅРёРіРё
      *
-     * @param userName учетное имя
-     * @param guestbook имя гостевой книги
-     * @return признак модератора
+     * @param userName СѓС‡РµС‚РЅРѕРµ РёРјСЏ
+     * @param guestbook РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
+     * @return РїСЂРёР·РЅР°Рє РјРѕРґРµСЂР°С‚РѕСЂР°
      */
     public boolean isModerator(String userName, String guestbook) {
         boolean isModerator = false;
@@ -86,7 +86,7 @@ public class ModeratorDAO {
     }
 
     /**
-     * Метод удаляет из базы модератора книги по ID
+     * РњРµС‚РѕРґ СѓРґР°Р»СЏРµС‚ РёР· Р±Р°Р·С‹ РјРѕРґРµСЂР°С‚РѕСЂР° РєРЅРёРіРё РїРѕ ID
      *
      * @param id
      */
@@ -102,10 +102,10 @@ public class ModeratorDAO {
     }
 
     /**
-     * Метод возвращает весь список модераторов книг из базы
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РІРµСЃСЊ СЃРїРёСЃРѕРє РјРѕРґРµСЂР°С‚РѕСЂРѕРІ РєРЅРёРі РёР· Р±Р°Р·С‹
      *
-     * @param userName учетное имя пользователя 
-     * @return список модераторов книг
+     * @param userName СѓС‡РµС‚РЅРѕРµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ 
+     * @return СЃРїРёСЃРѕРє РјРѕРґРµСЂР°С‚РѕСЂРѕРІ РєРЅРёРі
      */
     public ArrayList<Moderator> getListOfModeratorsBook(String userName) {
         ArrayList<Moderator> list = new ArrayList<Moderator>();

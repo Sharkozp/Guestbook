@@ -3,23 +3,23 @@ package action.factory;
 import org.apache.log4j.Logger;
 
 /**
- * ActionFactory - реализация паттерна Factory. Эта фабрика преобразовывает
- * названия действий в запросы классов action, которые может использовать для
- * работы ControllerServlet
+ * ActionFactory - СЂРµР°Р»РёР·Р°С†РёСЏ РїР°С‚С‚РµСЂРЅР° Factory. Р­С‚Р° С„Р°Р±СЂРёРєР° РїСЂРµРѕР±СЂР°Р·РѕРІС‹РІР°РµС‚
+ * РЅР°Р·РІР°РЅРёСЏ РґРµР№СЃС‚РІРёР№ РІ Р·Р°РїСЂРѕСЃС‹ РєР»Р°СЃСЃРѕРІ action, РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР»СЏ
+ * СЂР°Р±РѕС‚С‹ ControllerServlet
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class ActionFactory {
 
     public static final Logger log = Logger.getLogger(ActionFactory.class);
 
     /**
-     * Метод выполняет выборку классов по параметру и его инициализацию.
+     * РњРµС‚РѕРґ РІС‹РїРѕР»РЅСЏРµС‚ РІС‹Р±РѕСЂРєСѓ РєР»Р°СЃСЃРѕРІ РїРѕ РїР°СЂР°РјРµС‚СЂСѓ Рё РµРіРѕ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ.
      *
-     * @param actionName команда в JSP странице (часть имени класса без слова
+     * @param actionName РєРѕРјР°РЅРґР° РІ JSP СЃС‚СЂР°РЅРёС†Рµ (С‡Р°СЃС‚СЊ РёРјРµРЅРё РєР»Р°СЃСЃР° Р±РµР· СЃР»РѕРІР°
      * Action).
-     * @return экземпляр класса.
+     * @return СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°.
      */
     public Action create(String actionName) {
         Class newClass = null;
@@ -35,7 +35,7 @@ public class ActionFactory {
                     try {
                         newClass = Class.forName("action.moderator." + actionName + "Action");
                     } catch (ClassNotFoundException e) {
-                        log.error("Класс не найден");
+                        log.error("РљР»Р°СЃСЃ РЅРµ РЅР°Р№РґРµРЅ");
                     }
                 }
             }

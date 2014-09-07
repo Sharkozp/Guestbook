@@ -8,10 +8,10 @@ import otherpack.Moderator;
 import org.apache.log4j.Logger;
 
 /**
- * JavaBean - обьект модели данных для модераторов
+ * JavaBean - РѕР±СЊРµРєС‚ РјРѕРґРµР»Рё РґР°РЅРЅС‹С… РґР»СЏ РјРѕРґРµСЂР°С‚РѕСЂРѕРІ
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class ModeratorBean {
 
@@ -21,44 +21,44 @@ public class ModeratorBean {
     private ArrayList<Moderator> listOfModeratorsBooks;
     private ModeratorDAO modDAO;
     /**
-     * Логирование класса ModeratorBean.class
+     * Р›РѕРіРёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° ModeratorBean.class
      */
     public static final Logger log = Logger.getLogger(ModeratorBean.class);
 
     /**
-     * Экземпляр класса
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
      */
     public ModeratorBean() {
     }
 
     /**
-     * Метод возращает список всех гостевых книг модератора
+     * РњРµС‚РѕРґ РІРѕР·СЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РІСЃРµС… РіРѕСЃС‚РµРІС‹С… РєРЅРёРі РјРѕРґРµСЂР°С‚РѕСЂР°
      *
-     * @return список гостевых книг
+     * @return СЃРїРёСЃРѕРє РіРѕСЃС‚РµРІС‹С… РєРЅРёРі
      */
     public ArrayList<Moderator> getListOfModeratorsBooks() {
         return listOfModeratorsBooks;
     }
 
     /**
-     * Метод принимает список всех гостевых книг модератора
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ СЃРїРёСЃРѕРє РІСЃРµС… РіРѕСЃС‚РµРІС‹С… РєРЅРёРі РјРѕРґРµСЂР°С‚РѕСЂР°
      *
-     * @param listOfModeratorsBooks список гостевых книг
+     * @param listOfModeratorsBooks СЃРїРёСЃРѕРє РіРѕСЃС‚РµРІС‹С… РєРЅРёРі
      */
     public void setListOfModeratorsBooks(ArrayList<Moderator> listOfModeratorsBooks) {
         this.listOfModeratorsBooks = listOfModeratorsBooks;
     }
 
     /**
-     * Метод возращает id
-     * @return возращает id
+     * РњРµС‚РѕРґ РІРѕР·СЂР°С‰Р°РµС‚ id
+     * @return РІРѕР·СЂР°С‰Р°РµС‚ id
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Метод принимает id
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ id
      * @param id
      */
     public void setId(int id) {
@@ -66,70 +66,70 @@ public class ModeratorBean {
     }
 
     /**
-     * Метод возращает учетное имя
-     * @return учетное имя
+     * РњРµС‚РѕРґ РІРѕР·СЂР°С‰Р°РµС‚ СѓС‡РµС‚РЅРѕРµ РёРјСЏ
+     * @return СѓС‡РµС‚РЅРѕРµ РёРјСЏ
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * Метод принимает учетное имя
-     * @param username учетное имя
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ СѓС‡РµС‚РЅРѕРµ РёРјСЏ
+     * @param username СѓС‡РµС‚РЅРѕРµ РёРјСЏ
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * Метод возращает имя гостевых книги
-     * @return имя гостевых книги
+     * РњРµС‚РѕРґ РІРѕР·СЂР°С‰Р°РµС‚ РёРјСЏ РіРѕСЃС‚РµРІС‹С… РєРЅРёРіРё
+     * @return РёРјСЏ РіРѕСЃС‚РµРІС‹С… РєРЅРёРіРё
      */
     public String getGuestbookName() {
         return guestbookName;
     }
 
     /**
-     * Метод принимает имя гостевых книги
-     * @param guestbookName имя гостевых книги
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РёРјСЏ РіРѕСЃС‚РµРІС‹С… РєРЅРёРіРё
+     * @param guestbookName РёРјСЏ РіРѕСЃС‚РµРІС‹С… РєРЅРёРіРё
      */
     public void setGuestbookName(String guestbookName) {
         this.guestbookName = guestbookName;
     }
 
     /**
-     * Метод возращает из базы список всех книг модератора
+     * РњРµС‚РѕРґ РІРѕР·СЂР°С‰Р°РµС‚ РёР· Р±Р°Р·С‹ СЃРїРёСЃРѕРє РІСЃРµС… РєРЅРёРі РјРѕРґРµСЂР°С‚РѕСЂР°
      */
     public void getListBooks() {
         listOfModeratorsBooks = modDAO.getListOfModeratorsBook(username);
     }
 
     /**
-     * Метод удаляет из базы привязку к книге модератора по ID
+     * РњРµС‚РѕРґ СѓРґР°Р»СЏРµС‚ РёР· Р±Р°Р·С‹ РїСЂРёРІСЏР·РєСѓ Рє РєРЅРёРіРµ РјРѕРґРµСЂР°С‚РѕСЂР° РїРѕ ID
      */
     public void deleteModeratorBook() {
         modDAO.deleteModeratorBook(id);
     }
 
     /**
-     * Метод проверяет, является ли пользователь модератором книги
-     * @return признак
+     * РњРµС‚РѕРґ РїСЂРѕРІРµСЂСЏРµС‚, СЏРІР»СЏРµС‚СЃСЏ Р»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РјРѕРґРµСЂР°С‚РѕСЂРѕРј РєРЅРёРіРё
+     * @return РїСЂРёР·РЅР°Рє
      */
     public boolean isModerator() {
         return modDAO.isModerator(username, guestbookName);
     }
 
     /**
-     * Метод назначает модератором гостевых книги 
+     * РњРµС‚РѕРґ РЅР°Р·РЅР°С‡Р°РµС‚ РјРѕРґРµСЂР°С‚РѕСЂРѕРј РіРѕСЃС‚РµРІС‹С… РєРЅРёРіРё 
      */
     public void setModeratorsBook() {
         modDAO.addModerator(username, guestbookName);
     }
 
     /**
-     * Метод принимает источник данных DataSource
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С… DataSource
      *
-     * @param dataSource источник данных
+     * @param dataSource РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…
      */
     public void setDataSource(DataSource dataSource) {
         if (dataSource == null) {

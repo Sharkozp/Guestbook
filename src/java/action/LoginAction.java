@@ -7,21 +7,21 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
- * LoginAction - подкласс. Реализует один метод perfom(). Подкласс выполняет 
- * инициализацию страницы login.jsp.
+ * LoginAction - РїРѕРґРєР»Р°СЃСЃ. Р РµР°Р»РёР·СѓРµС‚ РѕРґРёРЅ РјРµС‚РѕРґ perfom(). РџРѕРґРєР»Р°СЃСЃ РІС‹РїРѕР»РЅСЏРµС‚ 
+ * РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ СЃС‚СЂР°РЅРёС†С‹ login.jsp.
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class LoginAction extends AbstractGuestbookAction {
 
     /**
-     * Метод выполняет инициализацию страницы login.jsp.
+     * РњРµС‚РѕРґ РІС‹РїРѕР»РЅСЏРµС‚ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ СЃС‚СЂР°РЅРёС†С‹ login.jsp.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
-     * @param datasource Источник данных для пула данных
-     * @return URL-адрес
+     * @param request Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІР»РµС‚Сѓ
+     * @param response РћС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
+     * @param datasource РСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С… РґР»СЏ РїСѓР»Р° РґР°РЅРЅС‹С…
+     * @return URL-Р°РґСЂРµСЃ
      */
     @Override
     public String perform(HttpServletRequest request,

@@ -11,10 +11,10 @@ import otherpack.User;
 import org.apache.log4j.Logger;
 
 /**
- * Паттерн DAO обслуживающий базу данных и пользователей
+ * РџР°С‚С‚РµСЂРЅ DAO РѕР±СЃР»СѓР¶РёРІР°СЋС‰РёР№ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… Рё РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class UserDAO {
 
@@ -29,12 +29,12 @@ public class UserDAO {
     private String update = "update T_USER set LAST_NAME=?,"
             + "FIRST_NAME=? where USERNAME=?";
     /**
-     * Логирование класса UserDAO.class
+     * Р›РѕРіРёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° UserDAO.class
      */
     public static final Logger log = Logger.getLogger(UserDAO.class);
 
     /**
-     * Экземпляр класса
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
      *
      * @param dataSource
      * @throws SQLException
@@ -44,10 +44,10 @@ public class UserDAO {
     }
 
     /**
-     * Метод добавляет в базу нового пользователя
+     * РњРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РІ Р±Р°Р·Сѓ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      *
-     * @param user класс User
-     * @param password дайджест пароля
+     * @param user РєР»Р°СЃСЃ User
+     * @param password РґР°Р№РґР¶РµСЃС‚ РїР°СЂРѕР»СЏ
      */
     public void addUser(User user, String password) {
         try {
@@ -65,11 +65,11 @@ public class UserDAO {
     }
 
     /**
-     * Метод обновляет пользователя в базе по заданным параметрам
+     * РњРµС‚РѕРґ РѕР±РЅРѕРІР»СЏРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ Р±Р°Р·Рµ РїРѕ Р·Р°РґР°РЅРЅС‹Рј РїР°СЂР°РјРµС‚СЂР°Рј
      *
-     * @param userName учетное имя
-     * @param lastName фамилия пользователя
-     * @param firstName имя пользователя
+     * @param userName СѓС‡РµС‚РЅРѕРµ РёРјСЏ
+     * @param lastName С„Р°РјРёР»РёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+     * @param firstName РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      */
     public void updateUser(String userName, String lastName, String firstName) {
         try {
@@ -86,9 +86,9 @@ public class UserDAO {
     }
 
     /**
-     * Метод удаляет пользователя из базы
+     * РњРµС‚РѕРґ СѓРґР°Р»СЏРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· Р±Р°Р·С‹
      *
-     * @param userName учетное имя
+     * @param userName СѓС‡РµС‚РЅРѕРµ РёРјСЏ
      */
     public void deleteUser(String userName) {
         try {
@@ -103,10 +103,10 @@ public class UserDAO {
     }
 
     /**
-     * Метод возвращает пользователя по учетному имени
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРѕ СѓС‡РµС‚РЅРѕРјСѓ РёРјРµРЅРё
      *
-     * @param userName учетное имя
-     * @return класс User
+     * @param userName СѓС‡РµС‚РЅРѕРµ РёРјСЏ
+     * @return РєР»Р°СЃСЃ User
      */
     public User getUser(String userName) {
         User user = null;
@@ -129,11 +129,11 @@ public class UserDAO {
     }
 
     /**
-     * Метод возвращает учетное имя пользователя с заданными параметрами из базы
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СѓС‡РµС‚РЅРѕРµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ Р·Р°РґР°РЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё РёР· Р±Р°Р·С‹
      *
-     * @param userName учетное имя
-     * @param password дайджест пароля
-     * @return учетное имя
+     * @param userName СѓС‡РµС‚РЅРѕРµ РёРјСЏ
+     * @param password РґР°Р№РґР¶РµСЃС‚ РїР°СЂРѕР»СЏ
+     * @return СѓС‡РµС‚РЅРѕРµ РёРјСЏ
      */
     public String getUser(String userName, String password) {
         String user = null;
@@ -155,9 +155,9 @@ public class UserDAO {
     }
 
     /**
-     * Метод возвращает из базы список пользователей
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РёР· Р±Р°Р·С‹ СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      *
-     * @return список пользователей
+     * @return СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      */
     public ArrayList<User> getListOfUsers() {
         ArrayList<User> list = null;
@@ -180,10 +180,10 @@ public class UserDAO {
     }
 
     /**
-     * Метод проверяет является ли пользователь администратором
+     * РњРµС‚РѕРґ РїСЂРѕРІРµСЂСЏРµС‚ СЏРІР»СЏРµС‚СЃСЏ Р»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј
      *
-     * @param userName учетное имя
-     * @return признак администратора
+     * @param userName СѓС‡РµС‚РЅРѕРµ РёРјСЏ
+     * @return РїСЂРёР·РЅР°Рє Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°
      */
     public boolean isAdmin(String userName) {
         boolean isAdmin = false;

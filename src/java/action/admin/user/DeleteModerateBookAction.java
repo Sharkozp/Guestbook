@@ -9,22 +9,22 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
- * DeleteModerateBookAction - подкласс. Реализует один метод perfom(). Подкласс
- * выполняет получение и обработку запроса на удаление книги у модератора.
+ * DeleteModerateBookAction - РїРѕРґРєР»Р°СЃСЃ. Р РµР°Р»РёР·СѓРµС‚ РѕРґРёРЅ РјРµС‚РѕРґ perfom(). РџРѕРґРєР»Р°СЃСЃ
+ * РІС‹РїРѕР»РЅСЏРµС‚ РїРѕР»СѓС‡РµРЅРёРµ Рё РѕР±СЂР°Р±РѕС‚РєСѓ Р·Р°РїСЂРѕСЃР° РЅР° СѓРґР°Р»РµРЅРёРµ РєРЅРёРіРё Сѓ РјРѕРґРµСЂР°С‚РѕСЂР°.
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class DeleteModerateBookAction extends AbstractGuestbookAction {
 
     /**
-     * Метод выполняет получение и обработку запроса на удаление книги у
-     * модератора.
+     * РњРµС‚РѕРґ РІС‹РїРѕР»РЅСЏРµС‚ РїРѕР»СѓС‡РµРЅРёРµ Рё РѕР±СЂР°Р±РѕС‚РєСѓ Р·Р°РїСЂРѕСЃР° РЅР° СѓРґР°Р»РµРЅРёРµ РєРЅРёРіРё Сѓ
+     * РјРѕРґРµСЂР°С‚РѕСЂР°.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
-     * @param datasource Источник данных для пула данных
-     * @return URL-адрес
+     * @param request Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІР»РµС‚Сѓ
+     * @param response РћС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
+     * @param datasource РСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С… РґР»СЏ РїСѓР»Р° РґР°РЅРЅС‹С…
+     * @return URL-Р°РґСЂРµСЃ
      */
     @Override
     public String perform(HttpServletRequest request,
@@ -33,8 +33,8 @@ public class DeleteModerateBookAction extends AbstractGuestbookAction {
         HttpSession session = request.getSession();
 
         /*
-         * Если пользователь не авторизирован или не админ
-         * переадресуем его на страницу авторизации login.jsp
+         * Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ Р°РІС‚РѕСЂРёР·РёСЂРѕРІР°РЅ РёР»Рё РЅРµ Р°РґРјРёРЅ
+         * РїРµСЂРµР°РґСЂРµСЃСѓРµРј РµРіРѕ РЅР° СЃС‚СЂР°РЅРёС†Сѓ Р°РІС‚РѕСЂРёР·Р°С†РёРё login.jsp
          */
         Login login = (Login) session.getAttribute("login");
         if (login != null) {

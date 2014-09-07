@@ -3,10 +3,10 @@ package otherpack;
 import java.util.Date;
 
 /**
- * Класс хранит настройки сообщения.
+ * РљР»Р°СЃСЃ С…СЂР°РЅРёС‚ РЅР°СЃС‚СЂРѕР№РєРё СЃРѕРѕР±С‰РµРЅРёСЏ.
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class Message {
 
@@ -26,17 +26,17 @@ public class Message {
     private Date answerTime;
 
     /**
-     * Экземпляр класса без ID сообщения и isNewForAdmin
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° Р±РµР· ID СЃРѕРѕР±С‰РµРЅРёСЏ Рё isNewForAdmin
      *
-     * @param guestbookName имя гостевой книги
-     * @param messageText сообщение гостевой книги
-     * @param isForAll сообщение для всех
-     * @param creationTime дата создания сообщения
-     * @param creatorName имя создавшего сообщение
-     * @param creatorIP ip адрес создавшего сообщения
-     * @param phone номер телефона
-     * @param email email адрес
-     * @param icq icq номер
+     * @param guestbookName РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
+     * @param messageText СЃРѕРѕР±С‰РµРЅРёРµ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
+     * @param isForAll СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ РІСЃРµС…
+     * @param creationTime РґР°С‚Р° СЃРѕР·РґР°РЅРёСЏ СЃРѕРѕР±С‰РµРЅРёСЏ
+     * @param creatorName РёРјСЏ СЃРѕР·РґР°РІС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёРµ
+     * @param creatorIP ip Р°РґСЂРµСЃ СЃРѕР·РґР°РІС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
+     * @param phone РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°
+     * @param email email Р°РґСЂРµСЃ
+     * @param icq icq РЅРѕРјРµСЂ
      */
     public Message(String guestbookName, String messageText, boolean isForAll, Date creationTime, String creatorName, String creatorIP, String phone, String email, String icq) {
         this.guestbookName = guestbookName;
@@ -51,19 +51,19 @@ public class Message {
     }
 
     /**
-     * Экземпляр класса с ID сообщения и isNewForAdmin
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° СЃ ID СЃРѕРѕР±С‰РµРЅРёСЏ Рё isNewForAdmin
      *
-     * @param msgID id сообщения
-     * @param guestbookName имя гостевой книги
-     * @param messageText сообщение гостевой книги
-     * @param isForAll сообщение для всех
-     * @param isNewForAdmin сообщение новое для модератора
-     * @param creationTime дата создания сообщения
-     * @param creatorName имя создавшего сообщение
-     * @param creatorIP ip адрес создавшего сообщения
-     * @param phone номер телефона
-     * @param email email адрес
-     * @param icq icq номер
+     * @param msgID id СЃРѕРѕР±С‰РµРЅРёСЏ
+     * @param guestbookName РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
+     * @param messageText СЃРѕРѕР±С‰РµРЅРёРµ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
+     * @param isForAll СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ РІСЃРµС…
+     * @param isNewForAdmin СЃРѕРѕР±С‰РµРЅРёРµ РЅРѕРІРѕРµ РґР»СЏ РјРѕРґРµСЂР°С‚РѕСЂР°
+     * @param creationTime РґР°С‚Р° СЃРѕР·РґР°РЅРёСЏ СЃРѕРѕР±С‰РµРЅРёСЏ
+     * @param creatorName РёРјСЏ СЃРѕР·РґР°РІС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёРµ
+     * @param creatorIP ip Р°РґСЂРµСЃ СЃРѕР·РґР°РІС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
+     * @param phone РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°
+     * @param email email Р°РґСЂРµСЃ
+     * @param icq icq РЅРѕРјРµСЂ
      */
     public Message(int msgID, String guestbookName, String messageText, boolean isForAll, boolean isNewForAdmin, Date creationTime, String creatorName, String creatorIP, String phone, String email, String icq) {
         this.msgID = msgID;
@@ -80,110 +80,110 @@ public class Message {
     }
 
     /**
-     * Метод возвращает id сообщения
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ id СЃРѕРѕР±С‰РµРЅРёСЏ
      *
-     * @return id сообщения
+     * @return id СЃРѕРѕР±С‰РµРЅРёСЏ
      */
     public int getMsgID() {
         return msgID;
     }
 
     /**
-     * Метод возвращает имя гостевой книги
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
      *
-     * @return имя гостевой книги
+     * @return РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
      */
     public String getGuestbookName() {
         return guestbookName;
     }
 
     /**
-     * Метод возвращает сообщение гостевой книги
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРѕРѕР±С‰РµРЅРёРµ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
      *
-     * @return сообщение гостевой книги
+     * @return СЃРѕРѕР±С‰РµРЅРёРµ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
      */
     public String getMessageText() {
         return messageText;
     }
 
     /**
-     * Метод возвращает признак, что сообщение для всех
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РїСЂРёР·РЅР°Рє, С‡С‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ РІСЃРµС…
      *
-     * @return признак, что сообщение для всех
+     * @return РїСЂРёР·РЅР°Рє, С‡С‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ РІСЃРµС…
      */
     public boolean isIsForAll() {
         return isForAll;
     }
 
     /**
-     * Метод возвращает признак, что сообщение новое для модератора
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РїСЂРёР·РЅР°Рє, С‡С‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РЅРѕРІРѕРµ РґР»СЏ РјРѕРґРµСЂР°С‚РѕСЂР°
      *
-     * @return признак, что сообщение новое для модератора
+     * @return РїСЂРёР·РЅР°Рє, С‡С‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РЅРѕРІРѕРµ РґР»СЏ РјРѕРґРµСЂР°С‚РѕСЂР°
      */
     public boolean isIsNewForAdmin() {
         return isNewForAdmin;
     }
 
     /**
-     * Метод возвращает дату создания сообщения
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РґР°С‚Сѓ СЃРѕР·РґР°РЅРёСЏ СЃРѕРѕР±С‰РµРЅРёСЏ
      *
-     * @return дата создания сообщения
+     * @return РґР°С‚Р° СЃРѕР·РґР°РЅРёСЏ СЃРѕРѕР±С‰РµРЅРёСЏ
      */
     public Date getCreationTime() {
         return creationTime;
     }
 
     /**
-     * Метод возвращает имя создавшего сообщение
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РёРјСЏ СЃРѕР·РґР°РІС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёРµ
      *
-     * @return имя создавшего сообщение
+     * @return РёРјСЏ СЃРѕР·РґР°РІС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёРµ
      */
     public String getCreatorName() {
         return creatorName;
     }
 
     /**
-     * Метод возвращает ip адрес создавшего сообщения
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ ip Р°РґСЂРµСЃ СЃРѕР·РґР°РІС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
      *
-     * @return ip адрес создавшего сообщения
+     * @return ip Р°РґСЂРµСЃ СЃРѕР·РґР°РІС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
      */
     public String getCreatorIP() {
         return creatorIP;
     }
 
     /**
-     * Метод возвращает номер телефона
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°
      *
-     * @return номер телефона
+     * @return РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°
      */
     public String getPhone() {
         return phone;
     }
 
     /**
-     * Метод возвращает email адрес
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ email Р°РґСЂРµСЃ
      *
-     * @return email адрес
+     * @return email Р°РґСЂРµСЃ
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * Метод возвращает icq номер
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ icq РЅРѕРјРµСЂ
      *
-     * @return icq номер
+     * @return icq РЅРѕРјРµСЂ
      */
     public String getIcq() {
         return icq;
     }
 
     /**
-     * Метод принимает ответ на сообщение
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РѕС‚РІРµС‚ РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
      *
-     * @param answerText ответ на сообщение
-     * @param answerName имя ответившего на сообщение
-     * @param answerTime время ответа на сообщение
+     * @param answerText РѕС‚РІРµС‚ РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
+     * @param answerName РёРјСЏ РѕС‚РІРµС‚РёРІС€РµРіРѕ РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
+     * @param answerTime РІСЂРµРјСЏ РѕС‚РІРµС‚Р° РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
      */
     public void setAnswer(String answerText, String answerName, Date answerTime) {
         this.answerText = answerText;
@@ -192,27 +192,27 @@ public class Message {
     }
 
     /**
-     * Метод возвращает ответ на сообщение
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РѕС‚РІРµС‚ РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
      *
-     * @return ответ на сообщение
+     * @return РѕС‚РІРµС‚ РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
      */
     public String getAnswerText() {
         return answerText;
     }
 
     /**
-     * Метод возвращает имя ответившего на сообщение
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РёРјСЏ РѕС‚РІРµС‚РёРІС€РµРіРѕ РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
      *
-     * @return имя ответившего на сообщение
+     * @return РёРјСЏ РѕС‚РІРµС‚РёРІС€РµРіРѕ РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
      */
     public String getAnswerName() {
         return answerName;
     }
 
     /**
-     * Метод возвращает время ответа на сообщение
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РІСЂРµРјСЏ РѕС‚РІРµС‚Р° РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
      *
-     * @return время ответа на сообщение
+     * @return РІСЂРµРјСЏ РѕС‚РІРµС‚Р° РЅР° СЃРѕРѕР±С‰РµРЅРёРµ
      */
     public Date getAnswerTime() {
         return answerTime;

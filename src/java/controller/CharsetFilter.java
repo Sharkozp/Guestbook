@@ -9,17 +9,17 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * Фильтр русских букв
+ * Р¤РёР»СЊС‚СЂ СЂСѓСЃСЃРєРёС… Р±СѓРєРІ
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class CharsetFilter implements Filter {
 
     private String encoding;
 
     /**
-     * Метод первичной инициализации фильтра и установки кодировки по-умолчанию
+     * РњРµС‚РѕРґ РїРµСЂРІРёС‡РЅРѕР№ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё С„РёР»СЊС‚СЂР° Рё СѓСЃС‚Р°РЅРѕРІРєРё РєРѕРґРёСЂРѕРІРєРё РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ
      * UTF-8
      *
      * @param config
@@ -33,10 +33,10 @@ public class CharsetFilter implements Filter {
     }
 
     /**
-     * Основной метод фильтра
+     * РћСЃРЅРѕРІРЅРѕР№ РјРµС‚РѕРґ С„РёР»СЊС‚СЂР°
      *
-     * @param request запрос сервлета
-     * @param response ответ сервлета
+     * @param request Р·Р°РїСЂРѕСЃ СЃРµСЂРІР»РµС‚Р°
+     * @param response РѕС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
      * @param chain
      * @throws IOException
      * @throws ServletException
@@ -47,7 +47,7 @@ public class CharsetFilter implements Filter {
     }
 
     /**
-     * Метод освобождает ресурсы
+     * РњРµС‚РѕРґ РѕСЃРІРѕР±РѕР¶РґР°РµС‚ СЂРµСЃСѓСЂСЃС‹
      */
     public void destroy() {
     }

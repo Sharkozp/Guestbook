@@ -5,18 +5,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * AbstractGuestbookAction - абстрактный класс. Реализует один метод perfom().
+ * AbstractGuestbookAction - Р°Р±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ. Р РµР°Р»РёР·СѓРµС‚ РѕРґРёРЅ РјРµС‚РѕРґ perfom().
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public abstract class AbstractGuestbookAction implements Action {
 
     /**
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
-     * @param datasource Источник данных для пула данных
-     * @return URL-адрес
+     * @param request Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІР»РµС‚Сѓ
+     * @param response РћС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
+     * @param datasource РСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С… РґР»СЏ РїСѓР»Р° РґР°РЅРЅС‹С…
+     * @return URL-Р°РґСЂРµСЃ
      */
     public String perform(HttpServletRequest request, HttpServletResponse response) {
         return null;

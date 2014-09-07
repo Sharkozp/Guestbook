@@ -11,10 +11,10 @@ import org.apache.log4j.Logger;
 import otherpack.Message;
 
 /**
- * Паттерн DAO обслуживающий базу данных и сообщения
+ * РџР°С‚С‚РµСЂРЅ DAO РѕР±СЃР»СѓР¶РёРІР°СЋС‰РёР№ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… Рё СЃРѕРѕР±С‰РµРЅРёСЏ
  *
  * @version 1.1
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class MessageDAO {
 
@@ -32,12 +32,12 @@ public class MessageDAO {
             + "time_answer=?,is_new4admin='0' where id=?";
     private String count = "select count(guestbook_name) as messagecount from t_message WHERE guestbook_name=?";
     /**
-     * Логирование класса MessageDAO.class
+     * Р›РѕРіРёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° MessageDAO.class
      */
     public static final Logger log = Logger.getLogger(MessageDAO.class);
 
     /**
-     * Экземпляр класса
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
      *
      * @param dataSource
      * @throws SQLException
@@ -47,9 +47,9 @@ public class MessageDAO {
     }
 
     /**
-     * Метод добавляет в базу данных новое сообщение
+     * РњРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ
      *
-     * @param message класс сообщения
+     * @param message РєР»Р°СЃСЃ СЃРѕРѕР±С‰РµРЅРёСЏ
      */
     public void addMessage(Message message) {
         try {
@@ -77,11 +77,11 @@ public class MessageDAO {
     }
 
     /**
-     * Метод обновления сообщения по параметрам
+     * РњРµС‚РѕРґ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃРѕРѕР±С‰РµРЅРёСЏ РїРѕ РїР°СЂР°РјРµС‚СЂР°Рј
      *
-     * @param text текст сообщения
-     * @param isForAll признак для всех
-     * @param msgId id сообщения
+     * @param text С‚РµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ
+     * @param isForAll РїСЂРёР·РЅР°Рє РґР»СЏ РІСЃРµС…
+     * @param msgId id СЃРѕРѕР±С‰РµРЅРёСЏ
      */
     public void updateMessage(String text, boolean isForAll, int msgId) {
         try {
@@ -102,12 +102,12 @@ public class MessageDAO {
     }
 
     /**
-     * Метод добавляет ответ к сообщению по ID
+     * РњРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РѕС‚РІРµС‚ Рє СЃРѕРѕР±С‰РµРЅРёСЋ РїРѕ ID
      *
-     * @param answerText текст ответа
-     * @param answerName учетное имя ответившего
-     * @param date дата ответа
-     * @param msgId id сообщения
+     * @param answerText С‚РµРєСЃС‚ РѕС‚РІРµС‚Р°
+     * @param answerName СѓС‡РµС‚РЅРѕРµ РёРјСЏ РѕС‚РІРµС‚РёРІС€РµРіРѕ
+     * @param date РґР°С‚Р° РѕС‚РІРµС‚Р°
+     * @param msgId id СЃРѕРѕР±С‰РµРЅРёСЏ
      */
     public void setAnswer(String answerText, String answerName, Date date, int msgId) {
         try {
@@ -125,9 +125,9 @@ public class MessageDAO {
     }
 
     /**
-     * Метод возвращает из базы данных тест сообщения по ID
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С… С‚РµСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ РїРѕ ID
      *
-     * @param msgId id сообщения
+     * @param msgId id СЃРѕРѕР±С‰РµРЅРёСЏ
      * @return
      */
     public String getMessage(int msgId) {
@@ -149,9 +149,9 @@ public class MessageDAO {
     }
 
     /**
-     * Метод возвращает количетсва сообщений в книге
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµС‚СЃРІР° СЃРѕРѕР±С‰РµРЅРёР№ РІ РєРЅРёРіРµ
      *
-     * @param guestbook имя книги
+     * @param guestbook РёРјСЏ РєРЅРёРіРё
      * @return
      */
     public int getMessageCount(String guestbook) {
@@ -173,9 +173,9 @@ public class MessageDAO {
     }
 
     /**
-     * Метод удаляет сообщение по заданому ID
+     * РњРµС‚РѕРґ СѓРґР°Р»СЏРµС‚ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕ Р·Р°РґР°РЅРѕРјСѓ ID
      *
-     * @param msgId id сообщения
+     * @param msgId id СЃРѕРѕР±С‰РµРЅРёСЏ
      */
     public void deleteMessage(int msgId) {
         try {
@@ -190,10 +190,10 @@ public class MessageDAO {
     }
 
     /**
-     * Возвращает список сообщений из гостевой книги по ее названию
+     * Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє СЃРѕРѕР±С‰РµРЅРёР№ РёР· РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё РїРѕ РµРµ РЅР°Р·РІР°РЅРёСЋ
      *
-     * @param guestbook имя гостевой книги
-     * @return список всех сообщений
+     * @param guestbook РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
+     * @return СЃРїРёСЃРѕРє РІСЃРµС… СЃРѕРѕР±С‰РµРЅРёР№
      */
     public ArrayList<Message> getMessageList(String guestbook) {
         ArrayList<Message> list = null;

@@ -1,10 +1,10 @@
 package otherpack;
 
 /**
- * Класс хранит настройки модератора.
+ * РљР»Р°СЃСЃ С…СЂР°РЅРёС‚ РЅР°СЃС‚СЂРѕР№РєРё РјРѕРґРµСЂР°С‚РѕСЂР°.
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class Moderator {
 
@@ -13,11 +13,11 @@ public class Moderator {
     private String moderator;
 
     /**
-     * Экземпляр класса
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
      *
      * @param id
-     * @param guestbookName имя гостевой книги
-     * @param moderator учетное имя модератора
+     * @param guestbookName РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
+     * @param moderator СѓС‡РµС‚РЅРѕРµ РёРјСЏ РјРѕРґРµСЂР°С‚РѕСЂР°
      */
     public Moderator(int id, String guestbookName, String moderator) {
         this.id = id;
@@ -26,7 +26,7 @@ public class Moderator {
     }
 
     /**
-     * Метод возвращает id
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ id
      *
      * @return id
      */
@@ -35,18 +35,18 @@ public class Moderator {
     }
 
     /**
-     * Метод возвращает имя гостевой книги
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
      *
-     * @return имя гостевой книги
+     * @return РёРјСЏ РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
      */
     public String getGuestbookName() {
         return guestbookName;
     }
 
     /**
-     * Метод возвращает учетное имя модератора
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СѓС‡РµС‚РЅРѕРµ РёРјСЏ РјРѕРґРµСЂР°С‚РѕСЂР°
      *
-     * @return учетное имя модератора
+     * @return СѓС‡РµС‚РЅРѕРµ РёРјСЏ РјРѕРґРµСЂР°С‚РѕСЂР°
      */
     public String getModerator() {
         return moderator;

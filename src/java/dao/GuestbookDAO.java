@@ -11,10 +11,10 @@ import otherpack.Guestbook;
 import org.apache.log4j.Logger;
 
 /**
- * Паттерн DAO обслуживающий базу данных и гостевые книги
+ * РџР°С‚С‚РµСЂРЅ DAO РѕР±СЃР»СѓР¶РёРІР°СЋС‰РёР№ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… Рё РіРѕСЃС‚РµРІС‹Рµ РєРЅРёРіРё
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class GuestbookDAO {
 
@@ -26,12 +26,12 @@ public class GuestbookDAO {
     private String update = "update T_GUESTBOOK set DESCRIPTION=?,"
             + "DISPLAY_ORDER=? where NAME=?";
     /**
-     * Логирование класса GuestbookDAO.class
+     * Р›РѕРіРёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° GuestbookDAO.class
      */
     public static final Logger log = Logger.getLogger(GuestbookDAO.class);
 
     /**
-     * Экземпляр класса
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
      * @param dataSource 
      * @throws SQLException
      */
@@ -40,9 +40,9 @@ public class GuestbookDAO {
     }
 
     /**
-     * Метод добавляет новую книгу в базу
+     * РњРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РЅРѕРІСѓСЋ РєРЅРёРіСѓ РІ Р±Р°Р·Сѓ
 	 *
-     * @param guestbook класс книги
+     * @param guestbook РєР»Р°СЃСЃ РєРЅРёРіРё
      */
     public void addGuestbook(Guestbook guestbook) {
         try {
@@ -59,9 +59,9 @@ public class GuestbookDAO {
     }
 
     /**
-     * Метод удаляет книгу из базы данных по имени
+     * РњРµС‚РѕРґ СѓРґР°Р»СЏРµС‚ РєРЅРёРіСѓ РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С… РїРѕ РёРјРµРЅРё
 	 *
-     * @param guestbookName имя базы данных
+     * @param guestbookName РёРјСЏ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
      */
     public void deleteGuestbook(String guestbookName) {
         try {
@@ -76,9 +76,9 @@ public class GuestbookDAO {
     }
 
     /**
-     * Метод обновляет записи гостевой книги
+     * РњРµС‚РѕРґ РѕР±РЅРѕРІР»СЏРµС‚ Р·Р°РїРёСЃРё РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
 	 *
-     * @param guestbook класс книги
+     * @param guestbook РєР»Р°СЃСЃ РєРЅРёРіРё
      */
     public void updateGuestbook(Guestbook guestbook) {
         try {
@@ -95,10 +95,10 @@ public class GuestbookDAO {
     }
 
     /**
-     * Метод позвращает книгу из базы даных по имени
+     * РњРµС‚РѕРґ РїРѕР·РІСЂР°С‰Р°РµС‚ РєРЅРёРіСѓ РёР· Р±Р°Р·С‹ РґР°РЅС‹С… РїРѕ РёРјРµРЅРё
 	 *
-     * @param guestbookName имя книги
-     * @return класс книги
+     * @param guestbookName РёРјСЏ РєРЅРёРіРё
+     * @return РєР»Р°СЃСЃ РєРЅРёРіРё
      */
     public Guestbook getGuestbook(String guestbookName) {
         Guestbook g = null;
@@ -121,9 +121,9 @@ public class GuestbookDAO {
     }
 
     /**
-     * Метод возвращает список всех книг из базы
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РІСЃРµС… РєРЅРёРі РёР· Р±Р°Р·С‹
 	 *
-     * @return список всех книг
+     * @return СЃРїРёСЃРѕРє РІСЃРµС… РєРЅРёРі
      */
     public ArrayList<Guestbook> getGuestbookList() {
         ArrayList<Guestbook> list = null;

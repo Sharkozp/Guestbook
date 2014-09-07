@@ -12,24 +12,24 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 
 /**
- * ControllerServlet - обьект контроллер в моделе MVC. Класс ControllerServlet -
- * обрабатывает все запросы пользователей и переадресует на соответствующие JSP
- * страницы, посредством нажатия кнопок на JSP страницах.
+ * ControllerServlet - РѕР±СЊРµРєС‚ РєРѕРЅС‚СЂРѕР»Р»РµСЂ РІ РјРѕРґРµР»Рµ MVC. РљР»Р°СЃСЃ ControllerServlet -
+ * РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚ РІСЃРµ Р·Р°РїСЂРѕСЃС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ Рё РїРµСЂРµР°РґСЂРµСЃСѓРµС‚ РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРµ JSP
+ * СЃС‚СЂР°РЅРёС†С‹, РїРѕСЃСЂРµРґСЃС‚РІРѕРј РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРѕРє РЅР° JSP СЃС‚СЂР°РЅРёС†Р°С….
  *
  * @version 1.1
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class ControllerServlet extends HttpServlet {
 
     /**
-     * Логирование класса ControllerServlet.class
+     * Р›РѕРіРёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° ControllerServlet.class
      */
     public static final Logger log = Logger.getLogger(ControllerServlet.class);
     protected ActionFactory factory = new ActionFactory();
     private DataSource dataSource;
 
     /**
-     * Инициализация сервлета-контроллера. Выполняется создания пула соединений.
+     * РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃРµСЂРІР»РµС‚Р°-РєРѕРЅС‚СЂРѕР»Р»РµСЂР°. Р’С‹РїРѕР»РЅСЏРµС‚СЃСЏ СЃРѕР·РґР°РЅРёСЏ РїСѓР»Р° СЃРѕРµРґРёРЅРµРЅРёР№.
      *
      * @throws ServletException
      */
@@ -41,10 +41,10 @@ public class ControllerServlet extends HttpServlet {
     }
 
     /**
-     * Обработка запросов для обоих методов HTTP (от GET и от POST).
+     * РћР±СЂР°Р±РѕС‚РєР° Р·Р°РїСЂРѕСЃРѕРІ РґР»СЏ РѕР±РѕРёС… РјРµС‚РѕРґРѕРІ HTTP (РѕС‚ GET Рё РѕС‚ POST).
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІР»РµС‚Сѓ
+     * @param response РћС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
      * @throws ServletException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -66,10 +66,10 @@ public class ControllerServlet extends HttpServlet {
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
     /**
-     * Обработка HTTP запроса методом GET.
+     * РћР±СЂР°Р±РѕС‚РєР° HTTP Р·Р°РїСЂРѕСЃР° РјРµС‚РѕРґРѕРј GET.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІР»РµС‚Сѓ
+     * @param response РћС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
      * @throws ServletException
      * @throws IOException
      */
@@ -80,10 +80,10 @@ public class ControllerServlet extends HttpServlet {
     }
 
     /**
-     * Обработка HTTP запроса методом POST.
+     * РћР±СЂР°Р±РѕС‚РєР° HTTP Р·Р°РїСЂРѕСЃР° РјРµС‚РѕРґРѕРј POST.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІР»РµС‚Сѓ
+     * @param response РћС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
      * @throws ServletException
      * @throws IOException
      */
@@ -94,7 +94,7 @@ public class ControllerServlet extends HttpServlet {
     }
 
     /**
-     * Освобождение ресурсов и закрытие пула соединений
+     * РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ СЂРµСЃСѓСЂСЃРѕРІ Рё Р·Р°РєСЂС‹С‚РёРµ РїСѓР»Р° СЃРѕРµРґРёРЅРµРЅРёР№
      */
     @Override
     public void destroy() {

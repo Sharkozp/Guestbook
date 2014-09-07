@@ -8,23 +8,23 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 
 /**
- * MessageAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
- * инициализацию страницы message.jsp.
+ * MessageAction - РїРѕРґРєР»Р°СЃСЃ. Р РµР°Р»РёР·СѓРµС‚ РѕРґРёРЅ РјРµС‚РѕРґ perfom(). РџРѕРґРєР»Р°СЃСЃ РІС‹РїРѕР»РЅСЏРµС‚
+ * РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ СЃС‚СЂР°РЅРёС†С‹ message.jsp.
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class MessageAction extends AbstractGuestbookAction {
 
     public static final Logger log = Logger.getLogger(MessageAction.class);
 
     /**
-     * Метод выполняет инициализацию страницы message.jsp.
+     * РњРµС‚РѕРґ РІС‹РїРѕР»РЅСЏРµС‚ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ СЃС‚СЂР°РЅРёС†С‹ message.jsp.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
-     * @param datasource Источник данных для пула данных
-     * @return URL-адрес
+     * @param request Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІР»РµС‚Сѓ
+     * @param response РћС‚РІРµС‚ СЃРµСЂРІР»РµС‚Р°
+     * @param datasource РСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С… РґР»СЏ РїСѓР»Р° РґР°РЅРЅС‹С…
+     * @return URL-Р°РґСЂРµСЃ
      */
     @Override
     public String perform(HttpServletRequest request,

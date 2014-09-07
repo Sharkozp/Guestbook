@@ -8,15 +8,15 @@ import org.apache.log4j.Logger;
 import otherpack.Guestbook;
 
 /**
- * JavaBean - обьект модели данных для гостевых книг
+ * JavaBean - РѕР±СЊРµРєС‚ РјРѕРґРµР»Рё РґР°РЅРЅС‹С… РґР»СЏ РіРѕСЃС‚РµРІС‹С… РєРЅРёРі
  *
  * @version 1.1
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class GuestbookBean {
 
     /**
-     * Логирование класса GuestbookBean.class
+     * Р›РѕРіРёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° GuestbookBean.class
      */
     public static final Logger log = Logger.getLogger(GuestbookBean.class);
     private ArrayList<Guestbook> guestbooks;
@@ -26,85 +26,85 @@ public class GuestbookBean {
     private GuestbookDAO gDAO;
 
     /**
-     * Экземпляр класса
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
      */
     public GuestbookBean() {
     }
 
     /**
-     * Метод возращает список всех книг
+     * РњРµС‚РѕРґ РІРѕР·СЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РІСЃРµС… РєРЅРёРі
      *
-     * @return список всех книг
+     * @return СЃРїРёСЃРѕРє РІСЃРµС… РєРЅРёРі
      */
     public ArrayList<Guestbook> getGuestbooks() {
         return guestbooks;
     }
 
     /**
-     * Метод принимает список всех книг
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ СЃРїРёСЃРѕРє РІСЃРµС… РєРЅРёРі
      *
-     * @param guestbooks - список всех книг
+     * @param guestbooks - СЃРїРёСЃРѕРє РІСЃРµС… РєРЅРёРі
      */
     public void setGuestbooks(ArrayList<Guestbook> guestbooks) {
         this.guestbooks = guestbooks;
     }
 
     /**
-     * Метод возращает имя книги
+     * РњРµС‚РѕРґ РІРѕР·СЂР°С‰Р°РµС‚ РёРјСЏ РєРЅРёРіРё
      *
-     * @return имя книги
+     * @return РёРјСЏ РєРЅРёРіРё
      */
     public String getNameGuestbook() {
         return nameGuestbook;
     }
 
     /**
-     * Метод принимает имя книги
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РёРјСЏ РєРЅРёРіРё
      *
-     * @param nameGuestbook имя книги
+     * @param nameGuestbook РёРјСЏ РєРЅРёРіРё
      */
     public void setNameGuestbook(String nameGuestbook) {
         this.nameGuestbook = nameGuestbook;
     }
 
     /**
-     * Метод возвращает описание книги
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РѕРїРёСЃР°РЅРёРµ РєРЅРёРіРё
      *
-     * @return описание книги
+     * @return РѕРїРёСЃР°РЅРёРµ РєРЅРёРіРё
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * Метод принимает описание книги
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РѕРїРёСЃР°РЅРёРµ РєРЅРёРіРё
      *
-     * @param description описание книги
+     * @param description РѕРїРёСЃР°РЅРёРµ РєРЅРёРіРё
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * Метод возвращает порядок отображения
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РїРѕСЂСЏРґРѕРє РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
      *
-     * @return порядок отображения
+     * @return РїРѕСЂСЏРґРѕРє РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
      */
     public int getDisplayOrder() {
         return displayOrder;
     }
 
     /**
-     * Метод принимает порядок отображения
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РїРѕСЂСЏРґРѕРє РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
      *
-     * @param displayOrder порядок отображения
+     * @param displayOrder РїРѕСЂСЏРґРѕРє РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
      */
     public void setDisplayOrder(int displayOrder) {
         this.displayOrder = displayOrder;
     }
 
     /**
-     * Метод добавляет книгу в базу
+     * РњРµС‚РѕРґ РґРѕР±Р°РІР»СЏРµС‚ РєРЅРёРіСѓ РІ Р±Р°Р·Сѓ
      */
     public void addBook() {
         gDAO.addGuestbook(new Guestbook(
@@ -114,7 +114,7 @@ public class GuestbookBean {
     }
 
     /**
-     * Метод обновляет книгу в базе
+     * РњРµС‚РѕРґ РѕР±РЅРѕРІР»СЏРµС‚ РєРЅРёРіСѓ РІ Р±Р°Р·Рµ
      */
     public void updateBook() {
         gDAO.updateGuestbook(new Guestbook(
@@ -124,14 +124,14 @@ public class GuestbookBean {
     }
 
     /**
-     * Метод удаляет книгу из базы
+     * РњРµС‚РѕРґ СѓРґР°Р»СЏРµС‚ РєРЅРёРіСѓ РёР· Р±Р°Р·С‹
      */
     public void deleteBook() {
         gDAO.deleteGuestbook(nameGuestbook);
     }
 
     /**
-     * Метод возвращает книгу по имени из базы
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРЅРёРіСѓ РїРѕ РёРјРµРЅРё РёР· Р±Р°Р·С‹
      */
     public void getGuestbookByName() {
         Guestbook g = gDAO.getGuestbook(nameGuestbook);
@@ -141,16 +141,16 @@ public class GuestbookBean {
     }
 
     /**
-     * Метод возвращает список книг полученых из базы
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РєРЅРёРі РїРѕР»СѓС‡РµРЅС‹С… РёР· Р±Р°Р·С‹
      */
     public void getListOfGuestbook() {
         guestbooks = gDAO.getGuestbookList();
     }
 
     /**
-     * Метод принимает источник данных DataSource
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С… DataSource
      *
-     * @param dataSource источник данных
+     * @param dataSource РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…
      */
     public void setDataSource(DataSource dataSource) {
         if (dataSource == null) {

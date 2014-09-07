@@ -10,10 +10,10 @@ import otherpack.User;
 import org.apache.log4j.Logger;
 
 /**
- * JavaBean - обьект модели данных для пользователя
+ * JavaBean - РѕР±СЊРµРєС‚ РјРѕРґРµР»Рё РґР°РЅРЅС‹С… РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
  *
  * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Р”РёРєРёР№ РђР»РµРєСЃР°РЅРґСЂ РќРёРєРѕР»Р°РµРІРёС‡
  */
 public class UserBean {
 
@@ -25,119 +25,119 @@ public class UserBean {
     private boolean error;
     private DataSource dataSource;
     /**
-     * Логирование класса UserBean.class
+     * Р›РѕРіРёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° UserBean.class
      */
     public static final Logger log = Logger.getLogger(UserBean.class);
 
     /**
-     * Экземпляр класса
+     * Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
      */
     public UserBean() {
     }
 
     /**
-     * Метод возвращает список пользователей
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      *
-     * @return список пользователей
+     * @return СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      */
     public ArrayList<User> getList() {
         return list;
     }
 
     /**
-     * Метод принимает список пользователей
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      *
-     * @param list список пользователей
+     * @param list СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      */
     public void setList(ArrayList<User> list) {
         this.list = list;
     }
 
     /**
-     * Метод возвращает учетное имя
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СѓС‡РµС‚РЅРѕРµ РёРјСЏ
      *
-     * @return учетное имя
+     * @return СѓС‡РµС‚РЅРѕРµ РёРјСЏ
      */
     public String getUserName() {
         return userName;
     }
 
     /**
-     * Метод принимает учетное имя
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ СѓС‡РµС‚РЅРѕРµ РёРјСЏ
      *
-     * @param userName учетное имя
+     * @param userName СѓС‡РµС‚РЅРѕРµ РёРјСЏ
      */
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
     /**
-     * Метод возвращает дайджест пароля
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РґР°Р№РґР¶РµСЃС‚ РїР°СЂРѕР»СЏ
      *
-     * @return дайджест пароля
+     * @return РґР°Р№РґР¶РµСЃС‚ РїР°СЂРѕР»СЏ
      */
     public String getPwdDigest() {
         return pwdDigest;
     }
 
     /**
-     * Метод возвращает фамилию пользователя
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      *
-     * @return фамилию пользователя
+     * @return С„Р°РјРёР»РёСЋ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     * Метод принимает фамилию пользователя
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ С„Р°РјРёР»РёСЋ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      *
-     * @param lastName фамилию пользователя
+     * @param lastName С„Р°РјРёР»РёСЋ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     /**
-     * Метод возвращает имя пользователя
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      *
-     * @return имя пользователя
+     * @return РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     * Метод принимает имя пользователя
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      *
-     * @param firstName имя пользователя
+     * @param firstName РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     /**
-     * Метод возвращает ошибку
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РѕС€РёР±РєСѓ
      *
-     * @return ошибка
+     * @return РѕС€РёР±РєР°
      */
     public boolean isError() {
         return error;
     }
 
     /**
-     * Метод принимает ошибку
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РѕС€РёР±РєСѓ
      *
-     * @param error ошибка
+     * @param error РѕС€РёР±РєР°
      */
     public void setError(boolean error) {
         this.error = error;
     }
 
     /**
-     * Метод принимает строку для создания дайджеста пароля
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ СЃС‚СЂРѕРєСѓ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РґР°Р№РґР¶РµСЃС‚Р° РїР°СЂРѕР»СЏ
      *
-     * @param password пароль
+     * @param password РїР°СЂРѕР»СЊ
      * @throws NoSuchAlgorithmException
      */
     public void setPwdDigest(String password) throws NoSuchAlgorithmException {
@@ -152,9 +152,9 @@ public class UserBean {
     }
 
     /**
-     * Метод проверяет существует ли пользователь в базе данных
+     * РњРµС‚РѕРґ РїСЂРѕРІРµСЂСЏРµС‚ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С…
      *
-     * @return признак
+     * @return РїСЂРёР·РЅР°Рє
      */
     public boolean isUserExist() {
         String user = new String();
@@ -172,9 +172,9 @@ public class UserBean {
     }
 
     /**
-     * Метод проверяет является пользователь администратором
+     * РњРµС‚РѕРґ РїСЂРѕРІРµСЂСЏРµС‚ СЏРІР»СЏРµС‚СЃСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј
      *
-     * @return признак
+     * @return РїСЂРёР·РЅР°Рє
      */
     public boolean isAdmin() {
         boolean isAdmin = false;
@@ -188,7 +188,7 @@ public class UserBean {
     }
 
     /**
-     * Метод возвращает список всех пользователей
+     * РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      */
     public void getListOfUsers() {
         try {
@@ -200,7 +200,7 @@ public class UserBean {
     }
 
     /**
-     * Метод получает из базы данные о пользователе
+     * РњРµС‚РѕРґ РїРѕР»СѓС‡Р°РµС‚ РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹Рµ Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»Рµ
      */
     public void getUser() {
         try {
@@ -214,7 +214,7 @@ public class UserBean {
     }
 
     /**
-     * Метод удаляет пользователя из базы
+     * РњРµС‚РѕРґ СѓРґР°Р»СЏРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· Р±Р°Р·С‹
      */
     public void deleteUser() {
         try {
@@ -226,7 +226,7 @@ public class UserBean {
     }
 
     /**
-     * Метод создает пользователя в базе
+     * РњРµС‚РѕРґ СЃРѕР·РґР°РµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ Р±Р°Р·Рµ
      */
     public void addUser() {
         try {
@@ -241,7 +241,7 @@ public class UserBean {
     }
 
     /**
-     * Метод обновляет пользователя в базе
+     * РњРµС‚РѕРґ РѕР±РЅРѕРІР»СЏРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ Р±Р°Р·Рµ
      */
     public void updateUser() {
         try {
@@ -253,9 +253,9 @@ public class UserBean {
     }
 
     /**
-     * Метод принимает источник данных DataSource
+     * РњРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С… DataSource
      *
-     * @param dataSource источник данных
+     * @param dataSource РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…
      */
     public void setDataSource(DataSource dataSource) {
         if (dataSource == null) {
