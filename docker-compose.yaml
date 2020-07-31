@@ -1,8 +1,8 @@
 version: '3'
 services:
   derby:
-    build:
-      context: docker/derby/
+    build: docker/derby
+    working_dir: /dbs
     tty: true
     ports:
-      - "1527:1527"
+      - "127.0.0.1:1527:1527"
