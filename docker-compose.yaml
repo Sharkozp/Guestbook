@@ -6,3 +6,7 @@ services:
     tty: true
     ports:
       - "127.0.0.1:1527:1527"
+  tomcat:
+    image: tomcat
+    ports:
+      - "127.0.0.1:8080:8080"
