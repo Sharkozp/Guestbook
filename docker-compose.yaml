@@ -3,3 +3,6 @@ services:
   derby:
     build:
       context: docker/derby/
+    tty: true
+    ports:
+      - "1527:1527"
