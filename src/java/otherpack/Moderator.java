@@ -3,8 +3,8 @@ package otherpack;
 /**
  * Класс хранит настройки модератора.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class Moderator {
 
@@ -17,7 +17,7 @@ public class Moderator {
      *
      * @param id
      * @param guestbookName имя гостевой книги
-     * @param moderator учетное имя модератора
+     * @param moderator     учетное имя модератора
      */
     public Moderator(int id, String guestbookName, String moderator) {
         this.id = id;

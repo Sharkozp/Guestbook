@@ -6,14 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+
 import otherpack.Moderator;
 import org.apache.log4j.Logger;
 
 /**
  * Паттерн DAO обслуживающий базу данных и модераторов книг
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class ModeratorDAO {
 
@@ -40,7 +41,7 @@ public class ModeratorDAO {
     /**
      * Метод добавляет в базу нового модератора по учетному имени к новой книге
      *
-     * @param userName учетное имя
+     * @param userName  учетное имя
      * @param guestbook имя гостевой книги
      */
     public void addModerator(String userName, String guestbook) {
@@ -58,7 +59,7 @@ public class ModeratorDAO {
     /**
      * Метод проверяет в базе является пользователь модератором данной книги
      *
-     * @param userName учетное имя
+     * @param userName  учетное имя
      * @param guestbook имя гостевой книги
      * @return признак модератора
      */
@@ -104,7 +105,7 @@ public class ModeratorDAO {
     /**
      * Метод возвращает весь список модераторов книг из базы
      *
-     * @param userName учетное имя пользователя 
+     * @param userName учетное имя пользователя
      * @return список модераторов книг
      */
     public ArrayList<Moderator> getListOfModeratorsBook(String userName) {

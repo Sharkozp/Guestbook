@@ -4,10 +4,12 @@ import beans.GuestbookBean;
 import beans.Login;
 import beans.MessageBean;
 import beans.ModeratorBean;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -15,25 +17,22 @@ import org.apache.log4j.Logger;
  * инициализацию и загрузку всех сообщений и ответов выбраной книги или по
  * умолчанию на странице guestbook.jsp.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class GuestbookAction extends AbstractGuestbookAction {
-
-    public static final Logger log = Logger.getLogger(GuestbookAction.class);
 
     /**
      * Метод выполняет инициализацию и загрузку всех сообщений и ответов
      * выбраной книги или по умолчанию на странице guestbook.jsp.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
     @Override
-    public String perform(HttpServletRequest request,
-            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
         String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();
         session.removeAttribute("uBean");

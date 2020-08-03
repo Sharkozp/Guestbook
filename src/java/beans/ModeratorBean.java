@@ -1,17 +1,19 @@
 package beans;
 
 import dao.ModeratorDAO;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+
 import otherpack.Moderator;
 import org.apache.log4j.Logger;
 
 /**
  * JavaBean - обьект модели данных для модераторов
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class ModeratorBean {
 
@@ -51,6 +53,7 @@ public class ModeratorBean {
 
     /**
      * Метод возращает id
+     *
      * @return возращает id
      */
     public int getId() {
@@ -59,6 +62,7 @@ public class ModeratorBean {
 
     /**
      * Метод принимает id
+     *
      * @param id
      */
     public void setId(int id) {
@@ -67,6 +71,7 @@ public class ModeratorBean {
 
     /**
      * Метод возращает учетное имя
+     *
      * @return учетное имя
      */
     public String getUsername() {
@@ -75,6 +80,7 @@ public class ModeratorBean {
 
     /**
      * Метод принимает учетное имя
+     *
      * @param username учетное имя
      */
     public void setUsername(String username) {
@@ -83,6 +89,7 @@ public class ModeratorBean {
 
     /**
      * Метод возращает имя гостевых книги
+     *
      * @return имя гостевых книги
      */
     public String getGuestbookName() {
@@ -91,6 +98,7 @@ public class ModeratorBean {
 
     /**
      * Метод принимает имя гостевых книги
+     *
      * @param guestbookName имя гостевых книги
      */
     public void setGuestbookName(String guestbookName) {
@@ -113,6 +121,7 @@ public class ModeratorBean {
 
     /**
      * Метод проверяет, является ли пользователь модератором книги
+     *
      * @return признак
      */
     public boolean isModerator() {
@@ -120,7 +129,7 @@ public class ModeratorBean {
     }
 
     /**
-     * Метод назначает модератором гостевых книги 
+     * Метод назначает модератором гостевых книги
      */
     public void setModeratorsBook() {
         modDAO.addModerator(username, guestbookName);

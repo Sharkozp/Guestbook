@@ -2,6 +2,7 @@ package controller;
 
 import action.factory.Action;
 import action.factory.ActionFactory;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -16,8 +18,8 @@ import org.apache.log4j.Logger;
  * обрабатывает все запросы пользователей и переадресует на соответствующие JSP
  * страницы, посредством нажатия кнопок на JSP страницах.
  *
- * @version 1.1
  * @author Дикий Александр Николаевич
+ * @version 1.1
  */
 public class ControllerServlet extends HttpServlet {
 
@@ -43,7 +45,7 @@ public class ControllerServlet extends HttpServlet {
     /**
      * Обработка запросов для обоих методов HTTP (от GET и от POST).
      *
-     * @param request Запрос к сервлету
+     * @param request  Запрос к сервлету
      * @param response Ответ сервлета
      * @throws ServletException
      */
@@ -68,7 +70,7 @@ public class ControllerServlet extends HttpServlet {
     /**
      * Обработка HTTP запроса методом GET.
      *
-     * @param request Запрос к сервлету
+     * @param request  Запрос к сервлету
      * @param response Ответ сервлета
      * @throws ServletException
      * @throws IOException
@@ -82,7 +84,7 @@ public class ControllerServlet extends HttpServlet {
     /**
      * Обработка HTTP запроса методом POST.
      *
-     * @param request Запрос к сервлету
+     * @param request  Запрос к сервлету
      * @param response Ответ сервлета
      * @throws ServletException
      * @throws IOException

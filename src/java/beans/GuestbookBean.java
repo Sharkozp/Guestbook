@@ -1,17 +1,19 @@
 package beans;
 
 import dao.GuestbookDAO;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import otherpack.Guestbook;
 
 /**
  * JavaBean - обьект модели данных для гостевых книг
  *
- * @version 1.1
  * @author Дикий Александр Николаевич
+ * @version 1.1
  */
 public class GuestbookBean {
 

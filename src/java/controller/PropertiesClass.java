@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 /**
  * Класс для получения свойств из файла. Реализация паттерна Singleton.
  *
- * @version 1.1
  * @author Дикий Александр Николаевич
+ * @version 1.1
  */
 public class PropertiesClass {
 
@@ -48,6 +48,7 @@ public class PropertiesClass {
 
     /**
      * Метод возвращает JDBC-драйвер базы данных
+     *
      * @return JDBC-драйвер
      */
     public String getJDBC_driver() {
@@ -56,6 +57,7 @@ public class PropertiesClass {
 
     /**
      * Метод возвращает URL, где расположена база данных
+     *
      * @return URL
      */
     public String getURL() {
@@ -64,6 +66,7 @@ public class PropertiesClass {
 
     /**
      * Метод возвращает пароль в базе данных
+     *
      * @return пароль
      */
     public String getPassword() {
@@ -72,6 +75,7 @@ public class PropertiesClass {
 
     /**
      * Метод возвращает учетное имя в базе данных
+     *
      * @return учетное имя
      */
     public String getUsername() {
@@ -80,6 +84,7 @@ public class PropertiesClass {
 
     /**
      * Метод возвращает текущую локаль
+     *
      * @return текущую локаль
      */
     public Locale getLocale() {

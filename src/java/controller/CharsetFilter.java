@@ -11,8 +11,8 @@ import javax.servlet.ServletResponse;
 /**
  * Фильтр русских букв
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class CharsetFilter implements Filter {
 
@@ -35,7 +35,7 @@ public class CharsetFilter implements Filter {
     /**
      * Основной метод фильтра
      *
-     * @param request запрос сервлета
+     * @param request  запрос сервлета
      * @param response ответ сервлета
      * @param chain
      * @throws IOException

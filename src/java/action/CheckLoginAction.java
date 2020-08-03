@@ -4,11 +4,13 @@ import beans.GuestbookBean;
 import beans.Login;
 import beans.ModeratorBean;
 import beans.UserBean;
+
 import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -16,25 +18,22 @@ import org.apache.log4j.Logger;
  * проверку введенных данных и от результата переадресует на определенную
  * страницу.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class CheckLoginAction extends AbstractGuestbookAction {
-
-    public static final Logger log = Logger.getLogger(CheckLoginAction.class);
 
     /**
      * Метод выполняет проверку введенных данных и от результата переадресует на
      * определенную страницу.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
     @Override
-    public String perform(HttpServletRequest request,
-            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
 
         String page;
         HttpSession session = request.getSession();

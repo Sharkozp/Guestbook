@@ -3,6 +3,7 @@ package action.admin.book;
 import action.AbstractGuestbookAction;
 import beans.GuestbookBean;
 import beans.Login;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,22 +13,21 @@ import javax.sql.DataSource;
  * AddNewBookAction - подкласс. Реализует один метод perfom(). Подкласс
  * выполняет обработку запроса и запись новой гостевой книги.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class AddNewBookAction extends AbstractGuestbookAction {
 
     /**
      * Метод выполняет обработку запроса и запись новой гостевой книги.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
     @Override
-    public String perform(HttpServletRequest request,
-            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
 
         HttpSession session = request.getSession();
 

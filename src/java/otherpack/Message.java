@@ -5,8 +5,8 @@ import java.util.Date;
 /**
  * Класс хранит настройки сообщения.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class Message {
 
@@ -29,14 +29,14 @@ public class Message {
      * Экземпляр класса без ID сообщения и isNewForAdmin
      *
      * @param guestbookName имя гостевой книги
-     * @param messageText сообщение гостевой книги
-     * @param isForAll сообщение для всех
-     * @param creationTime дата создания сообщения
-     * @param creatorName имя создавшего сообщение
-     * @param creatorIP ip адрес создавшего сообщения
-     * @param phone номер телефона
-     * @param email email адрес
-     * @param icq icq номер
+     * @param messageText   сообщение гостевой книги
+     * @param isForAll      сообщение для всех
+     * @param creationTime  дата создания сообщения
+     * @param creatorName   имя создавшего сообщение
+     * @param creatorIP     ip адрес создавшего сообщения
+     * @param phone         номер телефона
+     * @param email         email адрес
+     * @param icq           icq номер
      */
     public Message(String guestbookName, String messageText, boolean isForAll, Date creationTime, String creatorName, String creatorIP, String phone, String email, String icq) {
         this.guestbookName = guestbookName;
@@ -53,17 +53,17 @@ public class Message {
     /**
      * Экземпляр класса с ID сообщения и isNewForAdmin
      *
-     * @param msgID id сообщения
+     * @param msgID         id сообщения
      * @param guestbookName имя гостевой книги
-     * @param messageText сообщение гостевой книги
-     * @param isForAll сообщение для всех
+     * @param messageText   сообщение гостевой книги
+     * @param isForAll      сообщение для всех
      * @param isNewForAdmin сообщение новое для модератора
-     * @param creationTime дата создания сообщения
-     * @param creatorName имя создавшего сообщение
-     * @param creatorIP ip адрес создавшего сообщения
-     * @param phone номер телефона
-     * @param email email адрес
-     * @param icq icq номер
+     * @param creationTime  дата создания сообщения
+     * @param creatorName   имя создавшего сообщение
+     * @param creatorIP     ip адрес создавшего сообщения
+     * @param phone         номер телефона
+     * @param email         email адрес
+     * @param icq           icq номер
      */
     public Message(int msgID, String guestbookName, String messageText, boolean isForAll, boolean isNewForAdmin, Date creationTime, String creatorName, String creatorIP, String phone, String email, String icq) {
         this.msgID = msgID;

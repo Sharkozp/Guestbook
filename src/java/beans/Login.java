@@ -3,8 +3,8 @@ package beans;
 /**
  * JavaBean - обьект модели данных для авторизации
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class Login {
 

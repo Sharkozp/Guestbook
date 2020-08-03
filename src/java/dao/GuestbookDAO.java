@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+
 import otherpack.Guestbook;
 import org.apache.log4j.Logger;
 
 /**
  * Паттерн DAO обслуживающий базу данных и гостевые книги
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class GuestbookDAO {
 
@@ -32,7 +33,8 @@ public class GuestbookDAO {
 
     /**
      * Экземпляр класса
-     * @param dataSource 
+     *
+     * @param dataSource
      * @throws SQLException
      */
     public GuestbookDAO(DataSource dataSource) throws SQLException {
@@ -41,7 +43,7 @@ public class GuestbookDAO {
 
     /**
      * Метод добавляет новую книгу в базу
-	 *
+     *
      * @param guestbook класс книги
      */
     public void addGuestbook(Guestbook guestbook) {
@@ -60,7 +62,7 @@ public class GuestbookDAO {
 
     /**
      * Метод удаляет книгу из базы данных по имени
-	 *
+     *
      * @param guestbookName имя базы данных
      */
     public void deleteGuestbook(String guestbookName) {
@@ -77,7 +79,7 @@ public class GuestbookDAO {
 
     /**
      * Метод обновляет записи гостевой книги
-	 *
+     *
      * @param guestbook класс книги
      */
     public void updateGuestbook(Guestbook guestbook) {
@@ -96,7 +98,7 @@ public class GuestbookDAO {
 
     /**
      * Метод позвращает книгу из базы даных по имени
-	 *
+     *
      * @param guestbookName имя книги
      * @return класс книги
      */
@@ -107,9 +109,7 @@ public class GuestbookDAO {
             pst.setString(1, guestbookName);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                g = new Guestbook(guestbookName,
-                        rs.getString("description"),
-                        rs.getInt("display_order"));
+                g = new Guestbook(guestbookName, rs.getString("description"), rs.getInt("display_order"));
             }
             rs.close();
             pst.close();
@@ -122,7 +122,7 @@ public class GuestbookDAO {
 
     /**
      * Метод возвращает список всех книг из базы
-	 *
+     *
      * @return список всех книг
      */
     public ArrayList<Guestbook> getGuestbookList() {

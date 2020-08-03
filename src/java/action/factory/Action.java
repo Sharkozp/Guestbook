@@ -7,11 +7,10 @@ import javax.sql.DataSource;
 /**
  * Action - Интерфейс Action.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public interface Action {
 
-    public String perform(HttpServletRequest request, 
-       HttpServletResponse response, DataSource datasource);
+    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource);
 }

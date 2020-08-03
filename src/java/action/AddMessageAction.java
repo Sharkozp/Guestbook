@@ -1,6 +1,7 @@
 package action;
 
 import beans.MessageBean;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Date;
@@ -8,30 +9,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 
 /**
  * AddMessageAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
  * получение и проверку сообщения, обрезку до 4 байт.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class AddMessageAction extends AbstractGuestbookAction {
-
-    public static final Logger log = Logger.getLogger(AddMessageAction.class);
 
     /**
      * Метод выполняет получение и проверку сообщения, обрезку до 4 байт.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
     @Override
-    public String perform(HttpServletRequest request,
-            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
         String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();
         MessageBean mBean = (MessageBean) session.getAttribute("mBean");

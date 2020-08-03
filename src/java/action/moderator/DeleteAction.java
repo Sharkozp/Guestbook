@@ -28,8 +28,7 @@ public class DeleteAction extends AbstractGuestbookAction {
      * @return URL-адрес
      */
     @Override
-    public String perform(HttpServletRequest request,
-            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request,            HttpServletResponse response, DataSource datasource) {
 
         String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();

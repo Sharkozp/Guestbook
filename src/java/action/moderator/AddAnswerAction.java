@@ -5,6 +5,7 @@ import beans.GuestbookBean;
 import beans.Login;
 import beans.MessageBean;
 import beans.UserBean;
+
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +16,8 @@ import javax.sql.DataSource;
  * AddAnswerAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
  * получение и обработку запроса на добавление ответа сообщения модератором.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class AddAnswerAction extends AbstractGuestbookAction {
 
@@ -24,14 +25,13 @@ public class AddAnswerAction extends AbstractGuestbookAction {
      * Метод выполняет получение и обработку запроса на добавление ответа
      * сообщения модератором.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
     @Override
-    public String perform(HttpServletRequest request,
-            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
 
         HttpSession session = request.getSession();
 

@@ -3,36 +3,35 @@ package action.admin.user;
 import action.AbstractGuestbookAction;
 import beans.Login;
 import beans.UserBean;
+
 import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 
 /**
  * AddNewUserAction - подкласс. Реализует один метод perfom(). Подкласс
  * выполняет получение и обработку запроса на добавление нового пользователя.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class AddNewUserAction extends AbstractGuestbookAction {
-
-    public static final Logger log = Logger.getLogger(AddNewUserAction.class);
 
     /**
      * Метод выполняет получение и обработку запроса на добавление нового
      * пользователя.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
     @Override
-    public String perform(HttpServletRequest request,
-            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
 
         HttpSession session = request.getSession();
 

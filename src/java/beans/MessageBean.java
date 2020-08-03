@@ -1,18 +1,20 @@
 package beans;
 
 import dao.MessageDAO;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import otherpack.Message;
 
 /**
  * JavaBean - обьект модели данных для сообщений
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class MessageBean {
 
@@ -322,15 +324,15 @@ public class MessageBean {
     public ArrayList<Message> getListMessages() {
         return listMessages;
     }
-	
-	/**
+
+    /**
      * Метод принимает список всех сообщений из книги
-	 *
+     *
      * @param listMessages список всех сообщений из книги
      */
     public void setListMessages(ArrayList<Message> listMessages) {
         this.listMessages = listMessages;
-    }  
+    }
 
     /**
      * Метод принимает список всех сообщений книги из базы
@@ -415,7 +417,7 @@ public class MessageBean {
 
     /**
      * Метод возращает сообщение из базы по ID
-	 *
+     *
      * @return сообщение
      */
     public String getMessageById() {

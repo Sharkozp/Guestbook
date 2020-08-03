@@ -2,14 +2,15 @@ package controller;
 
 import java.sql.SQLException;
 import javax.sql.DataSource;
+
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.log4j.Logger;
 
 /**
  * Класс пул соединений. Реализация паттерна Singleton.
  *
- * @version 1.0
  * @author Дикий А.Н.
+ * @version 1.0
  */
 public class ConnectionPool {
 

@@ -1,19 +1,21 @@
 package beans;
 
 import dao.UserDAO;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+
 import otherpack.User;
 import org.apache.log4j.Logger;
 
 /**
  * JavaBean - обьект модели данных для пользователя
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class UserBean {
 

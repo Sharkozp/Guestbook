@@ -3,8 +3,8 @@ package otherpack;
 /**
  * Класс хранит настройки пользователя.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class User {
 
@@ -15,8 +15,8 @@ public class User {
     /**
      * Экземпляр класса
      *
-     * @param userName учетное имя пользователя
-     * @param lastName фамилия пользователя
+     * @param userName  учетное имя пользователя
+     * @param lastName  фамилия пользователя
      * @param firstName имя пользователя
      */
     public User(String userName, String lastName, String firstName) {

@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import otherpack.Message;
 
 /**
  * Паттерн DAO обслуживающий базу данных и сообщения
  *
- * @version 1.1
  * @author Дикий Александр Николаевич
+ * @version 1.1
  */
 public class MessageDAO {
 
@@ -79,9 +80,9 @@ public class MessageDAO {
     /**
      * Метод обновления сообщения по параметрам
      *
-     * @param text текст сообщения
+     * @param text     текст сообщения
      * @param isForAll признак для всех
-     * @param msgId id сообщения
+     * @param msgId    id сообщения
      */
     public void updateMessage(String text, boolean isForAll, int msgId) {
         try {
@@ -106,8 +107,8 @@ public class MessageDAO {
      *
      * @param answerText текст ответа
      * @param answerName учетное имя ответившего
-     * @param date дата ответа
-     * @param msgId id сообщения
+     * @param date       дата ответа
+     * @param msgId      id сообщения
      */
     public void setAnswer(String answerText, String answerName, Date date, int msgId) {
         try {

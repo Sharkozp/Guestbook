@@ -3,8 +3,8 @@ package otherpack;
 /**
  * Класс хранит настройки гостевой книги.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class Guestbook {
 
@@ -15,8 +15,8 @@ public class Guestbook {
     /**
      * Экземпляр класса
      *
-     * @param name имя книги
-     * @param description описание книги
+     * @param name         имя книги
+     * @param description  описание книги
      * @param displayOrder порядок отображения
      */
     public Guestbook(String name, String description, int displayOrder) {

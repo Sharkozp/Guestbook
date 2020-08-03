@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+
 import otherpack.User;
 import org.apache.log4j.Logger;
 
 /**
  * Паттерн DAO обслуживающий базу данных и пользователей
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class UserDAO {
 
@@ -46,7 +47,7 @@ public class UserDAO {
     /**
      * Метод добавляет в базу нового пользователя
      *
-     * @param user класс User
+     * @param user     класс User
      * @param password дайджест пароля
      */
     public void addUser(User user, String password) {
@@ -67,8 +68,8 @@ public class UserDAO {
     /**
      * Метод обновляет пользователя в базе по заданным параметрам
      *
-     * @param userName учетное имя
-     * @param lastName фамилия пользователя
+     * @param userName  учетное имя
+     * @param lastName  фамилия пользователя
      * @param firstName имя пользователя
      */
     public void updateUser(String userName, String lastName, String firstName) {

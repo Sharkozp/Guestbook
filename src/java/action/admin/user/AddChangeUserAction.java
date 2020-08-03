@@ -3,6 +3,7 @@ package action.admin.user;
 import action.AbstractGuestbookAction;
 import beans.Login;
 import beans.UserBean;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,8 +13,8 @@ import javax.sql.DataSource;
  * AddChangeUserAction - подкласс. Реализует один метод perfom(). Подкласс
  * выполняет получение и обработку запроса на изменение данных о пользователе.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class AddChangeUserAction extends AbstractGuestbookAction {
 
@@ -21,14 +22,13 @@ public class AddChangeUserAction extends AbstractGuestbookAction {
      * Метод выполняет получение и обработку запроса на изменение данных о
      * пользователе.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
     @Override
-    public String perform(HttpServletRequest request,
-            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
 
         HttpSession session = request.getSession();
         session.removeAttribute("modBean");

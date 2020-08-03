@@ -4,6 +4,7 @@ import action.AbstractGuestbookAction;
 import beans.GuestbookBean;
 import beans.Login;
 import beans.MessageBean;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,8 +15,8 @@ import javax.sql.DataSource;
  * выполняет получение и обработку запроса на изменение текста пользователя
  * модератором.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class AddCorrectionAction extends AbstractGuestbookAction {
 
@@ -23,14 +24,13 @@ public class AddCorrectionAction extends AbstractGuestbookAction {
      * Метод выполняет получение и обработку запроса на изменение текста
      * пользователя модератором.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
     @Override
-    public String perform(HttpServletRequest request,
-            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
 
         HttpSession session = request.getSession();
 
