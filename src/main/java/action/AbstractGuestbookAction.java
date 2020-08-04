@@ -4,6 +4,7 @@ import action.factory.Action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 /**
  * AbstractGuestbookAction - абстрактный класс. Реализует один метод perfom().
