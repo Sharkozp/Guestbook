@@ -1,1 +1,0 @@
-ant -logfile ant.log
