@@ -1,6 +1,6 @@
 package om.dykyi.beans;
 
-import om.dykyi.dao.ModeratorDAO;
+import om.dykyi.models.ModeratorModel;
 import org.apache.log4j.Logger;
 import om.dykyi.otherpack.Moderator;
 
@@ -20,7 +20,7 @@ public class ModeratorBean {
     private String username;
     private String guestbookName;
     private ArrayList<Moderator> listOfModeratorsBooks;
-    private ModeratorDAO modDAO;
+    private ModeratorModel modDAO;
     /**
      * Логирование класса ModeratorBean.class
      */
@@ -144,7 +144,7 @@ public class ModeratorBean {
             log.error("DataSource is not set");
         } else {
             try {
-                modDAO = new ModeratorDAO(dataSource);
+                modDAO = new ModeratorModel(dataSource);
             } catch (SQLException se) {
                 log.error(se.getMessage());
             }

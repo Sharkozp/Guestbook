@@ -1,10 +1,8 @@
-package om.dykyi.dao;
+package om.dykyi.models;
 
-import org.apache.log4j.Logger;
 import om.dykyi.otherpack.Message;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,34 +15,28 @@ import java.util.Date;
  * @author Дикий Александр Николаевич
  * @version 1.1
  */
-public class MessageDAO {
-
-    private Connection conn;
-    private String select = "select * from T_MESSAGE where GUESTBOOK_NAME=?"
+public class MessageModel extends AbstractModel {
+    private final static String select = "select * from T_MESSAGE where GUESTBOOK_NAME=?"
             + " order by time_creation desc";
-    private String get = "select msg_text from T_MESSAGE where id=?";
-    private String insert = "INSERT INTO T_MESSAGE (guestbook_name,msg_text,"
+    private final static String get = "select msg_text from T_MESSAGE where id=?";
+    private final static String insert = "INSERT INTO T_MESSAGE (guestbook_name,msg_text,"
             + "for_all,time_creation,is_new4admin,author_name,author_ip,phone,"
             + "e_mail,icq) values(?,?,?,?,?,?,?,?,?,?)";
-    private String delete = "delete from T_MESSAGE where id=?";
-    private String update = "update T_MESSAGE set msg_text=?, for_all=?,"
+    private final static String delete = "delete from T_MESSAGE where id=?";
+    private final static String update = "update T_MESSAGE set msg_text=?, for_all=?,"
             + "is_new4admin='0' where id=?";
-    private String answer = "update T_MESSAGE set answer_text=?, answer_name=?,"
+    private final static String answer = "update T_MESSAGE set answer_text=?, answer_name=?,"
             + "time_answer=?,is_new4admin='0' where id=?";
-    private String count = "select count(guestbook_name) as messagecount from t_message WHERE guestbook_name=?";
-    /**
-     * Логирование класса MessageDAO.class
-     */
-    public static final Logger log = Logger.getLogger(MessageDAO.class);
+    private final static String count = "select count(guestbook_name) as messagecount from t_message WHERE guestbook_name=?";
 
     /**
-     * Экземпляр класса
+     * Constructor
      *
      * @param dataSource
      * @throws SQLException
      */
-    public MessageDAO(DataSource dataSource) throws SQLException {
-        conn = dataSource.getConnection();
+    public MessageModel(DataSource dataSource) throws SQLException {
+        super(dataSource);
     }
 
     /**
@@ -54,7 +46,7 @@ public class MessageDAO {
      */
     public void addMessage(Message message) {
         try {
-            PreparedStatement pst = conn.prepareStatement(insert);
+            PreparedStatement pst = getPrepareStatement(insert);
             pst.setString(1, message.getGuestbookName());
             pst.setString(2, message.getMessageText());
             if (message.isIsForAll()) {
@@ -71,9 +63,9 @@ public class MessageDAO {
             pst.setString(10, message.getIcq());
             pst.executeUpdate();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
     }
 
@@ -86,7 +78,7 @@ public class MessageDAO {
      */
     public void updateMessage(String text, boolean isForAll, int msgId) {
         try {
-            PreparedStatement pst = conn.prepareStatement(update);
+            PreparedStatement pst = getPrepareStatement(update);
             pst.setString(1, text);
             if (isForAll) {
                 pst.setObject(2, 1, java.sql.Types.CHAR);
@@ -96,9 +88,9 @@ public class MessageDAO {
             pst.setInt(3, msgId);
             pst.executeUpdate();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
     }
 
@@ -112,16 +104,16 @@ public class MessageDAO {
      */
     public void setAnswer(String answerText, String answerName, Date date, int msgId) {
         try {
-            PreparedStatement pst = conn.prepareStatement(answer);
+            PreparedStatement pst = getPrepareStatement(answer);
             pst.setString(1, answerText);
             pst.setString(2, answerName);
             pst.setObject(3, date, java.sql.Types.TIMESTAMP);
             pst.setInt(4, msgId);
             pst.executeUpdate();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
     }
 
@@ -134,7 +126,7 @@ public class MessageDAO {
     public String getMessage(int msgId) {
         String msg = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(get);
+            PreparedStatement pst = getPrepareStatement(get);
             pst.setInt(1, msgId);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -142,9 +134,9 @@ public class MessageDAO {
             }
             rs.close();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
         return msg;
     }
@@ -158,7 +150,7 @@ public class MessageDAO {
     public int getMessageCount(String guestbook) {
         int countMsg = 0;
         try {
-            PreparedStatement pst = conn.prepareStatement(count);
+            PreparedStatement pst = getPrepareStatement(count);
             pst.setString(1, guestbook);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -166,9 +158,9 @@ public class MessageDAO {
             }
             rs.close();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
         return countMsg;
     }
@@ -180,13 +172,13 @@ public class MessageDAO {
      */
     public void deleteMessage(int msgId) {
         try {
-            PreparedStatement pst = conn.prepareStatement(delete);
+            PreparedStatement pst = getPrepareStatement(delete);
             pst.setInt(1, msgId);
             pst.executeUpdate();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
     }
 
@@ -197,10 +189,9 @@ public class MessageDAO {
      * @return список всех сообщений
      */
     public ArrayList<Message> getMessageList(String guestbook) {
-        ArrayList<Message> list = null;
+        ArrayList<Message> list = new ArrayList<>();
         try {
-            list = new ArrayList<Message>();
-            PreparedStatement pst = conn.prepareStatement(select);
+            PreparedStatement pst = getPrepareStatement(select);
             pst.setString(1, guestbook);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -225,9 +216,9 @@ public class MessageDAO {
             }
             rs.close();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
         return list;
     }

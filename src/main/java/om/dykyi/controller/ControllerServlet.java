@@ -32,10 +32,9 @@ public class ControllerServlet extends HttpServlet {
     /**
      * Инициализация сервлета-контроллера. Выполняется создания пула соединений.
      *
-     * @throws ServletException
      */
     @Override
-    public void init() throws ServletException {
+    public void init() {
         ConnectionPool conPool = ConnectionPool.getInstance();
         conPool.setProperties();
         dataSource = conPool.getDataSource();
@@ -46,17 +45,15 @@ public class ControllerServlet extends HttpServlet {
      *
      * @param request  Запрос к сервлету
      * @param response Ответ сервлета
-     * @throws ServletException
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String command = request.getParameter("command");
         if (command != null || command.length() != 0) {
             Action action = factory.create(command);
             String url = action.perform(request, response, dataSource);
             if (url != null) {
                 try {
-                    String newUrl = "/WEB-INF/view/" + url;
+                    String newUrl = "/jsp/" + url;
                     request.getRequestDispatcher(newUrl).forward(request, response);
                 } catch (Exception ex) {
                     log.error(ex.toString());
@@ -70,11 +67,9 @@ public class ControllerServlet extends HttpServlet {
      *
      * @param request  Запрос к сервлету
      * @param response Ответ сервлета
-     * @throws ServletException
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -83,11 +78,9 @@ public class ControllerServlet extends HttpServlet {
      *
      * @param request  Запрос к сервлету
      * @param response Ответ сервлета
-     * @throws ServletException
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 

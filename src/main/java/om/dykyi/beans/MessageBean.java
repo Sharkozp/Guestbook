@@ -1,6 +1,6 @@
 package om.dykyi.beans;
 
-import om.dykyi.dao.MessageDAO;
+import om.dykyi.models.MessageModel;
 import org.apache.log4j.Logger;
 import om.dykyi.otherpack.Message;
 
@@ -338,7 +338,7 @@ public class MessageBean {
      */
     public void getListOfMessages() {
         try {
-            MessageDAO mDAO = new MessageDAO(dataSource);
+            MessageModel mDAO = new MessageModel(dataSource);
             listMessages = mDAO.getMessageList(guestbookName);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -350,7 +350,7 @@ public class MessageBean {
      */
     public void addMessage() {
         try {
-            MessageDAO mDAO = new MessageDAO(dataSource);
+            MessageModel mDAO = new MessageModel(dataSource);
             mDAO.addMessage(new Message(
                     guestbookName,
                     message,
@@ -371,7 +371,7 @@ public class MessageBean {
      */
     public void setAnswer() {
         try {
-            MessageDAO mDAO = new MessageDAO(dataSource);
+            MessageModel mDAO = new MessageModel(dataSource);
             mDAO.setAnswer(answerText, answerName, answerTime, id);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -383,7 +383,7 @@ public class MessageBean {
      */
     public void getMessageCount() {
         try {
-            MessageDAO mDAO = new MessageDAO(dataSource);
+            MessageModel mDAO = new MessageModel(dataSource);
             count = mDAO.getMessageCount(guestbookName);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -395,7 +395,7 @@ public class MessageBean {
      */
     public void deleteMessage() {
         try {
-            MessageDAO mDAO = new MessageDAO(dataSource);
+            MessageModel mDAO = new MessageModel(dataSource);
             mDAO.deleteMessage(id);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -407,7 +407,7 @@ public class MessageBean {
      */
     public void updateMessage() {
         try {
-            MessageDAO mDAO = new MessageDAO(dataSource);
+            MessageModel mDAO = new MessageModel(dataSource);
             mDAO.updateMessage(message, forAll, id);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -422,7 +422,7 @@ public class MessageBean {
     public String getMessageById() {
         message = null;
         try {
-            MessageDAO mDAO = new MessageDAO(dataSource);
+            MessageModel mDAO = new MessageModel(dataSource);
             message = mDAO.getMessage(id);
         } catch (SQLException se) {
             log.error(se.getMessage());

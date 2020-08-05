@@ -1,6 +1,6 @@
 package om.dykyi.beans;
 
-import om.dykyi.dao.GuestbookDAO;
+import om.dykyi.models.GuestbookModel;
 import org.apache.log4j.Logger;
 import om.dykyi.otherpack.Guestbook;
 
@@ -24,7 +24,7 @@ public class GuestbookBean {
     private String nameGuestbook;
     private String description;
     private int displayOrder;
-    private GuestbookDAO gDAO;
+    private GuestbookModel gDAO;
 
     /**
      * Экземпляр класса
@@ -144,7 +144,7 @@ public class GuestbookBean {
     /**
      * Метод возвращает список книг полученых из базы
      */
-    public void getListOfGuestbook() {
+    public void getGuestbookList() {
         guestbooks = gDAO.getGuestbookList();
     }
 
@@ -158,7 +158,7 @@ public class GuestbookBean {
             log.error("DataSource is not set");
         } else {
             try {
-                gDAO = new GuestbookDAO(dataSource);
+                gDAO = new GuestbookModel(dataSource);
             } catch (SQLException se) {
                 log.error(se.getMessage());
             }

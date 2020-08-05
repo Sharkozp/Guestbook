@@ -44,7 +44,7 @@ public class AdminBooksAction extends AbstractGuestbookAction {
                     gBean = new GuestbookBean();
                 }
                 gBean.setDataSource(datasource);
-                gBean.getListOfGuestbook();
+                gBean.getGuestbookList();
                 session.setAttribute("gBean", gBean);
 
                 return "/admin/book/" + page + ".jsp";

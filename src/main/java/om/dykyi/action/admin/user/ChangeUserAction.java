@@ -64,7 +64,7 @@ public class ChangeUserAction extends AbstractGuestbookAction {
                     gBean = new GuestbookBean();
                 }
                 gBean.setDataSource(datasource);
-                gBean.getListOfGuestbook();
+                gBean.getGuestbookList();
                 session.setAttribute("gBean", gBean);
 
                 return "/admin/user/" + page + ".jsp";

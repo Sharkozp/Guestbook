@@ -1,6 +1,6 @@
 package om.dykyi.beans;
 
-import om.dykyi.dao.UserDAO;
+import om.dykyi.models.UserModel;
 import org.apache.log4j.Logger;
 import om.dykyi.otherpack.User;
 
@@ -160,7 +160,7 @@ public class UserBean {
     public boolean isUserExist() {
         String user = new String();
         try {
-            UserDAO uDAO = new UserDAO(dataSource);
+            UserModel uDAO = new UserModel(dataSource);
             user = uDAO.getUser(userName, pwdDigest);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -180,7 +180,7 @@ public class UserBean {
     public boolean isAdmin() {
         boolean isAdmin = false;
         try {
-            UserDAO uDAO = new UserDAO(dataSource);
+            UserModel uDAO = new UserModel(dataSource);
             isAdmin = uDAO.isAdmin(userName);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -193,7 +193,7 @@ public class UserBean {
      */
     public void getListOfUsers() {
         try {
-            UserDAO uDAO = new UserDAO(dataSource);
+            UserModel uDAO = new UserModel(dataSource);
             list = uDAO.getListOfUsers();
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -205,7 +205,7 @@ public class UserBean {
      */
     public void getUser() {
         try {
-            UserDAO uDAO = new UserDAO(dataSource);
+            UserModel uDAO = new UserModel(dataSource);
             User u = uDAO.getUser(userName);
             lastName = u.getLastName();
             firstName = u.getFirstName();
@@ -219,7 +219,7 @@ public class UserBean {
      */
     public void deleteUser() {
         try {
-            UserDAO uDAO = new UserDAO(dataSource);
+            UserModel uDAO = new UserModel(dataSource);
             uDAO.deleteUser(userName);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -231,7 +231,7 @@ public class UserBean {
      */
     public void addUser() {
         try {
-            UserDAO uDAO = new UserDAO(dataSource);
+            UserModel uDAO = new UserModel(dataSource);
             uDAO.addUser(new User(
                     userName,
                     lastName,
@@ -246,7 +246,7 @@ public class UserBean {
      */
     public void updateUser() {
         try {
-            UserDAO uDAO = new UserDAO(dataSource);
+            UserModel uDAO = new UserModel(dataSource);
             uDAO.updateUser(userName, lastName, firstName);
         } catch (SQLException se) {
             log.error(se.getMessage());

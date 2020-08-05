@@ -75,7 +75,7 @@ public class CheckLoginAction extends AbstractGuestbookAction {
                 gBean = new GuestbookBean();
             }
             gBean.setDataSource(datasource);
-            gBean.getListOfGuestbook();
+            gBean.getGuestbookList();
             session.setAttribute("gBean", gBean);
         } else {
             //Иначе выбрасываем ошибку на страницу login.jsp

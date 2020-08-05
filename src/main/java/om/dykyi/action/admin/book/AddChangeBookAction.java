@@ -49,7 +49,7 @@ public class AddChangeBookAction extends AbstractGuestbookAction {
                 gBean.updateBook();
 
                 gBean.setDataSource(datasource);
-                gBean.getListOfGuestbook();
+                gBean.getGuestbookList();
                 session.setAttribute("gBean", gBean);
 
                 return "/admin/book/adminbooks.jsp";

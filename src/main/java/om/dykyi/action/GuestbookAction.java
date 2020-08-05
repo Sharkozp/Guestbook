@@ -40,7 +40,7 @@ public class GuestbookAction extends AbstractGuestbookAction {
         gBean.setDataSource(datasource);
         String nameGB;
         if (request.getParameter("nameGuestbook") == null || request.getParameter("nameGuestbook").length() == 0) {
-            gBean.getListOfGuestbook();
+            gBean.getGuestbookList();
             nameGB = gBean.getGuestbooks().get(0).getName();
         } else {
             nameGB = request.getParameter("nameGuestbook");

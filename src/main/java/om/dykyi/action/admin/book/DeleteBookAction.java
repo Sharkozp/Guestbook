@@ -46,7 +46,7 @@ public class DeleteBookAction extends AbstractGuestbookAction {
                 gBean.deleteBook();
 
                 gBean.setDataSource(datasource);
-                gBean.getListOfGuestbook();
+                gBean.getGuestbookList();
                 session.setAttribute("gBean", gBean);
 
                 return "/admin/book/adminbooks.jsp";

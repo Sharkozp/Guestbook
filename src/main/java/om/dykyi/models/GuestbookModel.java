@@ -1,6 +1,5 @@
-package om.dykyi.dao;
+package om.dykyi.models;
 
-import org.apache.log4j.Logger;
 import om.dykyi.otherpack.Guestbook;
 
 import javax.sql.DataSource;
@@ -13,28 +12,21 @@ import java.util.ArrayList;
  * @author Дикий Александр Николаевич
  * @version 1.0
  */
-public class GuestbookDAO {
-
-    private Connection conn;
-    private String insert = "insert into T_GUESTBOOK(NAME,DESCRIPTION,DISPLAY_ORDER) values(?,?,?)";
-    private String select = "select * from T_GUESTBOOK";
-    private String get = "select * from T_GUESTBOOK where NAME=?";
-    private String delete = "delete from T_GUESTBOOK where NAME=?";
-    private String update = "update T_GUESTBOOK set DESCRIPTION=?,"
-            + "DISPLAY_ORDER=? where NAME=?";
-    /**
-     * Логирование класса GuestbookDAO.class
-     */
-    public static final Logger log = Logger.getLogger(GuestbookDAO.class);
+public class GuestbookModel extends AbstractModel {
+    private final static String INSERT_GUESTBOOK = "insert into T_GUESTBOOK(NAME,DESCRIPTION,DISPLAY_ORDER) values(?,?,?)";
+    private final static String SELECT_GUESTBOOK = "select * from T_GUESTBOOK";
+    private final static String UPDATE_GUESTBOOK = "update T_GUESTBOOK set DESCRIPTION=?, DISPLAY_ORDER=? where NAME=?";
+    private final static String GET_BY_NAME = "select * from T_GUESTBOOK where NAME=?";
+    private final static String DELETE_BY_NAME = "delete from T_GUESTBOOK where NAME=?";
 
     /**
-     * Экземпляр класса
+     * Constructor
      *
      * @param dataSource
      * @throws SQLException
      */
-    public GuestbookDAO(DataSource dataSource) throws SQLException {
-        conn = dataSource.getConnection();
+    public GuestbookModel(DataSource dataSource) throws SQLException {
+        super(dataSource);
     }
 
     /**
@@ -44,15 +36,15 @@ public class GuestbookDAO {
      */
     public void addGuestbook(Guestbook guestbook) {
         try {
-            PreparedStatement pst = conn.prepareStatement(insert);
+            PreparedStatement pst = getPrepareStatement(INSERT_GUESTBOOK);
             pst.setString(1, guestbook.getName());
             pst.setString(2, guestbook.getDescription());
             pst.setInt(3, guestbook.getDisplayOrder());
             pst.executeUpdate();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
     }
 
@@ -63,13 +55,13 @@ public class GuestbookDAO {
      */
     public void deleteGuestbook(String guestbookName) {
         try {
-            PreparedStatement pst = conn.prepareStatement(delete);
+            PreparedStatement pst = getPrepareStatement(DELETE_BY_NAME);
             pst.setString(1, guestbookName);
             pst.executeUpdate();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
     }
 
@@ -80,15 +72,15 @@ public class GuestbookDAO {
      */
     public void updateGuestbook(Guestbook guestbook) {
         try {
-            PreparedStatement pst = conn.prepareStatement(update);
+            PreparedStatement pst = getPrepareStatement(UPDATE_GUESTBOOK);
             pst.setString(1, guestbook.getDescription());
             pst.setInt(2, guestbook.getDisplayOrder());
             pst.setString(3, guestbook.getName());
             pst.executeUpdate();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
     }
 
@@ -101,7 +93,7 @@ public class GuestbookDAO {
     public Guestbook getGuestbook(String guestbookName) {
         Guestbook g = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(get);
+            PreparedStatement pst = getPrepareStatement(GET_BY_NAME);
             pst.setString(1, guestbookName);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -109,9 +101,9 @@ public class GuestbookDAO {
             }
             rs.close();
             pst.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
         return g;
     }
@@ -122,11 +114,10 @@ public class GuestbookDAO {
      * @return список всех книг
      */
     public ArrayList<Guestbook> getGuestbookList() {
-        ArrayList<Guestbook> list = null;
+        ArrayList<Guestbook> list = new ArrayList<>();
         try {
-            list = new ArrayList<Guestbook>();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(select);
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(SELECT_GUESTBOOK);
             while (rs.next()) {
                 list.add(new Guestbook(rs.getString("name"),
                         rs.getString("description"),
@@ -134,9 +125,9 @@ public class GuestbookDAO {
             }
             rs.close();
             st.close();
-            conn.close();
+            connection.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
         return list;
     }

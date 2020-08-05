@@ -1,14 +1,13 @@
-package om.dykyi.dao;
+package om.dykyi.models;
 
-import org.apache.log4j.Logger;
 import om.dykyi.otherpack.Moderator;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Паттерн DAO обслуживающий базу данных и модераторов книг
@@ -16,26 +15,20 @@ import java.util.ArrayList;
  * @author Дикий Александр Николаевич
  * @version 1.0
  */
-public class ModeratorDAO {
-
-    private Connection conn;
-    private String moder = "select * from T_MODERATOR where USERNAME=? and GUESTBOOK_NAME=?";
-    private String select = "select * from T_MODERATOR where USERNAME=?";
-    private String insert = "insert into T_MODERATOR (USERNAME,GUESTBOOK_NAME) values(?,?)";
-    private String delete = "delete from T_MODERATOR where ID=?";
-    /**
-     * Логирование класса ModeratorDAO.class
-     */
-    public static final Logger log = Logger.getLogger(ModeratorDAO.class);
+public class ModeratorModel extends AbstractModel {
+    private final static String SELECT_BY_USERNAME = "select * from T_MODERATOR where USERNAME=?";
+    private final static String SELECT_BY_USERNAME_AND_GUESTBOOK = SELECT_BY_USERNAME + " and GUESTBOOK_NAME=?";
+    private final static String INSERT_MODERATOR = "insert into T_MODERATOR (USERNAME,GUESTBOOK_NAME) values(?,?)";
+    private final static String DELETE_MODERATOR = "delete from T_MODERATOR where ID=?";
 
     /**
-     * Экземпляр класса
+     * Constructor
      *
      * @param dataSource
      * @throws SQLException
      */
-    public ModeratorDAO(DataSource dataSource) throws SQLException {
-        conn = dataSource.getConnection();
+    public ModeratorModel(DataSource dataSource) throws SQLException {
+        super(dataSource);
     }
 
     /**
@@ -46,13 +39,13 @@ public class ModeratorDAO {
      */
     public void addModerator(String userName, String guestbook) {
         try {
-            PreparedStatement pst = conn.prepareStatement(insert);
+            PreparedStatement pst = getPrepareStatement(INSERT_MODERATOR);
             pst.setString(1, userName);
             pst.setString(2, guestbook);
             pst.executeUpdate();
             pst.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
     }
 
@@ -66,7 +59,7 @@ public class ModeratorDAO {
     public boolean isModerator(String userName, String guestbook) {
         boolean isModerator = false;
         try {
-            PreparedStatement pst = conn.prepareStatement(moder);
+            PreparedStatement pst = getPrepareStatement(SELECT_BY_USERNAME_AND_GUESTBOOK);
             pst.setString(1, userName);
             pst.setString(2, guestbook);
             ResultSet rs = pst.executeQuery();
@@ -81,7 +74,7 @@ public class ModeratorDAO {
             rs.close();
             pst.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
         return isModerator;
     }
@@ -93,12 +86,12 @@ public class ModeratorDAO {
      */
     public void deleteModeratorBook(int id) {
         try {
-            PreparedStatement pst = conn.prepareStatement(delete);
+            PreparedStatement pst = getPrepareStatement(DELETE_MODERATOR);
             pst.setInt(1, id);
             pst.executeUpdate();
             pst.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
     }
 
@@ -109,9 +102,9 @@ public class ModeratorDAO {
      * @return список модераторов книг
      */
     public ArrayList<Moderator> getListOfModeratorsBook(String userName) {
-        ArrayList<Moderator> list = new ArrayList<Moderator>();
+        ArrayList<Moderator> list = new ArrayList<>();
         try {
-            PreparedStatement pst = conn.prepareStatement(select);
+            PreparedStatement pst = getPrepareStatement(SELECT_BY_USERNAME);
             pst.setString(1, userName);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -123,7 +116,7 @@ public class ModeratorDAO {
             rs.close();
             pst.close();
         } catch (SQLException se) {
-            log.error(se.getMessage());
+            LOGGER.error(se.getMessage());
         }
         return list;
     }

@@ -33,7 +33,7 @@ public class MessageAction extends AbstractGuestbookAction {
             gBean = new GuestbookBean();
         }
         gBean.setDataSource(datasource);
-        gBean.getListOfGuestbook();
+        gBean.getGuestbookList();
         session.setAttribute("gBean", gBean);
         session.removeAttribute("mBean");
 
