@@ -23,7 +23,7 @@
                         Имя книги:
                     </td>
                     <td>
-                        <input type="text" name="newNamebook" value="${gBean.nameGuestbook}" readonly />                     
+                        <input type="text" name="newNamebook" value="${gBean.guestbookName}" readonly />
                     </td>                
                 </tr>
                 <tr>

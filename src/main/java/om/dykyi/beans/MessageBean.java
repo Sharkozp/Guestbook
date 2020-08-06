@@ -338,7 +338,7 @@ public class MessageBean {
      */
     public void getListOfMessages() {
         try {
-            MessageModel mDAO = new MessageModel(dataSource);
+            MessageModel mDAO = new MessageModel();
             listMessages = mDAO.getMessageList(guestbookName);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -350,7 +350,7 @@ public class MessageBean {
      */
     public void addMessage() {
         try {
-            MessageModel mDAO = new MessageModel(dataSource);
+            MessageModel mDAO = new MessageModel();
             mDAO.addMessage(new Message(
                     guestbookName,
                     message,
@@ -371,7 +371,7 @@ public class MessageBean {
      */
     public void setAnswer() {
         try {
-            MessageModel mDAO = new MessageModel(dataSource);
+            MessageModel mDAO = new MessageModel();
             mDAO.setAnswer(answerText, answerName, answerTime, id);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -383,7 +383,7 @@ public class MessageBean {
      */
     public void getMessageCount() {
         try {
-            MessageModel mDAO = new MessageModel(dataSource);
+            MessageModel mDAO = new MessageModel();
             count = mDAO.getMessageCount(guestbookName);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -395,7 +395,7 @@ public class MessageBean {
      */
     public void deleteMessage() {
         try {
-            MessageModel mDAO = new MessageModel(dataSource);
+            MessageModel mDAO = new MessageModel();
             mDAO.deleteMessage(id);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -407,7 +407,7 @@ public class MessageBean {
      */
     public void updateMessage() {
         try {
-            MessageModel mDAO = new MessageModel(dataSource);
+            MessageModel mDAO = new MessageModel();
             mDAO.updateMessage(message, forAll, id);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -422,7 +422,7 @@ public class MessageBean {
     public String getMessageById() {
         message = null;
         try {
-            MessageModel mDAO = new MessageModel(dataSource);
+            MessageModel mDAO = new MessageModel();
             message = mDAO.getMessage(id);
         } catch (SQLException se) {
             log.error(se.getMessage());

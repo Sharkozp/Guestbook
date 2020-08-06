@@ -44,7 +44,6 @@ public class ChangeUserAction extends AbstractGuestbookAction {
                 if (uBean == null) {
                     uBean = new UserBean();
                 }
-                uBean.setDataSource(datasource);
                 String user = request.getParameter("userName");
                 uBean.setUserName(user);
                 uBean.getUser();
@@ -63,7 +62,6 @@ public class ChangeUserAction extends AbstractGuestbookAction {
                 if (gBean == null) {
                     gBean = new GuestbookBean();
                 }
-                gBean.setDataSource(datasource);
                 gBean.getGuestbookList();
                 session.setAttribute("gBean", gBean);
 

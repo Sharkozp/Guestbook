@@ -1,5 +1,6 @@
 package om.dykyi.models;
 
+import om.dykyi.controller.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
@@ -21,11 +22,12 @@ public abstract class AbstractModel {
     /**
      * Constructor
      *
-     * @param dataSource
      * @throws SQLException
      */
-    public AbstractModel(DataSource dataSource) throws SQLException {
-        connection = dataSource.getConnection();
+    public AbstractModel() throws SQLException {
+        ConnectionPool conPool = ConnectionPool.getInstance();
+        conPool.setProperties();
+        connection = conPool.getConnection();
     }
 
     public Connection getConnection() {

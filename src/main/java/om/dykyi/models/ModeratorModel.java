@@ -16,19 +16,17 @@ import java.util.List;
  * @version 1.0
  */
 public class ModeratorModel extends AbstractModel {
-    private final static String SELECT_BY_USERNAME = "select * from T_MODERATOR where USERNAME=?";
+    private final static String SELECT_BY_USERNAME = "select * from t_moderator where USERNAME=?";
     private final static String SELECT_BY_USERNAME_AND_GUESTBOOK = SELECT_BY_USERNAME + " and GUESTBOOK_NAME=?";
-    private final static String INSERT_MODERATOR = "insert into T_MODERATOR (USERNAME,GUESTBOOK_NAME) values(?,?)";
-    private final static String DELETE_MODERATOR = "delete from T_MODERATOR where ID=?";
+    private final static String INSERT_MODERATOR = "insert into t_moderator (USERNAME,GUESTBOOK_NAME) values(?,?)";
+    private final static String DELETE_MODERATOR = "delete from t_moderator where ID=?";
 
     /**
      * Constructor
      *
-     * @param dataSource
      * @throws SQLException
      */
-    public ModeratorModel(DataSource dataSource) throws SQLException {
-        super(dataSource);
+    public ModeratorModel() throws SQLException {
     }
 
     /**

@@ -43,8 +43,7 @@ public class ChangeBookAction extends AbstractGuestbookAction {
                     gBean = new GuestbookBean();
                 }
 
-                gBean.setDataSource(datasource);
-                gBean.setNameGuestbook(request.getParameter("namebook"));
+                gBean.setGuestbookName(request.getParameter("namebook"));
                 gBean.getGuestbookByName();
                 session.setAttribute("gBean", gBean);
 

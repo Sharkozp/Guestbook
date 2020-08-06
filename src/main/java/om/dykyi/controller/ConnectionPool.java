@@ -3,7 +3,7 @@ package om.dykyi.controller;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.log4j.Logger;
 
-import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -13,25 +13,26 @@ import java.sql.SQLException;
  * @version 1.0
  */
 public class ConnectionPool {
-
-    private DataSource dataSource;
-    PropertiesClass propClass;
     private static final ConnectionPool instance = new ConnectionPool();
     /**
      * Логирование класса ConnectionPool.class
      */
-    public static final Logger log = Logger.getLogger(ConnectionPool.class);
+    public static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
+
+    private Connection connection;
+    PropertiesClass propClass;
+
 
     /**
-     * Экземпляр класса
+     * Constructor
      */
     private ConnectionPool() {
     }
 
     /**
-     * Статический метод возвращает единственный экземпляр данного класса
+     * Singleton pattern
      *
-     * @return единственный экземпляр данного класса
+     * @return instance
      */
     public static ConnectionPool getInstance() {
         return instance;
@@ -46,43 +47,32 @@ public class ConnectionPool {
         try {
             propClass.getDbConfig();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
-
-        dataSource = setupDataSource(propClass.getJDBC_driver(), propClass.getURL());
-    }
-
-    /**
-     * Метод создания пула соединений
-     *
-     * @param dbDriver
-     * @param dbURL
-     * @return
-     */
-    public static DataSource setupDataSource(String dbDriver, String dbURL) {
-        BasicDataSource bds = new BasicDataSource();
-        bds.setDriverClassName(dbDriver);
-        bds.setUrl(dbURL);
-        return bds;
     }
 
     /**
      * Метод закрывает все соединения с базой данных
      *
-     * @param dataSource
+     * @param connection
      * @throws SQLException
      */
-    public static void shutdownDataSource(DataSource dataSource) throws SQLException {
-        BasicDataSource bds = (BasicDataSource) dataSource;
-        bds.close();
+    public static void shutdownConnection(Connection connection) throws SQLException {
+        connection.close();
     }
 
     /**
      * Метод возвращает источник данных
      *
-     * @return
+     * @return connection
      */
-    public DataSource getDataSource() {
-        return dataSource;
+    public Connection getConnection() throws SQLException {
+        BasicDataSource bds = new BasicDataSource();
+        bds.setDriverClassName(propClass.getJdbcDriver());
+        bds.setUrl(propClass.getURL());
+        bds.setUsername(propClass.getUsername());
+        bds.setPassword(propClass.getPassword());
+        connection = bds.getConnection();
+        return connection;
     }
 }

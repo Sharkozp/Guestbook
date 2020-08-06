@@ -144,7 +144,7 @@ public class ModeratorBean {
             log.error("DataSource is not set");
         } else {
             try {
-                modDAO = new ModeratorModel(dataSource);
+                modDAO = new ModeratorModel();
             } catch (SQLException se) {
                 log.error(se.getMessage());
             }

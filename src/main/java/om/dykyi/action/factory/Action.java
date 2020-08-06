@@ -12,5 +12,5 @@ import javax.sql.DataSource;
  */
 public interface Action {
 
-    String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource);
+    String perform(HttpServletRequest request, HttpServletResponse response);
 }

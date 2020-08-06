@@ -45,7 +45,6 @@ public class AddCorrectionAction extends AbstractGuestbookAction {
                     mBean = new MessageBean();
                 }
 
-                mBean.setDataSource(datasource);
                 mBean.setMessage(request.getParameter("messageText"));
                 if (Boolean.parseBoolean(request.getParameter("isForAll"))) {
                     mBean.setForAll(true);
@@ -59,7 +58,6 @@ public class AddCorrectionAction extends AbstractGuestbookAction {
                 if (gBean == null) {
                     gBean = new GuestbookBean();
                 }
-                gBean.setDataSource(datasource);
                 String nameGB;
                 if (request.getParameter("nameGuestbook") == null || request.getParameter("nameGuestbook").length() == 0) {
                     gBean.getGuestbookList();

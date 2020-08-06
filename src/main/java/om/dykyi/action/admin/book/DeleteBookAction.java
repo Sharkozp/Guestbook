@@ -41,11 +41,9 @@ public class DeleteBookAction extends AbstractGuestbookAction {
                 if (gBean == null) {
                     gBean = new GuestbookBean();
                 }
-                gBean.setDataSource(datasource);
-                gBean.setNameGuestbook(request.getParameter("namebook"));
+                gBean.setGuestbookName(request.getParameter("namebook"));
                 gBean.deleteBook();
 
-                gBean.setDataSource(datasource);
                 gBean.getGuestbookList();
                 session.setAttribute("gBean", gBean);
 

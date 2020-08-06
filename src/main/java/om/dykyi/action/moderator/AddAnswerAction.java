@@ -66,7 +66,6 @@ public class AddAnswerAction extends AbstractGuestbookAction {
                 if (gBean == null) {
                     gBean = new GuestbookBean();
                 }
-                gBean.setDataSource(datasource);
                 String nameGB;
                 if (request.getParameter("nameGuestbook") == null || request.getParameter("nameGuestbook").length() == 0) {
                     gBean.getGuestbookList();

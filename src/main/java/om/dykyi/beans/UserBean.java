@@ -160,7 +160,7 @@ public class UserBean {
     public boolean isUserExist() {
         String user = new String();
         try {
-            UserModel uDAO = new UserModel(dataSource);
+            UserModel uDAO = new UserModel();
             user = uDAO.getUser(userName, pwdDigest);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -180,7 +180,7 @@ public class UserBean {
     public boolean isAdmin() {
         boolean isAdmin = false;
         try {
-            UserModel uDAO = new UserModel(dataSource);
+            UserModel uDAO = new UserModel();
             isAdmin = uDAO.isAdmin(userName);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -193,7 +193,7 @@ public class UserBean {
      */
     public void getListOfUsers() {
         try {
-            UserModel uDAO = new UserModel(dataSource);
+            UserModel uDAO = new UserModel();
             list = uDAO.getListOfUsers();
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -205,7 +205,7 @@ public class UserBean {
      */
     public void getUser() {
         try {
-            UserModel uDAO = new UserModel(dataSource);
+            UserModel uDAO = new UserModel();
             User u = uDAO.getUser(userName);
             lastName = u.getLastName();
             firstName = u.getFirstName();
@@ -219,7 +219,7 @@ public class UserBean {
      */
     public void deleteUser() {
         try {
-            UserModel uDAO = new UserModel(dataSource);
+            UserModel uDAO = new UserModel();
             uDAO.deleteUser(userName);
         } catch (SQLException se) {
             log.error(se.getMessage());
@@ -231,7 +231,7 @@ public class UserBean {
      */
     public void addUser() {
         try {
-            UserModel uDAO = new UserModel(dataSource);
+            UserModel uDAO = new UserModel();
             uDAO.addUser(new User(
                     userName,
                     lastName,
@@ -246,7 +246,7 @@ public class UserBean {
      */
     public void updateUser() {
         try {
-            UserModel uDAO = new UserModel(dataSource);
+            UserModel uDAO = new UserModel();
             uDAO.updateUser(userName, lastName, firstName);
         } catch (SQLException se) {
             log.error(se.getMessage());

@@ -1,6 +1,5 @@
 package om.dykyi.controller;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -12,12 +11,11 @@ import java.util.ResourceBundle;
 public class PropertiesClass {
 
     private static final PropertiesClass instance = new PropertiesClass();
-    private static String propFile = "config";
-    private String JDBC_driver;
+    private static final String PROP_FILE = "config";
+    private String jdbcDriver;
     private String URL;
     private String username;
     private String password;
-    private Locale locale;
 
     /**
      * Экземпляр класса
@@ -38,9 +36,8 @@ public class PropertiesClass {
      * Метод возвращает все параметры из файла
      */
     protected void getDbConfig() {
-        ResourceBundle db = ResourceBundle.getBundle(propFile);
-        locale = db.getLocale();
-        JDBC_driver = db.getString("db.driver.class");
+        ResourceBundle db = ResourceBundle.getBundle(PROP_FILE);
+        jdbcDriver = db.getString("db.driver.class");
         URL = db.getString("db.connection.url");
         username = db.getString("db.username");
         password = db.getString("db.password");
@@ -51,8 +48,8 @@ public class PropertiesClass {
      *
      * @return JDBC-драйвер
      */
-    public String getJDBC_driver() {
-        return JDBC_driver;
+    public String getJdbcDriver() {
+        return jdbcDriver;
     }
 
     /**
@@ -65,15 +62,6 @@ public class PropertiesClass {
     }
 
     /**
-     * Метод возвращает пароль в базе данных
-     *
-     * @return пароль
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
      * Метод возвращает учетное имя в базе данных
      *
      * @return учетное имя
@@ -83,11 +71,11 @@ public class PropertiesClass {
     }
 
     /**
-     * Метод возвращает текущую локаль
+     * Метод возвращает пароль в базе данных
      *
-     * @return текущую локаль
+     * @return пароль
      */
-    public Locale getLocale() {
-        return locale;
+    public String getPassword() {
+        return password;
     }
 }

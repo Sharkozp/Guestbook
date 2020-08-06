@@ -13,22 +13,20 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class UserModel extends AbstractModel {
-    private final static String admin = "select ADMIN from T_USER where USERNAME=?";
-    private final static String getAllUsers = "select * from T_USER";
-    private final static String getUser = "select * from T_USER where USERNAME=? and PWD_DIGEST=?";
-    private final static String select = "select * from T_USER where USERNAME=?";
-    private final static String insert = "INSERT INTO T_USER (USERNAME,PWD_DIGEST,LAST_NAME,FIRST_NAME) values(?,?,?,?)";
-    private final static String delete = "delete from T_USER where USERNAME=?";
-    private final static String update = "update T_USER set LAST_NAME=?,FIRST_NAME=? where USERNAME=?";
+    private final static String admin = "select ADMIN from t_user where USERNAME=?";
+    private final static String getAllUsers = "select * from t_user";
+    private final static String getUser = "select * from t_user where USERNAME=? and PWD_DIGEST=?";
+    private final static String select = "select * from t_user where USERNAME=?";
+    private final static String insert = "INSERT INTO t_user (USERNAME,PWD_DIGEST,LAST_NAME,FIRST_NAME) values(?,?,?,?)";
+    private final static String delete = "delete from t_user where USERNAME=?";
+    private final static String update = "update t_user set LAST_NAME=?,FIRST_NAME=? where USERNAME=?";
 
     /**
      * Constructor
      *
-     * @param dataSource
      * @throws SQLException
      */
-    public UserModel(DataSource dataSource) throws SQLException {
-        super(dataSource);
+    public UserModel() throws SQLException {
     }
 
     /**

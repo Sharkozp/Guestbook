@@ -21,10 +21,9 @@ public class MessageAction extends AbstractGuestbookAction {
      *
      * @param request    Запрос к сервлету
      * @param response   Ответ сервлета
-     * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
-    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response) {
         String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();
 
@@ -32,11 +31,9 @@ public class MessageAction extends AbstractGuestbookAction {
         if (gBean == null) {
             gBean = new GuestbookBean();
         }
-        gBean.setDataSource(datasource);
         gBean.getGuestbookList();
         session.setAttribute("gBean", gBean);
         session.removeAttribute("mBean");
-
 
         return page + ".jsp";
     }

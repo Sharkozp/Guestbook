@@ -16,27 +16,25 @@ import java.util.Date;
  * @version 1.1
  */
 public class MessageModel extends AbstractModel {
-    private final static String select = "select * from T_MESSAGE where GUESTBOOK_NAME=?"
+    private final static String select = "select * from t_message where GUESTBOOK_NAME=?"
             + " order by time_creation desc";
-    private final static String get = "select msg_text from T_MESSAGE where id=?";
-    private final static String insert = "INSERT INTO T_MESSAGE (guestbook_name,msg_text,"
+    private final static String get = "select msg_text from t_message where id=?";
+    private final static String insert = "INSERT INTO t_message (guestbook_name,msg_text,"
             + "for_all,time_creation,is_new4admin,author_name,author_ip,phone,"
             + "e_mail,icq) values(?,?,?,?,?,?,?,?,?,?)";
-    private final static String delete = "delete from T_MESSAGE where id=?";
-    private final static String update = "update T_MESSAGE set msg_text=?, for_all=?,"
+    private final static String delete = "delete from t_message where id=?";
+    private final static String update = "update t_message set msg_text=?, for_all=?,"
             + "is_new4admin='0' where id=?";
-    private final static String answer = "update T_MESSAGE set answer_text=?, answer_name=?,"
+    private final static String answer = "update t_message set answer_text=?, answer_name=?,"
             + "time_answer=?,is_new4admin='0' where id=?";
     private final static String count = "select count(guestbook_name) as messagecount from t_message WHERE guestbook_name=?";
 
     /**
      * Constructor
      *
-     * @param dataSource
      * @throws SQLException
      */
-    public MessageModel(DataSource dataSource) throws SQLException {
-        super(dataSource);
+    public MessageModel() throws SQLException {
     }
 
     /**

@@ -4,7 +4,6 @@ import om.dykyi.models.GuestbookModel;
 import org.apache.log4j.Logger;
 import om.dykyi.otherpack.Guestbook;
 
-import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -21,15 +20,20 @@ public class GuestbookBean {
      */
     public static final Logger log = Logger.getLogger(GuestbookBean.class);
     private ArrayList<Guestbook> guestbooks;
-    private String nameGuestbook;
+    private String guestbookName;
     private String description;
     private int displayOrder;
-    private GuestbookModel gDAO;
+    private GuestbookModel guestbookModel;
 
     /**
      * Экземпляр класса
      */
     public GuestbookBean() {
+        try {
+            guestbookModel = new GuestbookModel();
+        } catch (SQLException se) {
+            log.error(se.getMessage());
+        }
     }
 
     /**
@@ -55,17 +59,17 @@ public class GuestbookBean {
      *
      * @return имя книги
      */
-    public String getNameGuestbook() {
-        return nameGuestbook;
+    public String getGuestbookName() {
+        return guestbookName;
     }
 
     /**
      * Метод принимает имя книги
      *
-     * @param nameGuestbook имя книги
+     * @param guestbookName имя книги
      */
-    public void setNameGuestbook(String nameGuestbook) {
-        this.nameGuestbook = nameGuestbook;
+    public void setGuestbookName(String guestbookName) {
+        this.guestbookName = guestbookName;
     }
 
     /**
@@ -108,8 +112,8 @@ public class GuestbookBean {
      * Метод добавляет книгу в базу
      */
     public void addBook() {
-        gDAO.addGuestbook(new Guestbook(
-                nameGuestbook,
+        guestbookModel.addGuestbook(new Guestbook(
+                guestbookName,
                 description,
                 displayOrder));
     }
@@ -118,8 +122,8 @@ public class GuestbookBean {
      * Метод обновляет книгу в базе
      */
     public void updateBook() {
-        gDAO.updateGuestbook(new Guestbook(
-                nameGuestbook,
+        guestbookModel.updateGuestbook(new Guestbook(
+                guestbookName,
                 description,
                 displayOrder));
     }
@@ -128,15 +132,15 @@ public class GuestbookBean {
      * Метод удаляет книгу из базы
      */
     public void deleteBook() {
-        gDAO.deleteGuestbook(nameGuestbook);
+        guestbookModel.deleteGuestbook(guestbookName);
     }
 
     /**
      * Метод возвращает книгу по имени из базы
      */
     public void getGuestbookByName() {
-        Guestbook g = gDAO.getGuestbook(nameGuestbook);
-        nameGuestbook = g.getName();
+        Guestbook g = guestbookModel.getGuestbook(guestbookName);
+        guestbookName = g.getName();
         description = g.getDescription();
         displayOrder = g.getDisplayOrder();
     }
@@ -145,23 +149,6 @@ public class GuestbookBean {
      * Метод возвращает список книг полученых из базы
      */
     public void getGuestbookList() {
-        guestbooks = gDAO.getGuestbookList();
-    }
-
-    /**
-     * Метод принимает источник данных DataSource
-     *
-     * @param dataSource источник данных
-     */
-    public void setDataSource(DataSource dataSource) {
-        if (dataSource == null) {
-            log.error("DataSource is not set");
-        } else {
-            try {
-                gDAO = new GuestbookModel(dataSource);
-            } catch (SQLException se) {
-                log.error(se.getMessage());
-            }
-        }
+        guestbooks = guestbookModel.getGuestbookList();
     }
 }

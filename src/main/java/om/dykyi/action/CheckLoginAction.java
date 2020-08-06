@@ -74,7 +74,6 @@ public class CheckLoginAction extends AbstractGuestbookAction {
             if (gBean == null) {
                 gBean = new GuestbookBean();
             }
-            gBean.setDataSource(datasource);
             gBean.getGuestbookList();
             session.setAttribute("gBean", gBean);
         } else {

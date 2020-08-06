@@ -13,20 +13,18 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class GuestbookModel extends AbstractModel {
-    private final static String INSERT_GUESTBOOK = "insert into T_GUESTBOOK(NAME,DESCRIPTION,DISPLAY_ORDER) values(?,?,?)";
-    private final static String SELECT_GUESTBOOK = "select * from T_GUESTBOOK";
-    private final static String UPDATE_GUESTBOOK = "update T_GUESTBOOK set DESCRIPTION=?, DISPLAY_ORDER=? where NAME=?";
-    private final static String GET_BY_NAME = "select * from T_GUESTBOOK where NAME=?";
-    private final static String DELETE_BY_NAME = "delete from T_GUESTBOOK where NAME=?";
+    private final static String INSERT_GUESTBOOK = "insert into t_guestbook(NAME,DESCRIPTION,DISPLAY_ORDER) values(?,?,?)";
+    private final static String SELECT_GUESTBOOK = "select * from t_guestbook";
+    private final static String UPDATE_GUESTBOOK = "update t_guestbook set DESCRIPTION=?, DISPLAY_ORDER=? where NAME=?";
+    private final static String GET_BY_NAME = "select * from t_guestbook where NAME=?";
+    private final static String DELETE_BY_NAME = "delete from t_guestbook where NAME=?";
 
     /**
      * Constructor
      *
-     * @param dataSource
      * @throws SQLException
      */
-    public GuestbookModel(DataSource dataSource) throws SQLException {
-        super(dataSource);
+    public GuestbookModel() throws SQLException {
     }
 
     /**

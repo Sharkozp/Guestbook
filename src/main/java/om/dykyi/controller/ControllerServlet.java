@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -27,7 +28,7 @@ public class ControllerServlet extends HttpServlet {
      */
     public static final Logger log = Logger.getLogger(ControllerServlet.class);
     protected ActionFactory factory = new ActionFactory();
-    private DataSource dataSource;
+    private Connection connection;
 
     /**
      * Инициализация сервлета-контроллера. Выполняется создания пула соединений.
@@ -35,9 +36,9 @@ public class ControllerServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        ConnectionPool conPool = ConnectionPool.getInstance();
+        /*ConnectionPool conPool = ConnectionPool.getInstance();
         conPool.setProperties();
-        dataSource = conPool.getDataSource();
+        connection = conPool.getConnection();*/
     }
 
     /**
@@ -50,7 +51,7 @@ public class ControllerServlet extends HttpServlet {
         String command = request.getParameter("command");
         if (command != null || command.length() != 0) {
             Action action = factory.create(command);
-            String url = action.perform(request, response, dataSource);
+            String url = action.perform(request, response);
             if (url != null) {
                 try {
                     String newUrl = "/jsp/" + url;
@@ -89,11 +90,11 @@ public class ControllerServlet extends HttpServlet {
      */
     @Override
     public void destroy() {
-        try {
-            ConnectionPool.shutdownDataSource(dataSource);
+        /*try {
+            ConnectionPool.shutdownConnection(connection);
         } catch (SQLException se) {
             log.error(se.getMessage());
-        }
+        }*/
         super.destroy();
     }
 }
