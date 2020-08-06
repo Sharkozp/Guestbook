@@ -45,7 +45,6 @@ public class DeleteAction extends AbstractGuestbookAction {
                     mBean = new MessageBean();
                 }
 
-                mBean.setDataSource(datasource);
                 mBean.setId(Integer.parseInt(request.getParameter("msgID")));
                 mBean.getMessageById();
                 mBean.deleteMessage();

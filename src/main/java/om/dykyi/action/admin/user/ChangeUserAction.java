@@ -53,7 +53,6 @@ public class ChangeUserAction extends AbstractGuestbookAction {
                 if (modBean == null) {
                     modBean = new ModeratorBean();
                 }
-                modBean.setDataSource(datasource);
                 modBean.setUsername(user);
                 modBean.getListBooks();
                 session.setAttribute("modBean", modBean);

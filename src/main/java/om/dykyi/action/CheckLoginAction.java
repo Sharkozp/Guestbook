@@ -42,7 +42,6 @@ public class CheckLoginAction extends AbstractGuestbookAction {
         if (uBean == null) {
             uBean = new UserBean();
         }
-        uBean.setDataSource(datasource);
         String userName = request.getParameter("login");
         String password = request.getParameter("password");
 
@@ -61,7 +60,6 @@ public class CheckLoginAction extends AbstractGuestbookAction {
         if (uBean.isUserExist()) {
             ModeratorBean modBean = new ModeratorBean();
             page = "message";
-            modBean.setDataSource(datasource);
             Login login = new Login();
             login.setUserName(userName);
             modBean.setUsername(userName);

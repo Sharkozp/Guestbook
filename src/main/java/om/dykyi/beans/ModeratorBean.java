@@ -4,8 +4,6 @@ import om.dykyi.models.ModeratorModel;
 import org.apache.log4j.Logger;
 import om.dykyi.otherpack.Moderator;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +18,7 @@ public class ModeratorBean {
     private String username;
     private String guestbookName;
     private ArrayList<Moderator> listOfModeratorsBooks;
-    private ModeratorModel modDAO;
+    private ModeratorModel moderatorModel;
     /**
      * Логирование класса ModeratorBean.class
      */
@@ -30,6 +28,7 @@ public class ModeratorBean {
      * Экземпляр класса
      */
     public ModeratorBean() {
+        moderatorModel = new ModeratorModel();
     }
 
     /**
@@ -108,14 +107,14 @@ public class ModeratorBean {
      * Метод возращает из базы список всех книг модератора
      */
     public void getListBooks() {
-        listOfModeratorsBooks = modDAO.getListOfModeratorsBook(username);
+        listOfModeratorsBooks = moderatorModel.getListOfModeratorsBook(username);
     }
 
     /**
      * Метод удаляет из базы привязку к книге модератора по ID
      */
     public void deleteModeratorBook() {
-        modDAO.deleteModeratorBook(id);
+        moderatorModel.deleteModeratorBook(id);
     }
 
     /**
@@ -124,30 +123,13 @@ public class ModeratorBean {
      * @return признак
      */
     public boolean isModerator() {
-        return modDAO.isModerator(username, guestbookName);
+        return moderatorModel.isModerator(username, guestbookName);
     }
 
     /**
      * Метод назначает модератором гостевых книги
      */
     public void setModeratorsBook() {
-        modDAO.addModerator(username, guestbookName);
-    }
-
-    /**
-     * Метод принимает источник данных DataSource
-     *
-     * @param dataSource источник данных
-     */
-    public void setDataSource(DataSource dataSource) {
-        if (dataSource == null) {
-            log.error("DataSource is not set");
-        } else {
-            try {
-                modDAO = new ModeratorModel();
-            } catch (SQLException se) {
-                log.error(se.getMessage());
-            }
-        }
+        moderatorModel.addModerator(username, guestbookName);
     }
 }

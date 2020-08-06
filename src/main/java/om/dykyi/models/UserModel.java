@@ -2,7 +2,6 @@ package om.dykyi.models;
 
 import om.dykyi.otherpack.User;
 
-import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -23,10 +22,8 @@ public class UserModel extends AbstractModel {
 
     /**
      * Constructor
-     *
-     * @throws SQLException
      */
-    public UserModel() throws SQLException {
+    public UserModel() {
     }
 
     /**
@@ -44,7 +41,7 @@ public class UserModel extends AbstractModel {
             pst.setString(4, user.getFirstName());
             pst.executeUpdate();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -65,7 +62,7 @@ public class UserModel extends AbstractModel {
             pst.setString(3, userName);
             pst.executeUpdate();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -82,7 +79,7 @@ public class UserModel extends AbstractModel {
             pst.setString(1, userName);
             pst.executeUpdate();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -107,7 +104,7 @@ public class UserModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -133,7 +130,7 @@ public class UserModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -146,9 +143,9 @@ public class UserModel extends AbstractModel {
      * @return список пользователей
      */
     public ArrayList<User> getListOfUsers() {
-        ArrayList<User> list = new ArrayList<>();;
+        ArrayList<User> list = new ArrayList<>();
         try {
-            Statement st = connection.createStatement();
+            Statement st = getConnection().createStatement();
             ResultSet rs = st.executeQuery(getAllUsers);
             while (rs.next()) {
                 list.add(new User(rs.getString("USERNAME"),
@@ -157,7 +154,7 @@ public class UserModel extends AbstractModel {
             }
             rs.close();
             st.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -181,7 +178,7 @@ public class UserModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }

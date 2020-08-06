@@ -45,7 +45,6 @@ public class AddAnswerAction extends AbstractGuestbookAction {
                 if (uBean == null) {
                     uBean = new UserBean();
                 }
-                uBean.setDataSource(datasource);
                 uBean.setUserName(login.getUserName());
                 uBean.getUser();
 
@@ -53,8 +52,6 @@ public class AddAnswerAction extends AbstractGuestbookAction {
                 if (mBean == null) {
                     mBean = new MessageBean();
                 }
-
-                mBean.setDataSource(datasource);
 
                 mBean.setAnswerName(uBean.getLastName() + " " + uBean.getFirstName());
                 mBean.setAnswerText(request.getParameter("answerText"));
@@ -77,7 +74,6 @@ public class AddAnswerAction extends AbstractGuestbookAction {
                 session.setAttribute("gBean", gBean);
 
                 //обновляем сессию сообщение
-                mBean.setDataSource(datasource);
                 mBean.setGuestbookName(nameGB);
                 mBean.getListOfMessages();
                 mBean.getMessageCount();

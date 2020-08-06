@@ -28,7 +28,11 @@ public class ControllerServlet extends HttpServlet {
      */
     public static final Logger log = Logger.getLogger(ControllerServlet.class);
     protected ActionFactory factory = new ActionFactory();
-    private Connection connection;
+    private ConnectionPool conPool;
+
+    public ControllerServlet() {
+        conPool = ConnectionPool.getInstance();
+    }
 
     /**
      * Инициализация сервлета-контроллера. Выполняется создания пула соединений.
@@ -36,9 +40,7 @@ public class ControllerServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        /*ConnectionPool conPool = ConnectionPool.getInstance();
-        conPool.setProperties();
-        connection = conPool.getConnection();*/
+        conPool.initDataSource();
     }
 
     /**
@@ -90,11 +92,11 @@ public class ControllerServlet extends HttpServlet {
      */
     @Override
     public void destroy() {
-        /*try {
-            ConnectionPool.shutdownConnection(connection);
+        try {
+            conPool.shutdownConnection();
         } catch (SQLException se) {
             log.error(se.getMessage());
-        }*/
+        }
         super.destroy();
     }
 }

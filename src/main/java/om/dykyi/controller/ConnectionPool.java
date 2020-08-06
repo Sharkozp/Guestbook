@@ -3,6 +3,7 @@ package om.dykyi.controller;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.log4j.Logger;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -19,7 +20,7 @@ public class ConnectionPool {
      */
     public static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
 
-    private Connection connection;
+    private static BasicDataSource dataSource;
     PropertiesClass propClass;
 
 
@@ -54,11 +55,10 @@ public class ConnectionPool {
     /**
      * Метод закрывает все соединения с базой данных
      *
-     * @param connection
      * @throws SQLException
      */
-    public static void shutdownConnection(Connection connection) throws SQLException {
-        connection.close();
+    public void shutdownConnection() throws SQLException {
+        dataSource.close();
     }
 
     /**
@@ -66,13 +66,16 @@ public class ConnectionPool {
      *
      * @return connection
      */
-    public Connection getConnection() throws SQLException {
-        BasicDataSource bds = new BasicDataSource();
-        bds.setDriverClassName(propClass.getJdbcDriver());
-        bds.setUrl(propClass.getURL());
-        bds.setUsername(propClass.getUsername());
-        bds.setPassword(propClass.getPassword());
-        connection = bds.getConnection();
-        return connection;
+    public void initDataSource() {
+        setProperties();
+        dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(propClass.getJdbcDriver());
+        dataSource.setUrl(propClass.getURL());
+        dataSource.setUsername(propClass.getUsername());
+        dataSource.setPassword(propClass.getPassword());
+    }
+
+    public BasicDataSource getDataSource() {
+        return dataSource;
     }
 }

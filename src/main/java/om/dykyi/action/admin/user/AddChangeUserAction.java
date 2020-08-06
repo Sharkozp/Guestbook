@@ -44,13 +44,11 @@ public class AddChangeUserAction extends AbstractGuestbookAction {
                     uBean = new UserBean();
                 }
 
-                uBean.setDataSource(datasource);
                 uBean.setUserName(request.getParameter("userName"));
                 uBean.setLastName(request.getParameter("lastName"));
                 uBean.setFirstName(request.getParameter("firstName"));
                 uBean.updateUser();
 
-                uBean.setDataSource(datasource);
                 uBean.getListOfUsers();
                 session.setAttribute("uBean", uBean);
 

@@ -21,10 +21,8 @@ public class GuestbookModel extends AbstractModel {
 
     /**
      * Constructor
-     *
-     * @throws SQLException
      */
-    public GuestbookModel() throws SQLException {
+    public GuestbookModel() {
     }
 
     /**
@@ -40,7 +38,7 @@ public class GuestbookModel extends AbstractModel {
             pst.setInt(3, guestbook.getDisplayOrder());
             pst.executeUpdate();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -57,7 +55,7 @@ public class GuestbookModel extends AbstractModel {
             pst.setString(1, guestbookName);
             pst.executeUpdate();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -76,7 +74,7 @@ public class GuestbookModel extends AbstractModel {
             pst.setString(3, guestbook.getName());
             pst.executeUpdate();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -99,7 +97,7 @@ public class GuestbookModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -114,7 +112,8 @@ public class GuestbookModel extends AbstractModel {
     public ArrayList<Guestbook> getGuestbookList() {
         ArrayList<Guestbook> list = new ArrayList<>();
         try {
-            Statement st = connection.createStatement();
+
+            Statement st = getConnection().createStatement();
             ResultSet rs = st.executeQuery(SELECT_GUESTBOOK);
             while (rs.next()) {
                 list.add(new Guestbook(rs.getString("name"),
@@ -123,7 +122,7 @@ public class GuestbookModel extends AbstractModel {
             }
             rs.close();
             st.close();
-            connection.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }

@@ -13,24 +13,22 @@ public abstract class AbstractModel {
      * Logging
      */
     public static final Logger LOGGER = Logger.getLogger(GuestbookModel.class);
+    private final ConnectionPool conPool;
 
     /**
      * Connection to database
      */
-    protected Connection connection;
+    private Connection connection;
 
     /**
      * Constructor
-     *
-     * @throws SQLException
      */
-    public AbstractModel() throws SQLException {
-        ConnectionPool conPool = ConnectionPool.getInstance();
-        conPool.setProperties();
-        connection = conPool.getConnection();
+    public AbstractModel() {
+        conPool = ConnectionPool.getInstance();
     }
 
-    public Connection getConnection() {
+    public Connection getConnection() throws SQLException{
+        connection = conPool.getDataSource().getConnection();
         return connection;
     }
 

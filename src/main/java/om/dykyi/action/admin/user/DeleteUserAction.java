@@ -41,11 +41,9 @@ public class DeleteUserAction extends AbstractGuestbookAction {
                 if (uBean == null) {
                     uBean = new UserBean();
                 }
-                uBean.setDataSource(datasource);
                 uBean.setUserName(request.getParameter("userName"));
                 uBean.deleteUser();
 
-                uBean.setDataSource(datasource);
                 uBean.getListOfUsers();
                 session.setAttribute("uBean", uBean);
 

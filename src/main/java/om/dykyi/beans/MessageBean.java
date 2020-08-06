@@ -4,8 +4,6 @@ import om.dykyi.models.MessageModel;
 import org.apache.log4j.Logger;
 import om.dykyi.otherpack.Message;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,7 +14,7 @@ import java.util.Date;
  * @version 1.0
  */
 public class MessageBean {
-
+    private MessageModel messageModel;
     private int id;
     private String guestbookName;
     private String message;
@@ -33,7 +31,7 @@ public class MessageBean {
     private Date answerTime;
     private int count;
     private ArrayList<Message> listMessages;
-    private DataSource dataSource;
+
     /**
      * Логирование класса MessageBean.class
      */
@@ -43,6 +41,7 @@ public class MessageBean {
      * Экземпляр класса
      */
     public MessageBean() {
+        messageModel = new MessageModel();
     }
 
     /**
@@ -337,81 +336,51 @@ public class MessageBean {
      * Метод принимает список всех сообщений книги из базы
      */
     public void getListOfMessages() {
-        try {
-            MessageModel mDAO = new MessageModel();
-            listMessages = mDAO.getMessageList(guestbookName);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        listMessages = messageModel.getMessageList(guestbookName);
     }
 
     /**
      * Метод добавляет новое сообщение в базу
      */
     public void addMessage() {
-        try {
-            MessageModel mDAO = new MessageModel();
-            mDAO.addMessage(new Message(
-                    guestbookName,
-                    message,
-                    forAll,
-                    timeCreation,
-                    authorName,
-                    authorIP,
-                    phone,
-                    email,
-                    icq));
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        messageModel.addMessage(new Message(
+                guestbookName,
+                message,
+                forAll,
+                timeCreation,
+                authorName,
+                authorIP,
+                phone,
+                email,
+                icq));
     }
 
     /**
      * Метод добавляет ответ на сообщение
      */
     public void setAnswer() {
-        try {
-            MessageModel mDAO = new MessageModel();
-            mDAO.setAnswer(answerText, answerName, answerTime, id);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        messageModel.setAnswer(answerText, answerName, answerTime, id);
     }
 
     /**
      * Метод возвращает количество сообщений из базы
      */
     public void getMessageCount() {
-        try {
-            MessageModel mDAO = new MessageModel();
-            count = mDAO.getMessageCount(guestbookName);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        count = messageModel.getMessageCount(guestbookName);
     }
 
     /**
      * Метод удаляет сообщение в базе
      */
     public void deleteMessage() {
-        try {
-            MessageModel mDAO = new MessageModel();
-            mDAO.deleteMessage(id);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        messageModel.deleteMessage(id);
     }
 
     /**
      * Метод обновляет сообщение в базе
      */
     public void updateMessage() {
-        try {
-            MessageModel mDAO = new MessageModel();
-            mDAO.updateMessage(message, forAll, id);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        messageModel.updateMessage(message, forAll, id);
     }
 
     /**
@@ -420,26 +389,7 @@ public class MessageBean {
      * @return сообщение
      */
     public String getMessageById() {
-        message = null;
-        try {
-            MessageModel mDAO = new MessageModel();
-            message = mDAO.getMessage(id);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        message = messageModel.getMessage(id);
         return message;
-    }
-
-    /**
-     * Метод принимает источник данных DataSource
-     *
-     * @param dataSource - источник данных
-     */
-    public void setDataSource(DataSource dataSource) {
-        if (dataSource == null) {
-            log.error("DataSource is not set");
-        } else {
-            this.dataSource = dataSource;
-        }
     }
 }

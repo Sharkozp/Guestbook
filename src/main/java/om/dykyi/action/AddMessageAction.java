@@ -24,32 +24,17 @@ public class AddMessageAction extends AbstractGuestbookAction {
      *
      * @param request    Запрос к сервлету
      * @param response   Ответ сервлета
-     * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
-    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response) {
         String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();
         MessageBean mBean = (MessageBean) session.getAttribute("mBean");
         if (mBean == null) {
             mBean = new MessageBean();
-            mBean.setDataSource(datasource);
         }
 
-        String msg = request.getParameter("message");
-
-        byte[] b = null;
-
-        try {
-            b = msg.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            log.error(e.getMessage());
-        }
-        if (b.length > 4096) {
-            mBean.setMessage(new String(Arrays.copyOf(msg.getBytes(), 4096)));
-        } else {
-            mBean.setMessage(msg);
-        }
+        mBean.setMessage(request.getParameter("message"));
         mBean.setAuthorName(request.getParameter("authorName"));
         mBean.setGuestbookName(request.getParameter("guestbookName"));
         mBean.setPhone(request.getParameter("phone"));
@@ -57,11 +42,9 @@ public class AddMessageAction extends AbstractGuestbookAction {
         mBean.setIcq(request.getParameter("icq"));
         mBean.setTimeCreation(new Date());
         mBean.setAuthorIP(request.getRemoteHost());
-        if (Boolean.parseBoolean(request.getParameter("forAll"))) {
-            mBean.setForAll(true);
-        } else {
-            mBean.setForAll(false);
-        }
+        boolean isForAll = Boolean.parseBoolean(request.getParameter("forAll"));
+        mBean.setForAll(isForAll);
+
         mBean.addMessage();
         session.setAttribute("mBean", mBean);
         session.removeAttribute("gBean");

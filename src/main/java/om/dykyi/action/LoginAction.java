@@ -32,7 +32,6 @@ public class LoginAction extends AbstractGuestbookAction {
         if (uBean == null) {
             uBean = new UserBean();
         }
-        uBean.setDataSource(datasource);
         uBean.setError(false);
         session.setAttribute("uBean", uBean);
         session.removeAttribute("gBean");

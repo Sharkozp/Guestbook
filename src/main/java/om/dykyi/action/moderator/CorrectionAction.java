@@ -42,7 +42,6 @@ public class CorrectionAction extends AbstractGuestbookAction {
                     mBean = new MessageBean();
                 }
 
-                mBean.setDataSource(datasource);
                 mBean.setId(Integer.parseInt(request.getParameter("msgID")));
                 mBean.getMessageById();
                 session.setAttribute("mBean", mBean);

@@ -69,7 +69,6 @@ public class AddCorrectionAction extends AbstractGuestbookAction {
                 session.setAttribute("gBean", gBean);
 
                 //обновляем сессию сообщение
-                mBean.setDataSource(datasource);
                 mBean.setGuestbookName(nameGB);
                 mBean.getListOfMessages();
                 mBean.getMessageCount();

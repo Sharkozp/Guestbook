@@ -44,7 +44,6 @@ public class AdminUsersAction extends AbstractGuestbookAction {
                 if (uBean == null) {
                     uBean = new UserBean();
                 }
-                uBean.setDataSource(datasource);
                 uBean.getListOfUsers();
                 session.setAttribute("uBean", uBean);
 

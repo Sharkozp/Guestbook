@@ -42,11 +42,9 @@ public class DeleteModerateBookAction extends AbstractGuestbookAction {
                 if (modBean == null) {
                     modBean = new ModeratorBean();
                 }
-                modBean.setDataSource(datasource);
                 modBean.setId(Integer.parseInt(request.getParameter("idMod")));
                 modBean.deleteModeratorBook();
 
-                modBean.setDataSource(datasource);
                 modBean.setUsername(request.getParameter("userName"));
                 modBean.getListBooks();
                 session.setAttribute("modBean", modBean);

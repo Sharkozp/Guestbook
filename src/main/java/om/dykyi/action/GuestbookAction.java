@@ -50,7 +50,6 @@ public class GuestbookAction extends AbstractGuestbookAction {
         if (mBean == null) {
             mBean = new MessageBean();
         }
-        mBean.setDataSource(datasource);
         mBean.setGuestbookName(nameGB);
         mBean.getListOfMessages();
         mBean.getMessageCount();
@@ -65,7 +64,6 @@ public class GuestbookAction extends AbstractGuestbookAction {
         if (modBean == null) {
             modBean = new ModeratorBean();
         }
-        modBean.setDataSource(datasource);
         modBean.setGuestbookName(nameGB);
         modBean.setUsername(login.getUserName());
         login.setModerator(modBean.isModerator());

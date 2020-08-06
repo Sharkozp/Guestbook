@@ -42,12 +42,10 @@ public class AddModerateBookAction extends AbstractGuestbookAction {
                 if (modBean == null) {
                     modBean = new ModeratorBean();
                 }
-                modBean.setDataSource(datasource);
                 modBean.setGuestbookName(request.getParameter("newModerBook"));
                 modBean.setUsername(request.getParameter("userName"));
                 modBean.setModeratorsBook();
 
-                modBean.setDataSource(datasource);
                 modBean.setUsername(request.getParameter("userName"));
                 modBean.getListBooks();
                 session.setAttribute("modBean", modBean);

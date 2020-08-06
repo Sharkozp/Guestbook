@@ -29,11 +29,7 @@ public class GuestbookBean {
      * Экземпляр класса
      */
     public GuestbookBean() {
-        try {
-            guestbookModel = new GuestbookModel();
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        guestbookModel = new GuestbookModel();
     }
 
     /**

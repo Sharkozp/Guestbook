@@ -17,14 +17,13 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class UserBean {
-
+    private UserModel uDAO;
     private String userName;
     private String pwdDigest;
     private String lastName;
     private String firstName;
     private ArrayList<User> list;
     private boolean error;
-    private DataSource dataSource;
     /**
      * Логирование класса UserBean.class
      */
@@ -34,6 +33,7 @@ public class UserBean {
      * Экземпляр класса
      */
     public UserBean() {
+        uDAO = new UserModel();
     }
 
     /**
@@ -158,18 +158,9 @@ public class UserBean {
      * @return признак
      */
     public boolean isUserExist() {
-        String user = new String();
-        try {
-            UserModel uDAO = new UserModel();
-            user = uDAO.getUser(userName, pwdDigest);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
-        if (user == (null) || user.length() == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        String user = uDAO.getUser(userName, pwdDigest);
+
+        return user != (null) && user.length() != 0;
     }
 
     /**
@@ -178,91 +169,43 @@ public class UserBean {
      * @return признак
      */
     public boolean isAdmin() {
-        boolean isAdmin = false;
-        try {
-            UserModel uDAO = new UserModel();
-            isAdmin = uDAO.isAdmin(userName);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
-        return isAdmin;
+        return uDAO.isAdmin(userName);
     }
 
     /**
      * Метод возвращает список всех пользователей
      */
     public void getListOfUsers() {
-        try {
-            UserModel uDAO = new UserModel();
-            list = uDAO.getListOfUsers();
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        list = uDAO.getListOfUsers();
     }
 
     /**
      * Метод получает из базы данные о пользователе
      */
     public void getUser() {
-        try {
-            UserModel uDAO = new UserModel();
-            User u = uDAO.getUser(userName);
-            lastName = u.getLastName();
-            firstName = u.getFirstName();
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        User u = uDAO.getUser(userName);
+        lastName = u.getLastName();
+        firstName = u.getFirstName();
     }
 
     /**
      * Метод удаляет пользователя из базы
      */
     public void deleteUser() {
-        try {
-            UserModel uDAO = new UserModel();
-            uDAO.deleteUser(userName);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        uDAO.deleteUser(userName);
     }
 
     /**
      * Метод создает пользователя в базе
      */
     public void addUser() {
-        try {
-            UserModel uDAO = new UserModel();
-            uDAO.addUser(new User(
-                    userName,
-                    lastName,
-                    firstName), pwdDigest);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
+        uDAO.addUser(new User(userName, lastName, firstName), pwdDigest);
     }
 
     /**
      * Метод обновляет пользователя в базе
      */
     public void updateUser() {
-        try {
-            UserModel uDAO = new UserModel();
-            uDAO.updateUser(userName, lastName, firstName);
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
-    }
-
-    /**
-     * Метод принимает источник данных DataSource
-     *
-     * @param dataSource источник данных
-     */
-    public void setDataSource(DataSource dataSource) {
-        if (dataSource == null) {
-            log.error("DataSource is not set");
-        } else {
-            this.dataSource = dataSource;
-        }
+        uDAO.updateUser(userName, lastName, firstName);
     }
 }

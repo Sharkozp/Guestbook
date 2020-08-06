@@ -23,10 +23,8 @@ public class ModeratorModel extends AbstractModel {
 
     /**
      * Constructor
-     *
-     * @throws SQLException
      */
-    public ModeratorModel() throws SQLException {
+    public ModeratorModel() {
     }
 
     /**
@@ -42,6 +40,7 @@ public class ModeratorModel extends AbstractModel {
             pst.setString(2, guestbook);
             pst.executeUpdate();
             pst.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -71,6 +70,7 @@ public class ModeratorModel extends AbstractModel {
             }
             rs.close();
             pst.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -88,6 +88,7 @@ public class ModeratorModel extends AbstractModel {
             pst.setInt(1, id);
             pst.executeUpdate();
             pst.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -113,6 +114,7 @@ public class ModeratorModel extends AbstractModel {
             }
             rs.close();
             pst.close();
+            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
