@@ -7,8 +7,13 @@ services:
     ports:
       - "127.0.0.1:1527:1527"
   tomcat:
-    image: tomcat
+    image: tomcat:jdk8
+    entrypoint: /usr/local/tomcat/bin/catalina.sh jpda run
     ports:
-      - "127.0.0.1:8080:8080"
+      - "8000:8000"
+      - "8080:8080"
     volumes:
       - "./tomcat/webapps:/usr/local/tomcat/webapps"
+    environment:
+      JPDA_ADDRESS: 8000
+      JPDA_TRANSPORT: dt_socket
