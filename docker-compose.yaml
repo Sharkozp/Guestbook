@@ -6,6 +6,7 @@ services:
       - "127.0.0.1:3306:3306"
     volumes:
       - ./mysql-dump:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: guestbook
@@ -20,3 +21,5 @@ services:
     environment:
       JPDA_ADDRESS: 8000
       JPDA_TRANSPORT: dt_socket
+volumes:
+  mysql_data:
