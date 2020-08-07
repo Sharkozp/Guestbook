@@ -112,7 +112,6 @@ public class GuestbookModel extends AbstractModel {
     public ArrayList<Guestbook> getGuestbookList() {
         ArrayList<Guestbook> list = new ArrayList<>();
         try {
-
             Statement st = getConnection().createStatement();
             ResultSet rs = st.executeQuery(SELECT_GUESTBOOK);
             while (rs.next()) {

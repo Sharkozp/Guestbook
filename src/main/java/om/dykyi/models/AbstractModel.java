@@ -18,7 +18,7 @@ public abstract class AbstractModel {
     /**
      * Connection to database
      */
-    private Connection connection;
+    private static Connection connection;
 
     /**
      * Constructor

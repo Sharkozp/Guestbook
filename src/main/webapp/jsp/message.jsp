@@ -20,7 +20,7 @@
             <tr >
                 <td align="center">
                     <form id="other" method="POST"></form>       
-                    <input type="submit" value="Показать записи" formaction="/guestbook/index?command=guestbook" form="other" />
+                    <input type="submit" value="Показать записи" formaction="/guestbook/index?command=Guestbook" form="other" />
                     <input type="submit" value="Администрирование" formaction="/guestbook/index?command=Login" form="other" />
                 </td>
             </tr>

@@ -36,7 +36,7 @@
                     </td>
                 </tr>               
             </table>
-            <input type="submit" value="Изменить" formaction="/guestbook/index?command=guestbook" />
+            <input type="submit" value="Изменить" formaction="/guestbook/index?command=Guestbook" />
             <c:if test="${login.admin}" >
                 <input type="submit" value="Добавить книгу" formaction="/guestbook/index?command=AdminBooks" />
                 <input type="submit" value="Добавить юзера" formaction="/guestbook/index?command=AdminUsers" />

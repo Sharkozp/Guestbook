@@ -30,7 +30,7 @@ public class CheckLoginAction extends AbstractGuestbookAction {
      * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
-    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response) {
 
         String page;
         HttpSession session = request.getSession();

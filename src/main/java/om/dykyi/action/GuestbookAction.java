@@ -26,10 +26,9 @@ public class GuestbookAction extends AbstractGuestbookAction {
      *
      * @param request    Запрос к сервлету
      * @param response   Ответ сервлета
-     * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
-    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response) {
         String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();
         session.removeAttribute("uBean");
@@ -37,12 +36,11 @@ public class GuestbookAction extends AbstractGuestbookAction {
         if (gBean == null) {
             gBean = new GuestbookBean();
         }
-        String nameGB;
-        if (request.getParameter("nameGuestbook") == null || request.getParameter("nameGuestbook").length() == 0) {
+        String nameGB = request.getParameter("nameGuestbook");
+        if (nameGB == null || nameGB.length() == 0) {
+            // TODO change to get first item from DB
             gBean.getGuestbookList();
             nameGB = gBean.getGuestbooks().get(0).getName();
-        } else {
-            nameGB = request.getParameter("nameGuestbook");
         }
 
         session.setAttribute("gBean", gBean);
@@ -58,7 +56,6 @@ public class GuestbookAction extends AbstractGuestbookAction {
         Login login = (Login) session.getAttribute("login");
         if (login == null) {
             login = new Login();
-
         }
         ModeratorBean modBean = (ModeratorBean) session.getAttribute("modBean");
         if (modBean == null) {

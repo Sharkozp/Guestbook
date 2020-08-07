@@ -24,10 +24,9 @@ public class AddModerateBookAction extends AbstractGuestbookAction {
      *
      * @param request    Запрос к сервлету
      * @param response   Ответ сервлета
-     * @param datasource Источник данных для пула данных
      * @return URL-адрес
      */
-    public String perform(HttpServletRequest request, HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
 

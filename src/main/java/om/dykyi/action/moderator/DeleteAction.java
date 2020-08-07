@@ -14,8 +14,8 @@ import javax.sql.DataSource;
  * выполняет обработку данных и удаление выбранного сообщения, а также
  * инициализацию страницы delete.jsp.
  *
- * @version 1.0
  * @author Дикий Александр Николаевич
+ * @version 1.0
  */
 public class DeleteAction extends AbstractGuestbookAction {
 
@@ -23,12 +23,11 @@ public class DeleteAction extends AbstractGuestbookAction {
      * Метод выполняет обработку данных и удаление выбранного сообщения, а также
      * инициализацию страницы delete.jsp.
      *
-     * @param request Запрос к сервлету
-     * @param response Ответ сервлета
-     * @param datasource Источник данных для пула данных
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @return URL-адрес
      */
-    public String perform(HttpServletRequest request,            HttpServletResponse response, DataSource datasource) {
+    public String perform(HttpServletRequest request, HttpServletResponse response) {
 
         String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();
