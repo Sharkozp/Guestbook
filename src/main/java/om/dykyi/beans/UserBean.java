@@ -1,13 +1,13 @@
 package om.dykyi.beans;
 
 import om.dykyi.models.UserModel;
+import om.dykyi.system.PasswordUtils;
+import om.dykyi.system.PropertiesClass;
 import org.apache.log4j.Logger;
 import om.dykyi.otherpack.User;
 
-import javax.sql.DataSource;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class UserBean {
-    private UserModel uDAO;
+    private UserModel userModel;
     private String userName;
     private String pwdDigest;
     private String lastName;
@@ -33,7 +33,7 @@ public class UserBean {
      * Экземпляр класса
      */
     public UserBean() {
-        uDAO = new UserModel();
+        userModel = new UserModel();
     }
 
     /**
@@ -139,17 +139,11 @@ public class UserBean {
      * Метод принимает строку для создания дайджеста пароля
      *
      * @param password пароль
-     * @throws NoSuchAlgorithmException
      */
-    public void setPwdDigest(String password) throws NoSuchAlgorithmException {
-        pwdDigest = new String();
-        byte[] pwdByteArray;
-        MessageDigest md = MessageDigest.getInstance("SHA");
-        md.update(password.getBytes());
-        pwdByteArray = md.digest();
-        for (byte b : pwdByteArray) {
-            pwdDigest += (new Byte(b)).intValue();
-        }
+    public void setPwdDigest(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        PropertiesClass propertiesClass = PropertiesClass.getInstance();
+
+        pwdDigest = PasswordUtils.generateSecurePassword(password, propertiesClass.getSystemKey());
     }
 
     /**
@@ -157,10 +151,11 @@ public class UserBean {
      *
      * @return признак
      */
-    public boolean isUserExist() {
-        String user = uDAO.getUser(userName, pwdDigest);
+    public boolean isUserExist(String userName, String password) {
+        PropertiesClass propertiesClass = PropertiesClass.getInstance();
+        String securePassword = userModel.getUserDigest(userName);
 
-        return user != (null) && user.length() != 0;
+        return PasswordUtils.verifyUserPassword(password, securePassword, propertiesClass.getSystemKey());
     }
 
     /**
@@ -169,43 +164,44 @@ public class UserBean {
      * @return признак
      */
     public boolean isAdmin() {
-        return uDAO.isAdmin(userName);
+        return userModel.isAdmin(userName);
     }
 
     /**
      * Метод возвращает список всех пользователей
      */
     public void getListOfUsers() {
-        list = uDAO.getListOfUsers();
+        list = userModel.getListOfUsers();
     }
 
     /**
      * Метод получает из базы данные о пользователе
      */
     public void getUser() {
-        User u = uDAO.getUser(userName);
-        lastName = u.getLastName();
-        firstName = u.getFirstName();
+        User user = userModel.getUser(userName);
+        lastName = user.getLastName();
+        firstName = user.getFirstName();
     }
 
     /**
      * Метод удаляет пользователя из базы
      */
     public void deleteUser() {
-        uDAO.deleteUser(userName);
+        userModel.deleteUser(userName);
     }
 
     /**
      * Метод создает пользователя в базе
      */
     public void addUser() {
-        uDAO.addUser(new User(userName, lastName, firstName), pwdDigest);
+        User user = new User(userName, lastName, firstName);
+        userModel.addUser(user, pwdDigest);
     }
 
     /**
      * Метод обновляет пользователя в базе
      */
     public void updateUser() {
-        uDAO.updateUser(userName, lastName, firstName);
+        userModel.updateUser(userName, lastName, firstName);
     }
 }

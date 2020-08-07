@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class UserModel extends AbstractModel {
     private final static String admin = "select ADMIN from t_user where USERNAME=?";
     private final static String getAllUsers = "select * from t_user";
-    private final static String getUser = "select * from t_user where USERNAME=? and PWD_DIGEST=?";
+    private final static String getUser = "select * from t_user where USERNAME=?";
     private final static String select = "select * from t_user where USERNAME=?";
     private final static String insert = "INSERT INTO t_user (USERNAME,PWD_DIGEST,LAST_NAME,FIRST_NAME) values(?,?,?,?)";
     private final static String delete = "delete from t_user where USERNAME=?";
@@ -112,21 +112,19 @@ public class UserModel extends AbstractModel {
     }
 
     /**
-     * Метод возвращает учетное имя пользователя с заданными параметрами из базы
+     * Get password digest from database
      *
-     * @param userName учетное имя
-     * @param password дайджест пароля
-     * @return учетное имя
+     * @param userName user name
+     * @return password digest
      */
-    public String getUser(String userName, String password) {
-        String user = null;
+    public String getUserDigest(String userName) {
+        String pwdDigest = null;
         try {
-            PreparedStatement pst = getPrepareStatement(getUser);
+            PreparedStatement pst = getPrepareStatement(select);
             pst.setString(1, userName);
-            pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                user = rs.getString("USERNAME");
+                pwdDigest = rs.getString("pwd_digest");
             }
             rs.close();
             pst.close();
@@ -134,7 +132,7 @@ public class UserModel extends AbstractModel {
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
-        return user;
+        return pwdDigest;
     }
 
     /**

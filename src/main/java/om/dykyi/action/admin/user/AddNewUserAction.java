@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  * AddNewUserAction - подкласс. Реализует один метод perfom(). Подкласс
@@ -47,7 +48,7 @@ public class AddNewUserAction extends AbstractGuestbookAction {
                 uBean.setFirstName(request.getParameter("firstName"));
                 try {
                     uBean.setPwdDigest(request.getParameter("password"));
-                } catch (NoSuchAlgorithmException e) {
+                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                     log.error(e.getMessage());
                 }
                 uBean.addUser();

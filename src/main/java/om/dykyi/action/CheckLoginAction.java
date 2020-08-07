@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  * CheckLoginAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
@@ -35,9 +36,7 @@ public class CheckLoginAction extends AbstractGuestbookAction {
         String page;
         HttpSession session = request.getSession();
 
-        /**
-         * Возврат со страницы login.jsp при нажатии конпки продолжить
-         */
+        // Возврат со страницы login.jsp при нажатии конпки продолжить
         UserBean uBean = (UserBean) session.getAttribute("uBean");
         if (uBean == null) {
             uBean = new UserBean();
@@ -46,18 +45,18 @@ public class CheckLoginAction extends AbstractGuestbookAction {
         String password = request.getParameter("password");
 
         //если заполнены проверяем введеные данные
-        uBean.setUserName(userName);
+        /* uBean.setUserName(userName);
         try {
             uBean.setPwdDigest(password);
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             log.error(e.getMessage());
-        }
+        }*/
 
         /**
          * Если пользователь существует с парой логин, пароль выполняем вход и
          * записываем в сессию объект Login
          */
-        if (uBean.isUserExist()) {
+        if (uBean.isUserExist(userName, password)) {
             ModeratorBean modBean = new ModeratorBean();
             page = "message";
             Login login = new Login();

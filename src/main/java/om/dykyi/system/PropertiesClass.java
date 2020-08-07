@@ -1,4 +1,4 @@
-package om.dykyi.controller;
+package om.dykyi.system;
 
 import java.util.ResourceBundle;
 
@@ -35,12 +35,22 @@ public class PropertiesClass {
     /**
      * Метод возвращает все параметры из файла
      */
-    protected void getDbConfig() {
+    public void getDbConfig() {
         ResourceBundle db = ResourceBundle.getBundle(PROP_FILE);
         jdbcDriver = db.getString("db.driver.class");
         URL = db.getString("db.connection.url");
         username = db.getString("db.username");
         password = db.getString("db.password");
+    }
+
+    /**
+     * Get System key from config file
+     *
+     * @return system key
+     */
+    public String getSystemKey() {
+        ResourceBundle db = ResourceBundle.getBundle(PROP_FILE);
+        return db.getString("system.key");
     }
 
     /**
