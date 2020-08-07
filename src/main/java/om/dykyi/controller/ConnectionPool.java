@@ -66,12 +66,14 @@ public class ConnectionPool {
      * @return connection
      */
     public void initDataSource() {
-        setProperties();
-        dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(propClass.getJdbcDriver());
-        dataSource.setUrl(propClass.getURL());
-        dataSource.setUsername(propClass.getUsername());
-        dataSource.setPassword(propClass.getPassword());
+        if(dataSource == null) {
+            setProperties();
+            dataSource = new BasicDataSource();
+            dataSource.setDriverClassName(propClass.getJdbcDriver());
+            dataSource.setUrl(propClass.getURL());
+            dataSource.setUsername(propClass.getUsername());
+            dataSource.setPassword(propClass.getPassword());
+        }
     }
 
     public BasicDataSource getDataSource() {
