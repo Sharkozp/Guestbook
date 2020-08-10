@@ -4,6 +4,10 @@ import om.dykyi.system.PropertiesClass;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.log4j.Logger;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
@@ -15,12 +19,11 @@ import java.sql.SQLException;
 public class ConnectionPool {
     private static final ConnectionPool instance = new ConnectionPool();
     /**
-     * Логирование класса ConnectionPool.class
+     * Logging
      */
     public static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
 
-    private static BasicDataSource dataSource;
-    PropertiesClass propClass;
+    private static DataSource dataSource;
 
 
     /**
@@ -39,44 +42,25 @@ public class ConnectionPool {
     }
 
     /**
-     * Метод принимает все свойства из файла для создания пула соединений
-     */
-    public void setProperties() {
-        propClass = PropertiesClass.getInstance();
-
-        try {
-            propClass.getDbConfig();
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-        }
-    }
-
-    /**
-     * Метод закрывает все соединения с базой данных
-     *
-     * @throws SQLException
-     */
-    public void shutdownConnection() throws SQLException {
-        dataSource.close();
-    }
-
-    /**
-     * Метод возвращает источник данных
-     *
-     * @return connection
+     * Init Data source from JNDI
      */
     public void initDataSource() {
-        if(dataSource == null) {
-            setProperties();
-            dataSource = new BasicDataSource();
-            dataSource.setDriverClassName(propClass.getJdbcDriver());
-            dataSource.setUrl(propClass.getURL());
-            dataSource.setUsername(propClass.getUsername());
-            dataSource.setPassword(propClass.getPassword());
+        if (dataSource == null) {
+            try {
+                Context ctx = new InitialContext();
+                dataSource = (DataSource) ctx.lookup("java:/comp/env/jdbc/guestbook");
+            } catch (NamingException e) {
+                LOGGER.error(e.getMessage());
+            }
         }
     }
 
-    public BasicDataSource getDataSource() {
+    /**
+     * Get Sata source
+     *
+     * @return dataSource
+     */
+    public DataSource getDataSource() {
         return dataSource;
     }
 }

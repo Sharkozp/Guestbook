@@ -41,7 +41,6 @@ public class UserModel extends AbstractModel {
             pst.setString(4, user.getFirstName());
             pst.executeUpdate();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -62,7 +61,6 @@ public class UserModel extends AbstractModel {
             pst.setString(3, userName);
             pst.executeUpdate();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -79,7 +77,6 @@ public class UserModel extends AbstractModel {
             pst.setString(1, userName);
             pst.executeUpdate();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -104,7 +101,6 @@ public class UserModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -128,7 +124,6 @@ public class UserModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -152,7 +147,6 @@ public class UserModel extends AbstractModel {
             }
             rs.close();
             st.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -176,7 +170,6 @@ public class UserModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }

@@ -1,15 +1,12 @@
 package om.dykyi.models;
 
+import om.dykyi.controller.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 public abstract class AbstractModel {
     /**
@@ -26,20 +23,20 @@ public abstract class AbstractModel {
      * Constructor
      */
     public AbstractModel() {
-        // TODO Move to singleton/Separate class
-        Context ctx = null;
-        try {
-            ctx = new InitialContext();
 
-            DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/guestbook");
-
-            connection = ds.getConnection();
-        } catch (NamingException | SQLException e) {
-            LOGGER.error(e.getMessage());
-        }
     }
 
     public Connection getConnection() {
+        if(connection == null) {
+            ConnectionPool conPool = ConnectionPool.getInstance();
+            conPool.initDataSource();
+            DataSource dataSource = conPool.getDataSource();
+            try {
+                connection = dataSource.getConnection();
+            } catch (SQLException e) {
+                LOGGER.error(e.getMessage());
+            }
+        }
         return connection;
     }
 

@@ -22,16 +22,15 @@ import java.sql.SQLException;
  * @version 1.1
  */
 public class ControllerServlet extends HttpServlet {
-
     /**
-     * Логирование класса ControllerServlet.class
+     * Logging
      */
     public static final Logger log = Logger.getLogger(ControllerServlet.class);
     protected ActionFactory factory = new ActionFactory();
     private ConnectionPool conPool;
 
     public ControllerServlet() {
-        //conPool = ConnectionPool.getInstance();
+      //  conPool = ConnectionPool.getInstance();
     }
 
     /**
@@ -40,7 +39,7 @@ public class ControllerServlet extends HttpServlet {
      */
     @Override
     public void init() {
-    //    conPool.initDataSource();
+        //conPool.initDataSource();
     }
 
     /**
@@ -85,18 +84,5 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
-    }
-
-    /**
-     * Освобождение ресурсов и закрытие пула соединений
-     */
-    @Override
-    public void destroy() {
-       /* try {
-            conPool.shutdownConnection();
-        } catch (SQLException se) {
-            log.error(se.getMessage());
-        }
-        super.destroy();*/
     }
 }

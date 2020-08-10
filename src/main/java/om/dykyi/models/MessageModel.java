@@ -59,7 +59,6 @@ public class MessageModel extends AbstractModel {
             pst.setString(10, message.getIcq());
             pst.executeUpdate();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -84,7 +83,6 @@ public class MessageModel extends AbstractModel {
             pst.setInt(3, msgId);
             pst.executeUpdate();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -107,7 +105,6 @@ public class MessageModel extends AbstractModel {
             pst.setInt(4, msgId);
             pst.executeUpdate();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -130,7 +127,6 @@ public class MessageModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -154,7 +150,6 @@ public class MessageModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -172,7 +167,6 @@ public class MessageModel extends AbstractModel {
             pst.setInt(1, msgId);
             pst.executeUpdate();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
@@ -212,7 +206,6 @@ public class MessageModel extends AbstractModel {
             }
             rs.close();
             pst.close();
-            getConnection().close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
         }
