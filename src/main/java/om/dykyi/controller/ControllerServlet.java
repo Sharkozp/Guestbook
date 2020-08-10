@@ -31,7 +31,7 @@ public class ControllerServlet extends HttpServlet {
     private ConnectionPool conPool;
 
     public ControllerServlet() {
-        conPool = ConnectionPool.getInstance();
+        //conPool = ConnectionPool.getInstance();
     }
 
     /**
@@ -40,7 +40,7 @@ public class ControllerServlet extends HttpServlet {
      */
     @Override
     public void init() {
-        conPool.initDataSource();
+    //    conPool.initDataSource();
     }
 
     /**
@@ -92,11 +92,11 @@ public class ControllerServlet extends HttpServlet {
      */
     @Override
     public void destroy() {
-        try {
+       /* try {
             conPool.shutdownConnection();
         } catch (SQLException se) {
             log.error(se.getMessage());
         }
-        super.destroy();
+        super.destroy();*/
     }
 }

@@ -18,6 +18,7 @@ services:
       - "8080:8080"
     volumes:
       - "./tomcat/webapps:/usr/local/tomcat/webapps"
+      - "./tomcat/conf/context.xml:/usr/local/tomcat/conf/context.xml"
     environment:
       JPDA_ADDRESS: 8000
       JPDA_TRANSPORT: dt_socket
