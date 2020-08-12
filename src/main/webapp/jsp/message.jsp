@@ -46,7 +46,7 @@
                             <td align="right">Имя книги: </td>
                             <td><select name="guestbookName" form="message">
                                     <c:forEach var="row" items="${gBean.guestbooks}">
-                                        <option>${row.name}</option>
+                                        <option value="${row.id}">${row.name}</option>
                                     </c:forEach>
                                 </select>
                             </td>

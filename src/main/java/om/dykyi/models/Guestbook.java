@@ -1,4 +1,4 @@
-package om.dykyi.otherpack;
+package om.dykyi.models;
 
 /**
  * Класс хранит настройки гостевой книги.
@@ -8,6 +8,7 @@ package om.dykyi.otherpack;
  */
 public class Guestbook {
 
+    private int id;
     private String name;
     private String description;
     private int displayOrder;
@@ -19,10 +20,20 @@ public class Guestbook {
      * @param description  описание книги
      * @param displayOrder порядок отображения
      */
-    public Guestbook(String name, String description, int displayOrder) {
+    public Guestbook(int id, String name, String description, int displayOrder) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.displayOrder = displayOrder;
+    }
+
+    /**
+     * Get ID
+     *
+     * @return ID
+     */
+    public int getId() {
+        return id;
     }
 
     /**

@@ -1,6 +1,7 @@
-package om.dykyi.models;
+package om.dykyi.dao;
 
 import om.dykyi.controller.ConnectionPool;
+import om.dykyi.dao.guestbook.MysqlGuestbookDAO;
 import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
@@ -12,7 +13,7 @@ public abstract class AbstractModel {
     /**
      * Logging
      */
-    public static final Logger LOGGER = Logger.getLogger(GuestbookModel.class);
+    public static final Logger LOGGER = Logger.getLogger(MysqlGuestbookDAO.class);
 
     /**
      * Connection to database

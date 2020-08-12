@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public abstract class AbstractGuestbookAction implements Action {
 
-    public static final Logger log = Logger.getLogger(AddMessageAction.class);
+    public static final Logger log = Logger.getLogger(AbstractGuestbookAction.class);
 
     /**
      * @param request    Запрос к сервлету

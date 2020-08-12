@@ -1,8 +1,8 @@
 package om.dykyi.beans;
 
-import om.dykyi.models.ModeratorModel;
+import om.dykyi.dao.moderator.ModeratorModel;
 import org.apache.log4j.Logger;
-import om.dykyi.otherpack.Moderator;
+import om.dykyi.models.Moderator;
 
 import java.util.ArrayList;
 

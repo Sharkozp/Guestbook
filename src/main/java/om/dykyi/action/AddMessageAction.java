@@ -34,9 +34,12 @@ public class AddMessageAction extends AbstractGuestbookAction {
             mBean = new MessageBean();
         }
 
+
+
         mBean.setMessage(request.getParameter("message"));
         mBean.setAuthorName(request.getParameter("authorName"));
-        mBean.setGuestbookName(request.getParameter("guestbookName"));
+        // Guestbook ID
+        mBean.setGuestbookName(request.getParameter("guestbook"));
         mBean.setPhone(request.getParameter("phone"));
         mBean.setEmail(request.getParameter("email"));
         mBean.setIcq(request.getParameter("icq"));

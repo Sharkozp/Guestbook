@@ -23,9 +23,9 @@
             <table border="0">
                 <tr>                   
                     <td>Имя книги: </td>
-                    <td><select name="nameGuestbook">
+                    <td><select name="guestbook">
                             <c:forEach var="row" items="${gBean.guestbooks}">
-                                <option>${row.name}</option>
+                                <option value="${row.id}">${row.name}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -47,15 +47,15 @@
         <table border="0">
             <c:forEach var="messages" items="${mBean.listMessages}">
                 <tr>
-                    <td>${messages.msgID}</td>
-                    <td><font color="#0000FF"><b><fmt:formatDate value="${messages.creationTime}" pattern="dd.MM.yyyy HH:mm:ss" type="both" dateStyle="full" timeStyle="full" /></b>; ${messages.creatorName};</font>   
-                        <c:if test="${not messages.isForAll}">
+                    <td>${messages.id}</td>
+                    <td><font color="#0000FF"><b><fmt:formatDate value="${messages.creationTime}" pattern="dd.MM.yyyy HH:mm:ss" type="both" dateStyle="full" timeStyle="full" /></b>; ${messages.creatorId};</font>
+                        <c:if test="${not messages.forAll}">
                             <font color="#FF0000">Сообщение для модератора</font>
                         </c:if>
                     </td>
                 </tr>
 
-                <c:if test="${not login.moderator and messages.isForAll}" >
+                <c:if test="${not login.moderator and messages.forAll}" >
                     <tr>
                         <td></td>
                         <td>${messages.messageText}</td>
@@ -92,7 +92,7 @@
                             <td></td>
                             <td align="right">
                                 <form method="POST">
-                                    <input type="hidden" name="msgID" value="${messages.msgID}" />
+                                    <input type="hidden" name="msgID" value="${messages.id}" />
                                     <input type="submit" value="Ответить" formaction="/guestbook/index?command=Answer" />
                                     <input type="submit" value="Правка" formaction="/guestbook/index?command=Correction" />
                                     <input type="submit" value="Удалить" formaction="/guestbook/index?command=Delete" />

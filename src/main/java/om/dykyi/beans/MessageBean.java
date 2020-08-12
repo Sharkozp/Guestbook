@@ -1,8 +1,8 @@
 package om.dykyi.beans;
 
-import om.dykyi.models.MessageModel;
+import om.dykyi.dao.message.MessageModel;
 import org.apache.log4j.Logger;
-import om.dykyi.otherpack.Message;
+import om.dykyi.models.Message;
 
 import java.util.ArrayList;
 import java.util.Date;

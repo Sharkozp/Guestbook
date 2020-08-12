@@ -4,13 +4,13 @@ import om.dykyi.beans.GuestbookBean;
 import om.dykyi.beans.Login;
 import om.dykyi.beans.ModeratorBean;
 import om.dykyi.beans.UserBean;
+import om.dykyi.dao.user.UserModel;
+import om.dykyi.system.PasswordUtils;
+import om.dykyi.system.PropertiesClass;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 /**
  * CheckLoginAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
@@ -56,14 +56,14 @@ public class CheckLoginAction extends AbstractGuestbookAction {
          * Если пользователь существует с парой логин, пароль выполняем вход и
          * записываем в сессию объект Login
          */
-        if (uBean.isUserExist(userName, password)) {
+        if (isUserExist(userName, password)) {
             ModeratorBean modBean = new ModeratorBean();
             page = "message";
             Login login = new Login();
             login.setUserName(userName);
             modBean.setUsername(userName);
             login.setModerator(modBean.isModerator());
-            login.setAdmin(uBean.isAdmin());
+            login.setAdmin(uBean.isAdmin(userName));
             session.setAttribute("login", login);
             session.removeAttribute("uBean");
 
@@ -82,5 +82,17 @@ public class CheckLoginAction extends AbstractGuestbookAction {
 
 
         return page + ".jsp";
+    }
+
+    /**
+     * Метод проверяет существует ли пользователь в базе данных
+     *
+     * @return признак
+     */
+    private boolean isUserExist(String userName, String password) {
+        PropertiesClass propertiesClass = PropertiesClass.getInstance();
+        String securePassword = new UserModel().getUserDigest(userName);
+
+        return PasswordUtils.verifyUserPassword(password, securePassword, propertiesClass.getSystemKey());
     }
 }

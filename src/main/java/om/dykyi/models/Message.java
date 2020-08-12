@@ -1,4 +1,4 @@
-package om.dykyi.otherpack;
+package om.dykyi.models;
 
 import java.util.Date;
 
@@ -10,13 +10,13 @@ import java.util.Date;
  */
 public class Message {
 
-    private int msgID;
-    private String guestbookName;
+    private int id;
+    private int guestbookId;
     private String messageText;
     private boolean isForAll;
     private boolean isNewForAdmin;
     private Date creationTime;
-    private String creatorName;
+    private int creatorId;
     private String creatorIP;
     private String phone;
     private String email;
@@ -24,31 +24,6 @@ public class Message {
     private String answerText;
     private String answerName;
     private Date answerTime;
-
-    /**
-     * Экземпляр класса без ID сообщения и isNewForAdmin
-     *
-     * @param guestbookName имя гостевой книги
-     * @param messageText   сообщение гостевой книги
-     * @param isForAll      сообщение для всех
-     * @param creationTime  дата создания сообщения
-     * @param creatorName   имя создавшего сообщение
-     * @param creatorIP     ip адрес создавшего сообщения
-     * @param phone         номер телефона
-     * @param email         email адрес
-     * @param icq           icq номер
-     */
-    public Message(String guestbookName, String messageText, boolean isForAll, Date creationTime, String creatorName, String creatorIP, String phone, String email, String icq) {
-        this.guestbookName = guestbookName;
-        this.messageText = messageText;
-        this.isForAll = isForAll;
-        this.creationTime = creationTime;
-        this.creatorName = creatorName;
-        this.creatorIP = creatorIP;
-        this.phone = phone;
-        this.email = email;
-        this.icq = icq;
-    }
 
     /**
      * Экземпляр класса с ID сообщения и isNewForAdmin
@@ -65,14 +40,14 @@ public class Message {
      * @param email         email адрес
      * @param icq           icq номер
      */
-    public Message(int msgID, String guestbookName, String messageText, boolean isForAll, boolean isNewForAdmin, Date creationTime, String creatorName, String creatorIP, String phone, String email, String icq) {
-        this.msgID = msgID;
-        this.guestbookName = guestbookName;
+    public Message(int id, int guestbookId, String messageText, boolean isForAll, boolean isNewForAdmin, Date creationTime, int creatorId, String creatorIP, String phone, String email, String icq) {
+        this.id = id;
+        this.guestbookId = guestbookId;
         this.messageText = messageText;
         this.isForAll = isForAll;
         this.isNewForAdmin = isNewForAdmin;
         this.creationTime = creationTime;
-        this.creatorName = creatorName;
+        this.creatorId = creatorId;
         this.creatorIP = creatorIP;
         this.phone = phone;
         this.email = email;
@@ -84,8 +59,8 @@ public class Message {
      *
      * @return id сообщения
      */
-    public int getMsgID() {
-        return msgID;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -93,8 +68,8 @@ public class Message {
      *
      * @return имя гостевой книги
      */
-    public String getGuestbookName() {
-        return guestbookName;
+    public int getGuestbookId() {
+        return guestbookId;
     }
 
     /**
@@ -111,7 +86,7 @@ public class Message {
      *
      * @return признак, что сообщение для всех
      */
-    public boolean isIsForAll() {
+    public boolean isForAll() {
         return isForAll;
     }
 
@@ -120,7 +95,7 @@ public class Message {
      *
      * @return признак, что сообщение новое для модератора
      */
-    public boolean isIsNewForAdmin() {
+    public boolean isNewForAdmin() {
         return isNewForAdmin;
     }
 
@@ -138,8 +113,8 @@ public class Message {
      *
      * @return имя создавшего сообщение
      */
-    public String getCreatorName() {
-        return creatorName;
+    public String getCreatorId() {
+        return creatorId;
     }
 
     /**

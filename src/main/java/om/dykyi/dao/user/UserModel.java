@@ -1,6 +1,7 @@
-package om.dykyi.models;
+package om.dykyi.dao.user;
 
-import om.dykyi.otherpack.User;
+import om.dykyi.dao.AbstractModel;
+import om.dykyi.models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,12 +13,12 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class UserModel extends AbstractModel {
-    private final static String admin = "select ADMIN from t_user where USERNAME=?";
-    private final static String getAllUsers = "select * from t_user";
-    private final static String getUser = "select * from t_user where USERNAME=?";
-    private final static String select = "select * from t_user where USERNAME=?";
-    private final static String insert = "INSERT INTO t_user (USERNAME,PWD_DIGEST,LAST_NAME,FIRST_NAME) values(?,?,?,?)";
-    private final static String delete = "delete from t_user where USERNAME=?";
+    private final static String GET_ADMIN = "select IS_ADMIN from users where USERNAME = ?";
+    private final static String getAllUsers = "select * from users";
+    private final static String GET_USER_BY_USERNAME = "select * from users where USERNAME = ?";
+    private final static String GET_USER_BY_USER_ID = "select * from users where USER_ID = ?";
+    private final static String insert = "INSERT INTO users (USERNAME,PWD_DIGEST,LAST_NAME,FIRST_NAME) values(?,?,?,?)";
+    private final static String delete = "delete from users where USER_ID=?";
     private final static String update = "update t_user set LAST_NAME=?,FIRST_NAME=? where USERNAME=?";
 
     /**
@@ -74,6 +75,7 @@ public class UserModel extends AbstractModel {
     public void deleteUser(String userName) {
         try {
             PreparedStatement pst = getPrepareStatement(delete);
+            //TODO change to user_id
             pst.setString(1, userName);
             pst.executeUpdate();
             pst.close();
@@ -91,13 +93,15 @@ public class UserModel extends AbstractModel {
     public User getUser(String userName) {
         User user = null;
         try {
-            PreparedStatement pst = getPrepareStatement(select);
+            PreparedStatement pst = getPrepareStatement(GET_USER_BY_USER_ID);
+            //TODO change to user_id
             pst.setString(1, userName);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 user = new User(userName,
                         rs.getString("LAST_NAME"),
-                        rs.getString("FIRST_NAME"));
+                        rs.getString("FIRST_NAME"),
+                        rs.getBoolean("IS_ADMIN"));
             }
             rs.close();
             pst.close();
@@ -116,7 +120,8 @@ public class UserModel extends AbstractModel {
     public String getUserDigest(String userName) {
         String pwdDigest = null;
         try {
-            PreparedStatement pst = getPrepareStatement(select);
+            //TODO change to user_id
+            PreparedStatement pst = getPrepareStatement(GET_USER_BY_USER_ID);
             pst.setString(1, userName);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -143,7 +148,8 @@ public class UserModel extends AbstractModel {
             while (rs.next()) {
                 list.add(new User(rs.getString("USERNAME"),
                         rs.getString("LAST_NAME"),
-                        rs.getString("FIRST_NAME")));
+                        rs.getString("FIRST_NAME"),
+                        rs.getBoolean("IS_ADMIN")));
             }
             rs.close();
             st.close();
@@ -162,7 +168,7 @@ public class UserModel extends AbstractModel {
     public boolean isAdmin(String userName) {
         boolean isAdmin = false;
         try {
-            PreparedStatement pst = getPrepareStatement(admin);
+            PreparedStatement pst = getPrepareStatement(GET_ADMIN);
             pst.setString(1, userName);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {

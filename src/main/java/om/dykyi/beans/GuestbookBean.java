@@ -1,11 +1,11 @@
 package om.dykyi.beans;
 
-import om.dykyi.models.GuestbookModel;
+import om.dykyi.dao.guestbook.MysqlGuestbookDAO;
 import org.apache.log4j.Logger;
-import om.dykyi.otherpack.Guestbook;
+import om.dykyi.models.Guestbook;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * JavaBean - обьект модели данных для гостевых книг
@@ -19,17 +19,18 @@ public class GuestbookBean {
      * Логирование класса GuestbookBean.class
      */
     public static final Logger log = Logger.getLogger(GuestbookBean.class);
-    private ArrayList<Guestbook> guestbooks;
+    private List<Guestbook> guestbooks;
+    private int id;
     private String guestbookName;
     private String description;
     private int displayOrder;
-    private GuestbookModel guestbookModel;
+    private MysqlGuestbookDAO guestbookModel;
 
     /**
      * Экземпляр класса
      */
     public GuestbookBean() {
-        guestbookModel = new GuestbookModel();
+        //guestbookModel = new MysqlGuestbookDAO();
     }
 
     /**
@@ -37,7 +38,7 @@ public class GuestbookBean {
      *
      * @return список всех книг
      */
-    public ArrayList<Guestbook> getGuestbooks() {
+    public List<Guestbook> getGuestbooks() {
         return guestbooks;
     }
 
@@ -46,7 +47,7 @@ public class GuestbookBean {
      *
      * @param guestbooks - список всех книг
      */
-    public void setGuestbooks(ArrayList<Guestbook> guestbooks) {
+    public void setGuestbooks(List<Guestbook> guestbooks) {
         this.guestbooks = guestbooks;
     }
 
@@ -108,43 +109,43 @@ public class GuestbookBean {
      * Метод добавляет книгу в базу
      */
     public void addBook() {
-        guestbookModel.addGuestbook(new Guestbook(
+      /*  guestbookModel.addGuestbook(new Guestbook(
                 guestbookName,
                 description,
-                displayOrder));
+                displayOrder));*/
     }
 
     /**
      * Метод обновляет книгу в базе
      */
     public void updateBook() {
-        guestbookModel.updateGuestbook(new Guestbook(
+      /*  guestbookModel.updateGuestbook(new Guestbook(
                 guestbookName,
                 description,
-                displayOrder));
+                displayOrder));*/
     }
 
     /**
      * Метод удаляет книгу из базы
      */
     public void deleteBook() {
-        guestbookModel.deleteGuestbook(guestbookName);
+      /*  guestbookModel.deleteGuestbook(guestbookName);*/
     }
 
     /**
      * Метод возвращает книгу по имени из базы
      */
     public void getGuestbookByName() {
-        Guestbook g = guestbookModel.getGuestbook(guestbookName);
+     /*   Guestbook g = guestbookModel.getGuestbook(guestbookName);
         guestbookName = g.getName();
         description = g.getDescription();
-        displayOrder = g.getDisplayOrder();
+        displayOrder = g.getDisplayOrder();*/
     }
 
     /**
      * Метод возвращает список книг полученых из базы
      */
     public void getGuestbookList() {
-        guestbooks = guestbookModel.getGuestbookList();
+     /*   guestbooks = guestbookModel.getGuestbookList();*/
     }
 }

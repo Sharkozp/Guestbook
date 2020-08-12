@@ -1,4 +1,4 @@
-package om.dykyi.otherpack;
+package om.dykyi.models;
 
 /**
  * Класс хранит настройки пользователя.
@@ -11,6 +11,7 @@ public class User {
     private String userName;
     private String lastName;
     private String firstName;
+    private boolean isAdmin;
 
     /**
      * Экземпляр класса
@@ -19,10 +20,11 @@ public class User {
      * @param lastName  фамилия пользователя
      * @param firstName имя пользователя
      */
-    public User(String userName, String lastName, String firstName) {
+    public User(String userName, String lastName, String firstName, boolean isAdmin) {
         this.userName = userName;
         this.lastName = lastName;
         this.firstName = firstName;
+        this.isAdmin = isAdmin;
     }
 
     /**
@@ -50,5 +52,14 @@ public class User {
      */
     public String getLastName() {
         return lastName;
+    }
+
+    /**
+     * Is user admin
+     *
+     * @return admin flag
+     */
+    public boolean isAdmin() {
+        return isAdmin;
     }
 }

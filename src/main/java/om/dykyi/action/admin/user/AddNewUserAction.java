@@ -46,11 +46,8 @@ public class AddNewUserAction extends AbstractGuestbookAction {
                 uBean.setUserName(request.getParameter("userName"));
                 uBean.setLastName(request.getParameter("lastName"));
                 uBean.setFirstName(request.getParameter("firstName"));
-                try {
-                    uBean.setPwdDigest(request.getParameter("password"));
-                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                    log.error(e.getMessage());
-                }
+
+                uBean.setPwdDigest(request.getParameter("password"));
                 uBean.addUser();
 
                 uBean.getListOfUsers();

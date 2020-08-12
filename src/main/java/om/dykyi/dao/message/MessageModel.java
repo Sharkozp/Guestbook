@@ -1,8 +1,8 @@
-package om.dykyi.models;
+package om.dykyi.dao.message;
 
-import om.dykyi.otherpack.Message;
+import om.dykyi.dao.AbstractModel;
+import om.dykyi.models.Message;
 
-import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,16 +43,16 @@ public class MessageModel extends AbstractModel {
     public void addMessage(Message message) {
         try {
             PreparedStatement pst = getPrepareStatement(insert);
-            pst.setString(1, message.getGuestbookName());
+            pst.setInt(1, message.getGuestbookId());
             pst.setString(2, message.getMessageText());
-            if (message.isIsForAll()) {
+            if (message.isForAll()) {
                 pst.setObject(3, 1, java.sql.Types.CHAR);
             } else {
                 pst.setObject(3, 0, java.sql.Types.CHAR);
             }
             pst.setObject(4, message.getCreationTime(), java.sql.Types.TIMESTAMP);
             pst.setObject(5, 1, java.sql.Types.CHAR);
-            pst.setString(6, message.getCreatorName());
+            pst.setString(6, message.getCreatorId());
             pst.setString(7, message.getCreatorIP());
             pst.setString(8, message.getPhone());
             pst.setString(9, message.getEmail());

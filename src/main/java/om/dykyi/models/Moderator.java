@@ -1,4 +1,4 @@
-package om.dykyi.otherpack;
+package om.dykyi.models;
 
 /**
  * Класс хранит настройки модератора.

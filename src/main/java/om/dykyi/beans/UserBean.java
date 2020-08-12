@@ -1,14 +1,13 @@
 package om.dykyi.beans;
 
-import om.dykyi.models.UserModel;
+import om.dykyi.dao.user.UserModel;
 import om.dykyi.system.PasswordUtils;
 import om.dykyi.system.PropertiesClass;
 import org.apache.log4j.Logger;
-import om.dykyi.otherpack.User;
+import om.dykyi.models.User;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * JavaBean - обьект модели данных для пользователя
@@ -22,7 +21,7 @@ public class UserBean {
     private String pwdDigest;
     private String lastName;
     private String firstName;
-    private ArrayList<User> list;
+    private List<User> list;
     private boolean error;
     /**
      * Логирование класса UserBean.class
@@ -41,7 +40,7 @@ public class UserBean {
      *
      * @return список пользователей
      */
-    public ArrayList<User> getList() {
+    public List<User> getList() {
         return list;
     }
 
@@ -140,30 +139,20 @@ public class UserBean {
      *
      * @param password пароль
      */
-    public void setPwdDigest(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public void setPwdDigest(String password) {
         PropertiesClass propertiesClass = PropertiesClass.getInstance();
 
         pwdDigest = PasswordUtils.generateSecurePassword(password, propertiesClass.getSystemKey());
     }
 
-    /**
-     * Метод проверяет существует ли пользователь в базе данных
-     *
-     * @return признак
-     */
-    public boolean isUserExist(String userName, String password) {
-        PropertiesClass propertiesClass = PropertiesClass.getInstance();
-        String securePassword = userModel.getUserDigest(userName);
 
-        return PasswordUtils.verifyUserPassword(password, securePassword, propertiesClass.getSystemKey());
-    }
 
     /**
      * Метод проверяет является пользователь администратором
      *
      * @return признак
      */
-    public boolean isAdmin() {
+    public boolean isAdmin(String userName) {
         return userModel.isAdmin(userName);
     }
 
@@ -194,7 +183,7 @@ public class UserBean {
      * Метод создает пользователя в базе
      */
     public void addUser() {
-        User user = new User(userName, lastName, firstName);
+        User user = new User(userName, lastName, firstName, true);
         userModel.addUser(user, pwdDigest);
     }
 
