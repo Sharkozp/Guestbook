@@ -1,56 +1,58 @@
-CREATE TABLE t_user
+CREATE TABLE users
 (
-    username       VARCHAR(40),
-    pwd_digest     VARCHAR(255),
-    last_name      VARCHAR(128),
-    first_name     VARCHAR(128),
-    is_admin          CHAR(1) DEFAULT '0',
+    user_id    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    username   VARCHAR(40),
+    pwd_digest VARCHAR(255),
+    first_name VARCHAR(128),
+    last_name  VARCHAR(128),
+    is_admin   CHAR(1) DEFAULT '0',
 
-    CONSTRAINT pk_user PRIMARY KEY (username)
+    CONSTRAINT pk_user PRIMARY KEY (user_id)
 );
 
-CREATE TABLE t_guestbook
+CREATE TABLE guestbooks
 (
-    name            VARCHAR(40),
-    description     VARCHAR(255),
-    display_order   integer,
+    guestbook_id  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name          VARCHAR(40),
+    description   VARCHAR(255),
+    display_order integer,
 
-    CONSTRAINT pk_guestbook_mod PRIMARY KEY (name)
+    CONSTRAINT pk_guestbook PRIMARY KEY (guestbook_id)
 );
 
-CREATE TABLE t_message
+CREATE TABLE messages
 (
-    id                  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    guestbook_name      VARCHAR(40),
-    msg_text            TEXT,
-    for_all             CHAR(1),
-    time_creation       timestamp,
-    is_new4admin        char(1),
-    author_name         VARCHAR(80),
-    author_ip           VARCHAR(30),
-    phone               VARCHAR(80),
-    e_mail              VARCHAR(80),
-    icq                 VARCHAR(40),
-    answer_text         TEXT,
-    answer_name         VARCHAR(80),
-    time_answer         timestamp DEFAULT current_timestamp(),
+    message_id    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    msg_text      TEXT,
+    for_all       CHAR(1),
+    time_creation DATETIME DEFAULT current_timestamp(),
+    is_new4admin  char(1),
+    author_id     VARCHAR(80),
+    author_ip     VARCHAR(30),
+    phone         VARCHAR(80),
+    email         VARCHAR(80),
+    icq           VARCHAR(40),
+    answer_text   TEXT,
+    answer_name   VARCHAR(80),
+    time_answer   DATETIME,
+    guestbook_id  BIGINT,
 
-    CONSTRAINT pk_message PRIMARY KEY (id),
-    CONSTRAINT fk_guestbook_mes FOREIGN KEY (guestbook_name) REFERENCES t_guestbook(name) ON DELETE CASCADE
+    CONSTRAINT pk_message PRIMARY KEY (message_id),
+    CONSTRAINT fk_guestbook_id FOREIGN KEY (guestbook_id) REFERENCES guestbooks (guestbook_id) ON DELETE CASCADE,
+    CONSTRAINT fk_author_id FOREIGN KEY (author_id) REFERENCES users (user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE t_moderator
+CREATE TABLE moderators
 (
-    id             BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    username       VARCHAR(40),
-    guestbook_name VARCHAR(40),
+    moderator_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id      BIGINT,
+    guestbook_id BIGINT,
 
-    CONSTRAINT pk_moderator PRIMARY KEY (id),
-    CONSTRAINT fk_user FOREIGN KEY (username) REFERENCES t_user(username) ON DELETE CASCADE,
-    CONSTRAINT fk_guestbook_mod FOREIGN KEY (guestbook_name) REFERENCES t_guestbook(name) ON DELETE CASCADE
+    CONSTRAINT pk_moderator PRIMARY KEY (moderator_id),
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE,
+    CONSTRAINT fk_guestbook_id FOREIGN KEY (guestbook_id) REFERENCES guestbooks (guestbook_id) ON DELETE CASCADE
 );
 
-INSERT INTO t_user (username,pwd_digest,admin) values ('root','yrcdZab1wbOKbOgV5TYcpU4/qYwjryzJJKMW00E0jYE=','1');
-INSERT INTO t_guestbook VALUES ('gbsystem','Default guestbook',1);
-INSERT INTO t_guestbook VALUES ('education','Book education',2);
-INSERT INTO t_moderator (username,guestbook_name) VALUES ('root', 'gbsystem');
+INSERT INTO users (user_id, username, pwd_digest, is_admin) values (1, 'root', 'yrcdZab1wbOKbOgV5TYcpU4/qYwjryzJJKMW00E0jYE=', '1');
+INSERT INTO guestbooks VALUES ('gbsystem', 'Default guestbook', 1), ('education', 'Book education', 2);
+INSERT INTO moderators (user_id, guestbook_id) VALUES (1, 1);
