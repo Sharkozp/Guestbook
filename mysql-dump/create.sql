@@ -23,11 +23,11 @@ CREATE TABLE guestbooks
 CREATE TABLE messages
 (
     message_id    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    msg_text      TEXT,
+    message_text  TEXT,
     for_all       CHAR(1),
     time_creation DATETIME DEFAULT current_timestamp(),
     is_new4admin  char(1),
-    author_id     VARCHAR(80),
+    author_name   VARCHAR(80),
     author_ip     VARCHAR(30),
     phone         VARCHAR(80),
     email         VARCHAR(80),
@@ -38,8 +38,7 @@ CREATE TABLE messages
     guestbook_id  BIGINT,
 
     CONSTRAINT pk_message PRIMARY KEY (message_id),
-    CONSTRAINT fk_guestbook_id FOREIGN KEY (guestbook_id) REFERENCES guestbooks (guestbook_id) ON DELETE CASCADE,
-    CONSTRAINT fk_author_id FOREIGN KEY (author_id) REFERENCES users (user_id) ON DELETE CASCADE
+    CONSTRAINT fk_guestbook_id FOREIGN KEY (guestbook_id) REFERENCES guestbooks (guestbook_id) ON DELETE CASCADE
 );
 
 CREATE TABLE moderators
