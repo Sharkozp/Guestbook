@@ -48,7 +48,7 @@ CREATE TABLE messages
     phone         VARCHAR(80),
     email         VARCHAR(80),
     guestbook_id  INT SIGNED NOT NULL,
-    answer_id     INT SIGNED NOT NULL,
+    answer_id     INT SIGNED NOT NULL DEFAULT 0,
 
     CONSTRAINT fk_messages_guestbook_id_guestbooks_guestbook_id FOREIGN KEY (guestbook_id) REFERENCES guestbooks (guestbook_id) ON DELETE CASCADE,
     CONSTRAINT fk_messages_answer_id_answers_answer_id FOREIGN KEY (answer_id) REFERENCES answers (answer_id) ON DELETE CASCADE
