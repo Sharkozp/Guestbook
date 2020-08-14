@@ -38,17 +38,17 @@ CREATE TABLE answers
 
 CREATE TABLE messages
 (
-    message_id    INT PRIMARY KEY AUTO_INCREMENT,
-    message_text  TEXT,
-    for_all       CHAR(1)  DEFAULT '1',
-    time_creation DATETIME DEFAULT current_timestamp(),
-    is_new4admin  CHAR(1)  DEFAULT '0',
-    author_name   VARCHAR(80),
-    author_ip     VARCHAR(30),
-    phone         VARCHAR(80),
-    email         VARCHAR(80),
-    guestbook_id  INT SIGNED NOT NULL,
-    answer_id     INT SIGNED NOT NULL DEFAULT 0,
+    message_id       INT PRIMARY KEY AUTO_INCREMENT,
+    message_text     TEXT,
+    is_for_all       CHAR(1)             DEFAULT '1',
+    time_creation    DATETIME            DEFAULT current_timestamp(),
+    is_new_for_admin CHAR(1)             DEFAULT '0',
+    author_name      VARCHAR(80),
+    author_ip        VARCHAR(30),
+    phone            VARCHAR(80),
+    email            VARCHAR(80),
+    guestbook_id     INT SIGNED NOT NULL,
+    answer_id        INT SIGNED NOT NULL DEFAULT 0,
 
     CONSTRAINT fk_messages_guestbook_id_guestbooks_guestbook_id FOREIGN KEY (guestbook_id) REFERENCES guestbooks (guestbook_id) ON DELETE CASCADE,
     CONSTRAINT fk_messages_answer_id_answers_answer_id FOREIGN KEY (answer_id) REFERENCES answers (answer_id) ON DELETE CASCADE
