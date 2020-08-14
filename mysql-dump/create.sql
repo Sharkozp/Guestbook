@@ -40,9 +40,9 @@ CREATE TABLE messages
 (
     message_id       INT PRIMARY KEY AUTO_INCREMENT,
     message_text     TEXT,
-    is_for_all       CHAR(1)             DEFAULT '1',
+    is_for_all       int(1)              DEFAULT 1,
     time_creation    DATETIME            DEFAULT current_timestamp(),
-    is_new_for_admin CHAR(1)             DEFAULT '0',
+    is_new_for_admin int(1)              DEFAULT 0,
     author_name      VARCHAR(80),
     author_ip        VARCHAR(30),
     phone            VARCHAR(80),
