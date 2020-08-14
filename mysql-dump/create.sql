@@ -26,6 +26,16 @@ CREATE TABLE moderators
     CONSTRAINT fk_moderators_guestbook_id_guestbooks_guestbook_id FOREIGN KEY (guestbook_id) REFERENCES guestbooks (guestbook_id) ON DELETE CASCADE
 );
 
+CREATE TABLE answers
+(
+    answer_id    INT PRIMARY KEY AUTO_INCREMENT,
+    answer_text  TEXT,
+    moderator_id INT SIGNED NOT NULL,
+    time_answer  DATETIME,
+
+    CONSTRAINT fk_messages_moderator_id_moderators_moderator_id FOREIGN KEY (moderator_id) REFERENCES moderators (moderator_id) ON DELETE CASCADE
+);
+
 CREATE TABLE messages
 (
     message_id    INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,24 +47,11 @@ CREATE TABLE messages
     author_ip     VARCHAR(30),
     phone         VARCHAR(80),
     email         VARCHAR(80),
-    answer_text   TEXT,
-    moderator_id  INT SIGNED NOT NULL,
-    time_answer   DATETIME,
     guestbook_id  INT SIGNED NOT NULL,
+    answer_id     INT SIGNED NOT NULL,
 
-    CONSTRAINT fk_messages_guestbook_id_guestbooks_guestbook_id FOREIGN KEY (guestbook_id) REFERENCES guestbooks (guestbook_id) ON DELETE CASCADE
-);
-
-CREATE TABLE answers
-(
-    answer_id    INT PRIMARY KEY AUTO_INCREMENT,
-    answer_text  TEXT,
-    moderator_id INT SIGNED NOT NULL,
-    time_answer  DATETIME,
-    message_id   INT SIGNED NOT NULL,
-
-    CONSTRAINT fk_messages_moderator_id_moderators_moderator_id FOREIGN KEY (moderator_id) REFERENCES moderators (moderator_id) ON DELETE CASCADE,
-    CONSTRAINT fk_messages_message_id_messages_message_id FOREIGN KEY (message_id) REFERENCES messages (message_id) ON DELETE CASCADE
+    CONSTRAINT fk_messages_guestbook_id_guestbooks_guestbook_id FOREIGN KEY (guestbook_id) REFERENCES guestbooks (guestbook_id) ON DELETE CASCADE,
+    CONSTRAINT fk_messages_answer_id_answers_answer_id FOREIGN KEY (answer_id) REFERENCES answers (answer_id) ON DELETE CASCADE
 );
 
 INSERT INTO users (user_id, username, pwd_digest, is_admin) values (1, 'root', 'yrcdZab1wbOKbOgV5TYcpU4/qYwjryzJJKMW00E0jYE=', '1');
