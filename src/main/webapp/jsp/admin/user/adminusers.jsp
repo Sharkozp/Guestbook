@@ -7,7 +7,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="uBean" scope="session" class="om.dykyi.beans.UserBean" />
+<jsp:useBean id="uBean" scope="session" class="om.dykyi.beans.User" />
 <!DOCTYPE html>
 <html>
     <head>

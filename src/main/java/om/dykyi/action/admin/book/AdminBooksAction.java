@@ -1,20 +1,19 @@
 package om.dykyi.action.admin.book;
 
 import om.dykyi.action.AbstractGuestbookAction;
-import om.dykyi.beans.GuestbookBean;
+import om.dykyi.beans.Guestbook;
 import om.dykyi.beans.Login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
 /**
  * AdminBooksAction - подкласс. Реализует один метод perfom(). Подкласс
  * выполняет инициализацию страницы adminbooks.jsp.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class AdminBooksAction extends AbstractGuestbookAction {
 
@@ -38,11 +37,11 @@ public class AdminBooksAction extends AbstractGuestbookAction {
         Login login = (Login) session.getAttribute("login");
         if (login != null) {
             if (login.isAdmin()) {
-                GuestbookBean gBean = (GuestbookBean) session.getAttribute("gBean");
+                Guestbook gBean = (Guestbook) session.getAttribute("gBean");
                 if (gBean == null) {
-                    gBean = new GuestbookBean();
+   //                 gBean = new Guestbook();
                 }
-                gBean.getGuestbookList();
+     //           gBean.getGuestbookList();
                 session.setAttribute("gBean", gBean);
 
                 return "/admin/book/" + page + ".jsp";

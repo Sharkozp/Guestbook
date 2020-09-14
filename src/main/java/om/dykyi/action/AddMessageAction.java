@@ -1,21 +1,24 @@
 package om.dykyi.action;
 
-import om.dykyi.beans.MessageBean;
+import om.dykyi.beans.Guestbook;
+import om.dykyi.beans.Message;
+import om.dykyi.dao.factory.DAOFactory;
+import om.dykyi.dao.factory.MysqlDAOFactory;
+import om.dykyi.dao.guestbook.GuestbookDAO;
+import om.dykyi.dao.message.MessageDAO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * AddMessageAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
  * получение и проверку сообщения, обрезку до 4 байт.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class AddMessageAction extends AbstractGuestbookAction {
 
@@ -27,31 +30,30 @@ public class AddMessageAction extends AbstractGuestbookAction {
      * @return URL-адрес
      */
     public String perform(HttpServletRequest request, HttpServletResponse response) {
-        String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();
-        MessageBean mBean = (MessageBean) session.getAttribute("mBean");
-        if (mBean == null) {
-            mBean = new MessageBean();
-        }
+        session.removeAttribute("guestbookList");
 
+        MysqlDAOFactory daoFactory = (MysqlDAOFactory) DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        MessageDAO messageDAO = daoFactory.getMessageDao();
 
-
-        mBean.setMessage(request.getParameter("message"));
-        mBean.setAuthorName(request.getParameter("authorName"));
-        // Guestbook ID
-        mBean.setGuestbookName(request.getParameter("guestbook"));
-        mBean.setPhone(request.getParameter("phone"));
-        mBean.setEmail(request.getParameter("email"));
-        mBean.setIcq(request.getParameter("icq"));
-        mBean.setTimeCreation(new Date());
-        mBean.setAuthorIP(request.getRemoteHost());
         boolean isForAll = Boolean.parseBoolean(request.getParameter("forAll"));
-        mBean.setForAll(isForAll);
 
-        mBean.addMessage();
-        session.setAttribute("mBean", mBean);
-        session.removeAttribute("gBean");
+        int guestbookId  = Integer.parseInt(request.getParameter("guestbookId"));
 
-        return page + ".jsp";
+        Message message = new Message(
+                request.getParameter("message"),
+                isForAll,
+                new Date(),
+                request.getParameter("authorName"),
+                request.getRemoteHost(),
+                request.getParameter("phone"),
+                request.getParameter("email"),
+                guestbookId
+        );
+
+        messageDAO.addMessage(message);
+        session.setAttribute("newMessage", message);
+
+        return getPage(request);
     }
 }

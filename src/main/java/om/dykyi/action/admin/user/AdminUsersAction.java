@@ -2,19 +2,18 @@ package om.dykyi.action.admin.user;
 
 import om.dykyi.action.AbstractGuestbookAction;
 import om.dykyi.beans.Login;
-import om.dykyi.beans.UserBean;
+import om.dykyi.beans.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
 /**
  * AdminUsersAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
  * инициализацию страницы adminusers.jsp.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class AdminUsersAction extends AbstractGuestbookAction {
 
@@ -39,11 +38,11 @@ public class AdminUsersAction extends AbstractGuestbookAction {
         Login login = (Login) session.getAttribute("login");
         if (login != null) {
             if (login.isAdmin()) {
-                UserBean uBean = (UserBean) session.getAttribute("uBean");
+                User uBean = (User) session.getAttribute("uBean");
                 if (uBean == null) {
-                    uBean = new UserBean();
+                    uBean = new User();
                 }
-                uBean.getListOfUsers();
+        //        uBean.getListOfUsers();
                 session.setAttribute("uBean", uBean);
 
                 return "/admin/user/" + page + ".jsp";

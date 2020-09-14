@@ -1,135 +1,73 @@
 package om.dykyi.beans;
 
-import om.dykyi.dao.moderator.ModeratorModel;
+import om.dykyi.dao.moderator.MysqlModeratorDAO;
 import org.apache.log4j.Logger;
 import om.dykyi.models.Moderator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * JavaBean - обьект модели данных для модераторов
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
-public class ModeratorBean {
-
+public class ModeratorBean implements Serializable {
     private int id;
-    private String username;
-    private String guestbookName;
-    private ArrayList<Moderator> listOfModeratorsBooks;
-    private ModeratorModel moderatorModel;
-    /**
-     * Логирование класса ModeratorBean.class
-     */
-    public static final Logger log = Logger.getLogger(ModeratorBean.class);
+    private int userId;
+    private List<Integer> guestBooksIds;
 
-    /**
-     * Экземпляр класса
-     */
     public ModeratorBean() {
-        moderatorModel = new ModeratorModel();
     }
 
-    /**
-     * Метод возращает список всех гостевых книг модератора
-     *
-     * @return список гостевых книг
-     */
-    public ArrayList<Moderator> getListOfModeratorsBooks() {
-        return listOfModeratorsBooks;
-    }
-
-    /**
-     * Метод принимает список всех гостевых книг модератора
-     *
-     * @param listOfModeratorsBooks список гостевых книг
-     */
-    public void setListOfModeratorsBooks(ArrayList<Moderator> listOfModeratorsBooks) {
-        this.listOfModeratorsBooks = listOfModeratorsBooks;
-    }
-
-    /**
-     * Метод возращает id
-     *
-     * @return возращает id
-     */
     public int getId() {
         return id;
     }
 
-    /**
-     * Метод принимает id
-     *
-     * @param id
-     */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * Метод возращает учетное имя
-     *
-     * @return учетное имя
-     */
-    public String getUsername() {
-        return username;
+    public int getUserId() {
+        return userId;
     }
 
-    /**
-     * Метод принимает учетное имя
-     *
-     * @param username учетное имя
-     */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    /**
-     * Метод возращает имя гостевых книги
-     *
-     * @return имя гостевых книги
-     */
-    public String getGuestbookName() {
-        return guestbookName;
+    public List<Integer> getGuestBooksIds() {
+        return guestBooksIds;
     }
 
-    /**
-     * Метод принимает имя гостевых книги
-     *
-     * @param guestbookName имя гостевых книги
-     */
-    public void setGuestbookName(String guestbookName) {
-        this.guestbookName = guestbookName;
+    public void setGuestBooksIds(List<Integer> guestBooksIds) {
+        this.guestBooksIds = guestBooksIds;
     }
 
-    /**
-     * Метод возращает из базы список всех книг модератора
-     */
-    public void getListBooks() {
-        listOfModeratorsBooks = moderatorModel.getListOfModeratorsBook(username);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ModeratorBean that = (ModeratorBean) o;
+        return id == that.id &&
+                userId == that.userId &&
+                Objects.equals(guestBooksIds, that.guestBooksIds);
     }
 
-    /**
-     * Метод удаляет из базы привязку к книге модератора по ID
-     */
-    public void deleteModeratorBook() {
-        moderatorModel.deleteModeratorBook(id);
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, guestBooksIds);
     }
 
-    /**
-     * Метод проверяет, является ли пользователь модератором книги
-     *
-     * @return признак
-     */
-    public boolean isModerator() {
-        return moderatorModel.isModerator(username, guestbookName);
-    }
-
-    /**
-     * Метод назначает модератором гостевых книги
-     */
-    public void setModeratorsBook() {
-        moderatorModel.addModerator(username, guestbookName);
+    @Override
+    public String toString() {
+        return "ModeratorBean{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", guestBooksIds=" + guestBooksIds +
+                '}';
     }
 }

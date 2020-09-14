@@ -13,8 +13,8 @@ import javax.sql.DataSource;
  * DeleteModerateBookAction - подкласс. Реализует один метод perfom(). Подкласс
  * выполняет получение и обработку запроса на удаление книги у модератора.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class DeleteModerateBookAction extends AbstractGuestbookAction {
 
@@ -42,10 +42,10 @@ public class DeleteModerateBookAction extends AbstractGuestbookAction {
                     modBean = new ModeratorBean();
                 }
                 modBean.setId(Integer.parseInt(request.getParameter("idMod")));
-                modBean.deleteModeratorBook();
+      //          modBean.deleteModeratorBook();
 
-                modBean.setUsername(request.getParameter("userName"));
-                modBean.getListBooks();
+      //          modBean.setUsername(request.getParameter("userName"));
+       //         modBean.getListBooks();
                 session.setAttribute("modBean", modBean);
 
                 return "/admin/user/changeuser.jsp";

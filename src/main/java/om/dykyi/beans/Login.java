@@ -1,13 +1,15 @@
 package om.dykyi.beans;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
  * JavaBean - обьект модели данных для авторизации
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
-public class Login {
-
+public class Login implements Serializable {
     private String userName;
     private boolean isModerator;
     private boolean isAdmin;
@@ -16,6 +18,30 @@ public class Login {
      * Экземпляр класса
      */
     public Login() {
+    }
+
+    public Login(String userName, boolean isModerator, boolean isAdmin) {
+        this.userName = userName;
+        this.isModerator = isModerator;
+        this.isAdmin = isAdmin;
+    }
+
+    /**
+     * Метод возвращает учетное имя пользователя
+     *
+     * @return учетное имя
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * Метод принимает учетное имя пользователя
+     *
+     * @param userName учетное имя
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     /**
@@ -56,21 +82,27 @@ public class Login {
         this.isAdmin = isAdmin;
     }
 
-    /**
-     * Метод возвращает учетное имя пользователя
-     *
-     * @return учетное имя
-     */
-    public String getUserName() {
-        return userName;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Login login = (Login) o;
+        return isModerator == login.isModerator &&
+                isAdmin == login.isAdmin &&
+                userName.equals(login.userName);
     }
 
-    /**
-     * Метод принимает учетное имя пользователя
-     *
-     * @param userName учетное имя
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    @Override
+    public int hashCode() {
+        return Objects.hash(userName, isModerator, isAdmin);
+    }
+
+    @Override
+    public String toString() {
+        return "Login{" +
+                "userName='" + userName + '\'' +
+                ", isModerator=" + isModerator +
+                ", isAdmin=" + isAdmin +
+                '}';
     }
 }

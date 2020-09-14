@@ -1,7 +1,7 @@
 package om.dykyi.dao.guestbook;
 
 import om.dykyi.dao.GenericDAO;
-import om.dykyi.models.Guestbook;
+import om.dykyi.beans.Guestbook;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import java.util.List;
 /**
  * Паттерн DAO обслуживающий базу данных и гостевые книги
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class MysqlGuestbookDAO extends GenericDAO implements GuestbookDAO {
     private final static String INSERT_GUESTBOOK = "insert into guestbooks(NAME, DESCRIPTION, DISPLAY_ORDER) values(?,?,?)";
@@ -114,6 +114,12 @@ public class MysqlGuestbookDAO extends GenericDAO implements GuestbookDAO {
             pst.close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                LOGGER.error(throwables.getMessage());
+            }
         }
         return guestbook;
     }
@@ -140,6 +146,12 @@ public class MysqlGuestbookDAO extends GenericDAO implements GuestbookDAO {
             st.close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                LOGGER.error(throwables.getMessage());
+            }
         }
         return list;
     }

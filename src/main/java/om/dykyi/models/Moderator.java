@@ -3,8 +3,8 @@ package om.dykyi.models;
 /**
  * Класс хранит настройки модератора.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class Moderator {
 

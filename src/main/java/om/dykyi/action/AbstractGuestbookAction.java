@@ -9,19 +9,24 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * AbstractGuestbookAction - абстрактный класс. Реализует один метод perfom().
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public abstract class AbstractGuestbookAction implements Action {
 
-    public static final Logger log = Logger.getLogger(AbstractGuestbookAction.class);
+    public static final Logger LOGGER = Logger.getLogger(AbstractGuestbookAction.class);
 
     /**
      * @param request    Запрос к сервлету
      * @param response   Ответ сервлета
-     * @return URL-адрес
+     * @return jsp page
      */
     public String perform(HttpServletRequest request, HttpServletResponse response) {
         return null;
+    }
+
+    public String getPage(HttpServletRequest request) {
+        String page = request.getParameter("command").toLowerCase();
+        return page + ".jsp";
     }
 }

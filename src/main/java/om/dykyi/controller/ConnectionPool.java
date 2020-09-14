@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * Класс пул соединений. Реализация паттерна Singleton.
  *
  * @author Дикий А.Н.
- * @version 1.0
+ * @version 2.0
  */
 public class ConnectionPool {
     private static final ConnectionPool instance = new ConnectionPool();

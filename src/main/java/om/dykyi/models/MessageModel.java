@@ -5,10 +5,10 @@ import java.util.Date;
 /**
  * Класс хранит настройки сообщения.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
-public class Message {
+public class MessageModel {
 
     private int id;
     private int guestbookId;
@@ -16,7 +16,7 @@ public class Message {
     private boolean isForAll;
     private boolean isNewForAdmin;
     private Date creationTime;
-    private int creatorId;
+    private String authorName;
     private String creatorIP;
     private String phone;
     private String email;
@@ -28,26 +28,26 @@ public class Message {
     /**
      * Экземпляр класса с ID сообщения и isNewForAdmin
      *
-     * @param msgID         id сообщения
-     * @param guestbookName имя гостевой книги
+     * @param id         id сообщения
+     * @param guestbookId имя гостевой книги
      * @param messageText   сообщение гостевой книги
      * @param isForAll      сообщение для всех
      * @param isNewForAdmin сообщение новое для модератора
      * @param creationTime  дата создания сообщения
-     * @param creatorName   имя создавшего сообщение
+     * @param authorName   имя создавшего сообщение
      * @param creatorIP     ip адрес создавшего сообщения
      * @param phone         номер телефона
      * @param email         email адрес
      * @param icq           icq номер
      */
-    public Message(int id, int guestbookId, String messageText, boolean isForAll, boolean isNewForAdmin, Date creationTime, int creatorId, String creatorIP, String phone, String email, String icq) {
+    public MessageModel(int id, int guestbookId, String messageText, boolean isForAll, boolean isNewForAdmin, Date creationTime, String authorName, String creatorIP, String phone, String email, String icq) {
         this.id = id;
         this.guestbookId = guestbookId;
         this.messageText = messageText;
         this.isForAll = isForAll;
         this.isNewForAdmin = isNewForAdmin;
         this.creationTime = creationTime;
-        this.creatorId = creatorId;
+        this.authorName = authorName;
         this.creatorIP = creatorIP;
         this.phone = phone;
         this.email = email;
@@ -113,8 +113,8 @@ public class Message {
      *
      * @return имя создавшего сообщение
      */
-    public String getCreatorId() {
-        return creatorId;
+    public String getAuthorName() {
+        return authorName;
     }
 
     /**

@@ -1,22 +1,24 @@
 package om.dykyi.action;
 
-import om.dykyi.beans.GuestbookBean;
-import om.dykyi.beans.Login;
-import om.dykyi.beans.MessageBean;
-import om.dykyi.beans.ModeratorBean;
+import om.dykyi.beans.*;
+import om.dykyi.dao.factory.DAOFactory;
+import om.dykyi.dao.factory.MysqlDAOFactory;
+import om.dykyi.dao.guestbook.GuestbookDAO;
+import om.dykyi.dao.message.MessageDAO;
+import om.dykyi.dao.moderator.ModeratorDAO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
+import java.util.List;
 
 /**
  * GuestbookAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
  * инициализацию и загрузку всех сообщений и ответов выбраной книги или по
  * умолчанию на странице guestbook.jsp.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class GuestbookAction extends AbstractGuestbookAction {
 
@@ -24,47 +26,44 @@ public class GuestbookAction extends AbstractGuestbookAction {
      * Метод выполняет инициализацию и загрузку всех сообщений и ответов
      * выбраной книги или по умолчанию на странице guestbook.jsp.
      *
-     * @param request    Запрос к сервлету
-     * @param response   Ответ сервлета
+     * @param request  Запрос к сервлету
+     * @param response Ответ сервлета
      * @return URL-адрес
      */
     public String perform(HttpServletRequest request, HttpServletResponse response) {
-        String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();
-        session.removeAttribute("uBean");
-        GuestbookBean gBean = (GuestbookBean) session.getAttribute("gBean");
-        if (gBean == null) {
-            gBean = new GuestbookBean();
-        }
-        String nameGB = request.getParameter("nameGuestbook");
-        if (nameGB == null || nameGB.length() == 0) {
-            // TODO change to get first item from DB
-            gBean.getGuestbookList();
-            nameGB = gBean.getGuestbooks().get(0).getName();
-        }
+        MysqlDAOFactory daoFactory = (MysqlDAOFactory) DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 
-        session.setAttribute("gBean", gBean);
-        MessageBean mBean = (MessageBean) session.getAttribute("mBean");
-        if (mBean == null) {
-            mBean = new MessageBean();
-        }
-        mBean.setGuestbookName(nameGB);
-        mBean.getListOfMessages();
-        mBean.getMessageCount();
-        session.setAttribute("mBean", mBean);
+        GuestbookDAO guestbookDAO = daoFactory.getGuestbookDao();
+        List<Guestbook> guestbookList = guestbookDAO.getGuestbookList();
 
-        Login login = (Login) session.getAttribute("login");
-        if (login == null) {
-            login = new Login();
-        }
-        ModeratorBean modBean = (ModeratorBean) session.getAttribute("modBean");
-        if (modBean == null) {
-            modBean = new ModeratorBean();
-        }
-        modBean.setGuestbookName(nameGB);
-        modBean.setUsername(login.getUserName());
-        login.setModerator(modBean.isModerator());
+        session.setAttribute("guestbookList", guestbookList);
 
-        return page + ".jsp";
+        int guestbookId;
+        if (request.getParameter("guestbookId") == null) {
+            Guestbook guestbook = guestbookList.get(0);
+            guestbookId = guestbook.getId();
+        } else {
+            guestbookId = Integer.parseInt(request.getParameter("guestbookId"));
+        }
+        session.setAttribute("guestbookId", guestbookId);
+
+        boolean isModerator = false;
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            ModeratorDAO moderatorDAO = daoFactory.getModeratorDao();
+            if (moderatorDAO.isModerator(user.getId(), guestbookId)) {
+                isModerator = true;
+            }
+        }
+        session.setAttribute("moderator", isModerator);
+
+        MessageDAO messageDAO = daoFactory.getMessageDao();
+        List<Message> messageList = messageDAO.getMessageList(guestbookId);
+        session.setAttribute("messageList", messageList);
+
+        session.setAttribute("messageCount", messageList.size());
+
+        return getPage(request);
     }
 }

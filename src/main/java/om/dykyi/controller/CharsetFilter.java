@@ -6,8 +6,8 @@ import java.io.IOException;
 /**
  * Фильтр русских букв
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class CharsetFilter implements Filter {
 
@@ -18,9 +18,8 @@ public class CharsetFilter implements Filter {
      * UTF-8
      *
      * @param config
-     * @throws ServletException
      */
-    public void init(FilterConfig config) throws ServletException {
+    public void init(FilterConfig config) {
         this.encoding = config.getInitParameter("requestEncoding");
         if (encoding == null) {
             encoding = "UTF-8";

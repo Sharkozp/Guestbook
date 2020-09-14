@@ -10,21 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * DeleteAction - подкласс. Реализует один метод perfom(). Подкласс
- * выполняет обработку данных и удаление выбранного сообщения, а также
- * инициализацию страницы delete.jsp.
+ * CorrectionAction - подкласс. Реализует один метод perfom(). Подкласс
+ * выполняет инициализацию страницы correction.jsp.
  *
  * @author Oleksandr Dykyi
  * @version 2.0
  */
-public class DeleteAction extends AbstractModeratorAction {
+public class EditAction extends AbstractModeratorAction {
 
     /**
-     * Метод выполняет обработку данных и удаление выбранного сообщения, а также
-     * инициализацию страницы delete.jsp.
+     * Метод выполняет инициализацию страницы correction.jsp.
      *
-     * @param request  Запрос к сервлету
-     * @param response Ответ сервлета
+     * @param request    Запрос к сервлету
+     * @param response   Ответ сервлета
      * @return URL-адрес
      */
     public String perform(HttpServletRequest request, HttpServletResponse response) {
@@ -36,8 +34,7 @@ public class DeleteAction extends AbstractModeratorAction {
             MysqlDAOFactory daoFactory = (MysqlDAOFactory) DAOFactory.getDAOFactory(DAOFactory.MYSQL);
             MessageDAO messageDAO = daoFactory.getMessageDao();
             Message message = messageDAO.getMessage(messageId);
-            session.setAttribute("messageText", message.getMessage());
-            messageDAO.deleteMessage(messageId);
+            session.setAttribute("message", message);
             result = getPage(request);
         }
 

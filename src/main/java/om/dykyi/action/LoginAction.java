@@ -1,40 +1,29 @@
 package om.dykyi.action;
 
-import om.dykyi.beans.UserBean;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
 /**
  * LoginAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
  * инициализацию страницы login.jsp.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class LoginAction extends AbstractGuestbookAction {
 
     /**
      * Метод выполняет инициализацию страницы login.jsp.
      *
-     * @param request    Запрос к сервлету
-     * @param response   Ответ сервлета
+     * @param request  Запрос к сервлету
+     * @param response Ответ сервлета
      * @return URL-адрес
      */
     public String perform(HttpServletRequest request, HttpServletResponse response) {
-
-        String page = request.getParameter("command").toLowerCase();
         HttpSession session = request.getSession();
-        UserBean uBean = (UserBean) session.getAttribute("uBean");
-        if (uBean == null) {
-            uBean = new UserBean();
-        }
-        uBean.setError(false);
-        session.setAttribute("uBean", uBean);
-        session.removeAttribute("gBean");
+        session.setAttribute("error", false);
 
-        return page + ".jsp";
+        return getPage(request);
     }
 }

@@ -7,8 +7,8 @@ import javax.sql.DataSource;
 /**
  * Action - Интерфейс Action.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public interface Action {
 

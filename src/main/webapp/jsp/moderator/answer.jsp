@@ -6,7 +6,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="mBean" class="om.dykyi.beans.MessageBean" scope="session" />
+<jsp:useBean id="mBean" class="om.dykyi.beans.Message" scope="session" />
 <!DOCTYPE html>
 <html>
     <head>

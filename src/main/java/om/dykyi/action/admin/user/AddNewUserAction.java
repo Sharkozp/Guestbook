@@ -2,21 +2,18 @@ package om.dykyi.action.admin.user;
 
 import om.dykyi.action.AbstractGuestbookAction;
 import om.dykyi.beans.Login;
-import om.dykyi.beans.UserBean;
+import om.dykyi.beans.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 /**
  * AddNewUserAction - подкласс. Реализует один метод perfom(). Подкласс
  * выполняет получение и обработку запроса на добавление нового пользователя.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class AddNewUserAction extends AbstractGuestbookAction {
 
@@ -39,18 +36,18 @@ public class AddNewUserAction extends AbstractGuestbookAction {
         Login login = (Login) session.getAttribute("login");
         if (login != null) {
             if (login.isAdmin()) {
-                UserBean uBean = (UserBean) session.getAttribute("uBean");
+                User uBean = (User) session.getAttribute("uBean");
                 if (uBean == null) {
-                    uBean = new UserBean();
+                    uBean = new User();
                 }
-                uBean.setUserName(request.getParameter("userName"));
+                uBean.setUsername(request.getParameter("userName"));
                 uBean.setLastName(request.getParameter("lastName"));
                 uBean.setFirstName(request.getParameter("firstName"));
 
                 uBean.setPwdDigest(request.getParameter("password"));
-                uBean.addUser();
+           //     uBean.addUser();
 
-                uBean.getListOfUsers();
+       //         uBean.getListOfUsers();
                 session.setAttribute("uBean", uBean);
 
                 return "/admin/user/adminusers.jsp";

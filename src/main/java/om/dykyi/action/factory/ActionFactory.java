@@ -3,16 +3,15 @@ package om.dykyi.action.factory;
 import org.apache.log4j.Logger;
 
 /**
- * ActionFactory - реализация паттерна Factory. Эта фабрика преобразовывает
+ * ActionFactory - Factory pattern. Эта фабрика преобразовывает
  * названия действий в запросы классов om.dykyi.action, которые может использовать для
  * работы ControllerServlet
  *
- * @version 1.0
- * @author Дикий Александр Николаевич
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class ActionFactory {
-
-    public static final Logger log = Logger.getLogger(ActionFactory.class);
+    public static final Logger LOGGER = Logger.getLogger(ActionFactory.class);
 
     /**
      * Метод выполняет выборку классов по параметру и его инициализацию.
@@ -35,7 +34,7 @@ public class ActionFactory {
                     try {
                         newClass = Class.forName("om.dykyi.action.moderator." + actionName + "Action");
                     } catch (ClassNotFoundException e) {
-                        log.error("Класс не найден");
+                        LOGGER.error("Class not found");
                     }
                 }
             }
@@ -45,7 +44,7 @@ public class ActionFactory {
         try {
             actionInstance = (Action) newClass.newInstance();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         return actionInstance;
     }

@@ -3,11 +3,10 @@ package om.dykyi.models;
 /**
  * Класс хранит настройки пользователя.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class User {
-
     private String userName;
     private String lastName;
     private String firstName;

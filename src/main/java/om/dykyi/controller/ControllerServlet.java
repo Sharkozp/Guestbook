@@ -8,24 +8,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  * ControllerServlet - обьект контроллер в моделе MVC. Класс ControllerServlet -
  * обрабатывает все запросы пользователей и переадресует на соответствующие JSP
  * страницы, посредством нажатия кнопок на JSP страницах.
  *
- * @author Дикий Александр Николаевич
- * @version 1.1
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class ControllerServlet extends HttpServlet {
     /**
      * Logging
      */
-    public static final Logger log = Logger.getLogger(ControllerServlet.class);
+    public static final Logger LOGGER = Logger.getLogger(ControllerServlet.class);
     protected ActionFactory factory = new ActionFactory();
     private ConnectionPool conPool;
 
@@ -58,7 +55,7 @@ public class ControllerServlet extends HttpServlet {
                     String newUrl = "/jsp/" + url;
                     request.getRequestDispatcher(newUrl).forward(request, response);
                 } catch (Exception ex) {
-                    log.error(ex.toString());
+                    LOGGER.error(ex.toString());
                 }
             }
         }

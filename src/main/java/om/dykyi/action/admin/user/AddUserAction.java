@@ -12,8 +12,8 @@ import javax.sql.DataSource;
  * AddUserAction - подкласс. Реализует один метод perfom(). Подкласс выполняет
  * инициализацию страницы adduser.jsp.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class AddUserAction extends AbstractGuestbookAction {
 

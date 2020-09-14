@@ -13,8 +13,8 @@ import javax.sql.DataSource;
  * AddModerateBookAction - подкласс. Реализует один метод perfom(). Подкласс
  * выполняет получение и обработку запроса на добавление книги модератору.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class AddModerateBookAction extends AbstractGuestbookAction {
 
@@ -41,12 +41,12 @@ public class AddModerateBookAction extends AbstractGuestbookAction {
                 if (modBean == null) {
                     modBean = new ModeratorBean();
                 }
-                modBean.setGuestbookName(request.getParameter("newModerBook"));
-                modBean.setUsername(request.getParameter("userName"));
-                modBean.setModeratorsBook();
+       //         modBean.setGuestbookName(request.getParameter("newModerBook"));
+       //         modBean.setUsername(request.getParameter("userName"));
+       //         modBean.setModeratorsBook();
 
-                modBean.setUsername(request.getParameter("userName"));
-                modBean.getListBooks();
+       //         modBean.setUsername(request.getParameter("userName"));
+       //         modBean.getListBooks();
                 session.setAttribute("modBean", modBean);
 
                 return "/admin/user/changeuser.jsp";

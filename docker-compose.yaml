@@ -16,6 +16,7 @@ services:
     ports:
       - "8000:8000"
       - "8080:8080"
+      - "8443:8443"
     volumes:
       - "./tomcat/webapps:/usr/local/tomcat/webapps"
       - "./tomcat/conf/context.xml:/usr/local/tomcat/conf/context.xml"

@@ -1,37 +1,16 @@
-<%-- 
-    Document   : delete
-    Created on : Nov 12, 2012, 3:56:49 PM
-    Author     : Дикий Александр Николаевич
-    Version    : 1.1
---%>
+<jsp:include page="../includes/header.jsp"/>
+<jsp:useBean id="messageText" scope="session" type="java.lang.String" />
+<div class="container">
+    <div class="row">
+        <form action="/guestbook/index?command=Guestbook" method="POST">
+            <h3>Message was removed:</h3>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="mBean" scope="session" class="om.dykyi.beans.MessageBean" />
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <form action="/guestbook/index?command=Guestbook" method="POST" >
-            <table border="0">
-                <tr>
-                    <td>
-                        <p><b>Cообщение удаленно:</b></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>${mBean.message}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Продолжить" />
-                    </td>
-                </tr>
-            </table>
+            <div class="form-group">
+                <h5>${messageText}</h5>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Continue</button>
         </form>
-    </body>
-</html>
+    </div>
+</div>
+<jsp:include page="../includes/footer.jsp"/>

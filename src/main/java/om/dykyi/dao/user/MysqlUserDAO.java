@@ -1,7 +1,8 @@
 package om.dykyi.dao.user;
 
 import om.dykyi.dao.AbstractModel;
-import om.dykyi.models.User;
+import om.dykyi.dao.GenericDAO;
+import om.dykyi.beans.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,22 +10,23 @@ import java.util.ArrayList;
 /**
  * Паттерн DAO обслуживающий базу данных и пользователей
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
-public class UserModel extends AbstractModel {
+public class MysqlUserDAO extends GenericDAO implements UserDAO {
     private final static String GET_ADMIN = "select IS_ADMIN from users where USERNAME = ?";
     private final static String getAllUsers = "select * from users";
     private final static String GET_USER_BY_USERNAME = "select * from users where USERNAME = ?";
     private final static String GET_USER_BY_USER_ID = "select * from users where USER_ID = ?";
     private final static String insert = "INSERT INTO users (USERNAME,PWD_DIGEST,LAST_NAME,FIRST_NAME) values(?,?,?,?)";
     private final static String delete = "delete from users where USER_ID=?";
-    private final static String update = "update t_user set LAST_NAME=?,FIRST_NAME=? where USERNAME=?";
+    private final static String update = "update users set LAST_NAME=?,FIRST_NAME=? where USERNAME=?";
 
     /**
      * Constructor
      */
-    public UserModel() {
+    public MysqlUserDAO(Connection connection) {
+        super(connection);
     }
 
     /**
@@ -35,8 +37,8 @@ public class UserModel extends AbstractModel {
      */
     public void addUser(User user, String password) {
         try {
-            PreparedStatement pst = getPrepareStatement(insert);
-            pst.setString(1, user.getUserName());
+            PreparedStatement pst = connection.prepareStatement(insert);
+            pst.setString(1, user.getUsername());
             pst.setString(2, password);
             pst.setString(3, user.getLastName());
             pst.setString(4, user.getFirstName());
@@ -56,7 +58,7 @@ public class UserModel extends AbstractModel {
      */
     public void updateUser(String userName, String lastName, String firstName) {
         try {
-            PreparedStatement pst = getPrepareStatement(update);
+            PreparedStatement pst = connection.prepareStatement(update);
             pst.setString(1, lastName);
             pst.setString(2, firstName);
             pst.setString(3, userName);
@@ -74,7 +76,7 @@ public class UserModel extends AbstractModel {
      */
     public void deleteUser(String userName) {
         try {
-            PreparedStatement pst = getPrepareStatement(delete);
+            PreparedStatement pst = connection.prepareStatement(delete);
             //TODO change to user_id
             pst.setString(1, userName);
             pst.executeUpdate();
@@ -87,21 +89,66 @@ public class UserModel extends AbstractModel {
     /**
      * Метод возвращает пользователя по учетному имени
      *
-     * @param userName учетное имя
+     * @param username username
      * @return класс User
      */
-    public User getUser(String userName) {
+    public User getUser(String username) {
         User user = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = getPrepareStatement(GET_USER_BY_USER_ID);
-            //TODO change to user_id
-            pst.setString(1, userName);
-            ResultSet rs = pst.executeQuery();
+            pst = connection.prepareStatement(GET_USER_BY_USERNAME);
+            pst.setString(1, username);
+            rs = pst.executeQuery();
             while (rs.next()) {
-                user = new User(userName,
+                user = new User(
+                        rs.getInt("USER_ID"),
+                        username,
                         rs.getString("LAST_NAME"),
                         rs.getString("FIRST_NAME"),
-                        rs.getBoolean("IS_ADMIN"));
+                        rs.getBoolean("IS_ADMIN")
+                );
+            }
+        } catch (SQLException se) {
+            LOGGER.error(se.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException throwables) {
+                    LOGGER.error(throwables.getMessage());
+                }
+            }
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException throwables) {
+                    LOGGER.error(throwables.getMessage());
+                }
+            }
+        }
+        return user;
+    }
+
+    /**
+     * Метод возвращает пользователя по учетному имени
+     *
+     * @param userId user ID
+     * @return class User
+     */
+    public User getUserById(int userId) {
+        User user = null;
+        try {
+            PreparedStatement pst = connection.prepareStatement(GET_USER_BY_USER_ID);
+            pst.setInt(1, userId);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                user = new User(
+                        rs.getString("USERNAME"),
+                        rs.getString("LAST_NAME"),
+                        rs.getString("FIRST_NAME"),
+                        rs.getBoolean("IS_ADMIN")
+                );
             }
             rs.close();
             pst.close();
@@ -114,23 +161,42 @@ public class UserModel extends AbstractModel {
     /**
      * Get password digest from database
      *
-     * @param userName user name
+     * @param username username
      * @return password digest
      */
-    public String getUserDigest(String userName) {
+    public String getUserDigest(String username) {
         String pwdDigest = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            //TODO change to user_id
-            PreparedStatement pst = getPrepareStatement(GET_USER_BY_USER_ID);
-            pst.setString(1, userName);
-            ResultSet rs = pst.executeQuery();
+            pst = connection.prepareStatement(GET_USER_BY_USERNAME);
+            pst.setString(1, username);
+            rs = pst.executeQuery();
             while (rs.next()) {
                 pwdDigest = rs.getString("pwd_digest");
             }
-            rs.close();
-            pst.close();
         } catch (SQLException se) {
             LOGGER.error(se.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException throwables) {
+                    LOGGER.error(throwables.getMessage());
+                }
+            }
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException throwables) {
+                    LOGGER.error(throwables.getMessage());
+                }
+            }
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                LOGGER.error(throwables.getMessage());
+            }
         }
         return pwdDigest;
     }
@@ -143,7 +209,7 @@ public class UserModel extends AbstractModel {
     public ArrayList<User> getListOfUsers() {
         ArrayList<User> list = new ArrayList<>();
         try {
-            Statement st = getConnection().createStatement();
+            Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(getAllUsers);
             while (rs.next()) {
                 list.add(new User(rs.getString("USERNAME"),
@@ -168,7 +234,7 @@ public class UserModel extends AbstractModel {
     public boolean isAdmin(String userName) {
         boolean isAdmin = false;
         try {
-            PreparedStatement pst = getPrepareStatement(GET_ADMIN);
+            PreparedStatement pst = connection.prepareStatement(GET_ADMIN);
             pst.setString(1, userName);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {

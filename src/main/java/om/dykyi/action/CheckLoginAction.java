@@ -1,10 +1,16 @@
 package om.dykyi.action;
 
-import om.dykyi.beans.GuestbookBean;
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import om.dykyi.beans.Guestbook;
 import om.dykyi.beans.Login;
 import om.dykyi.beans.ModeratorBean;
-import om.dykyi.beans.UserBean;
-import om.dykyi.dao.user.UserModel;
+import om.dykyi.beans.User;
+import om.dykyi.dao.factory.DAOFactory;
+import om.dykyi.dao.factory.MysqlDAOFactory;
+import om.dykyi.dao.guestbook.GuestbookDAO;
+import om.dykyi.dao.moderator.ModeratorDAO;
+import om.dykyi.dao.user.MysqlUserDAO;
+import om.dykyi.dao.user.UserDAO;
 import om.dykyi.system.PasswordUtils;
 import om.dykyi.system.PropertiesClass;
 
@@ -17,70 +23,41 @@ import javax.servlet.http.HttpSession;
  * проверку введенных данных и от результата переадресует на определенную
  * страницу.
  *
- * @author Дикий Александр Николаевич
- * @version 1.0
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class CheckLoginAction extends AbstractGuestbookAction {
+
+    private UserDAO userDAO;
+    private ModeratorDAO moderatorDAO;
 
     /**
      * Метод выполняет проверку введенных данных и от результата переадресует на
      * определенную страницу.
      *
-     * @param request    Запрос к сервлету
-     * @param response   Ответ сервлета
-     * @param datasource Источник данных для пула данных
+     * @param request  Запрос к сервлету
+     * @param response Ответ сервлета
      * @return URL-адрес
      */
     public String perform(HttpServletRequest request, HttpServletResponse response) {
-
-        String page;
+        MysqlDAOFactory daoFactory = (MysqlDAOFactory) DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        userDAO = daoFactory.getUserDao();
         HttpSession session = request.getSession();
 
-        // Возврат со страницы login.jsp при нажатии конпки продолжить
-        UserBean uBean = (UserBean) session.getAttribute("uBean");
-        if (uBean == null) {
-            uBean = new UserBean();
-        }
-        String userName = request.getParameter("login");
+        String username = request.getParameter("login");
         String password = request.getParameter("password");
 
-        //если заполнены проверяем введеные данные
-        /* uBean.setUserName(userName);
-        try {
-            uBean.setPwdDigest(password);
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            log.error(e.getMessage());
-        }*/
-
-        /**
-         * Если пользователь существует с парой логин, пароль выполняем вход и
-         * записываем в сессию объект Login
-         */
-        if (isUserExist(userName, password)) {
-            ModeratorBean modBean = new ModeratorBean();
+        String page = "login";
+        boolean error = true;
+        //check if user exist in DB
+        if (isUserExist(username, password)) {
+            User user = userDAO.getUser(username);
+            session.setAttribute("user", user);
+            error = false;
             page = "message";
-            Login login = new Login();
-            login.setUserName(userName);
-            modBean.setUsername(userName);
-            login.setModerator(modBean.isModerator());
-            login.setAdmin(uBean.isAdmin(userName));
-            session.setAttribute("login", login);
-            session.removeAttribute("uBean");
-
-            GuestbookBean gBean = (GuestbookBean) session.getAttribute("gBean");
-            if (gBean == null) {
-                gBean = new GuestbookBean();
-            }
-            gBean.getGuestbookList();
-            session.setAttribute("gBean", gBean);
-        } else {
-            //Иначе выбрасываем ошибку на страницу login.jsp
-            page = "login";
-            uBean.setError(true);
-            session.setAttribute("uBean", uBean);
         }
 
-
+        session.setAttribute("error", error);
         return page + ".jsp";
     }
 
@@ -89,10 +66,24 @@ public class CheckLoginAction extends AbstractGuestbookAction {
      *
      * @return признак
      */
-    private boolean isUserExist(String userName, String password) {
+    private boolean isUserExist(String username, String password) {
+        String pwdDigest = userDAO.getUserDigest(username);
+        if (pwdDigest == null) {
+            return false;
+        }
         PropertiesClass propertiesClass = PropertiesClass.getInstance();
-        String securePassword = new UserModel().getUserDigest(userName);
+        return PasswordUtils.verifyUserPassword(password, pwdDigest, propertiesClass.getSystemKey());
+    }
 
-        return PasswordUtils.verifyUserPassword(password, securePassword, propertiesClass.getSystemKey());
+    /**
+     * Метод принимает строку для создания дайджеста пароля
+     *
+     * @param password пароль
+     * @return password digest
+     */
+    public String getPwdDigest(String password) {
+        PropertiesClass propertiesClass = PropertiesClass.getInstance();
+
+        return PasswordUtils.generateSecurePassword(password, propertiesClass.getSystemKey());
     }
 }

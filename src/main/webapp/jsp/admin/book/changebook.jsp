@@ -7,7 +7,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="gBean" scope="session" class="om.dykyi.beans.GuestbookBean"/>
+<jsp:useBean id="gBean" scope="session" class="om.dykyi.beans.Guestbook"/>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@
                         Имя книги:
                     </td>
                     <td>
-                        <input type="text" name="newNamebook" value="${gBean.guestbookName}" readonly />
+                        <input type="text" name="newNamebook" value="${gBean.name}" readonly />
                     </td>                
                 </tr>
                 <tr>

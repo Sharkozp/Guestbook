@@ -5,8 +5,8 @@ import java.util.ResourceBundle;
 /**
  * Класс для получения свойств из файла. Реализация паттерна Singleton.
  *
- * @author Дикий Александр Николаевич
- * @version 1.1
+ * @author Oleksandr Dykyi
+ * @version 2.0
  */
 public class PropertiesClass {
 

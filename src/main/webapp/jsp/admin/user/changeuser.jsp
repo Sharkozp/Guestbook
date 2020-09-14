@@ -7,9 +7,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="uBean" scope="session" class="om.dykyi.beans.UserBean"/>
+<jsp:useBean id="uBean" scope="session" class="om.dykyi.beans.User"/>
 <jsp:useBean id="modBean" scope="session" class="om.dykyi.beans.ModeratorBean" />
-<jsp:useBean id="gBean" scope="session" class="om.dykyi.beans.GuestbookBean" />
+<jsp:useBean id="gBean" scope="session" class="om.dykyi.beans.Guestbook" />
 <!DOCTYPE html>
 <html>
     <head>

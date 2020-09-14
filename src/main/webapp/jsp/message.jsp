@@ -1,115 +1,56 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- 
-    Document   : message
-    Created on : Nov 12, 2012, 10:00:36 AM
-    Author     : Дикий Александр Николаевич
-    Version    : 1.1
---%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="includes/header.jsp"/>
+<jsp:useBean id="guestbookList" type="java.util.List<om.dykyi.beans.Guestbook>" scope="session"/>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="gBean" class="om.dykyi.beans.GuestbookBean" scope="session" />
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <form id="message" method="POST" action="/guestbook/index?command=AddMessage"></form>
-        <table border="0" >
-            <tr >
-                <td align="center">
-                    <form id="other" method="POST"></form>       
-                    <input type="submit" value="Показать записи" formaction="/guestbook/index?command=Guestbook" form="other" />
-                    <input type="submit" value="Администрирование" formaction="/guestbook/index?command=Login" form="other" />
-                </td>
-            </tr>
-            <tr>
-                <td align="center">
-                    <table border="0">
-                        <tr>
-                            <td></td>
-                            <td>
-                                <p><b>Написать сообщение</b></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <input type="radio" name="forAll" value="true" checked="" form="message">-
-                                для всех    
-                                <input type="radio" name="forAll" value="false" form="message">-
-                                только для администратора.
-                            </td>
-                        </tr>
-                        <tr>                   
-                            <td align="right">Имя книги: </td>
-                            <td><select name="guestbookName" form="message">
-                                    <c:forEach var="row" items="${gBean.guestbooks}">
-                                        <option value="${row.id}">${row.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top" align="right">
-                                Текст сообщения:<font color="red">*</font> 
-                            </td>
-                            <td>
-                                <textarea rows="9" required placeholder="Текст сообщения" name="message" cols="64" form="message"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top" align="right">
-                                Фамилия, Имя:<font color="red">*</font>
-                            </td>
-                            <td>
-                                <input type="text" required placeholder="Ваша фамилия, имя" name="authorName" size="60" form="message">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <b>Если хотите, укажите свои данные:</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top" align="right">
-                                Телефон:
-                            </td>
-                            <td>
-                                <input type="text" name="phone" size="40" form="message">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top" align="right">
-                                E-mail: 
-                            </td>
-                            <td>
-                                <input type="text" name="email" size="40" form="message">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top" align="right">
-                                ICQ:
-                            </td>
-                            <td>
-                                <input type="text" name="icq" size="12" form="message">
-                            </td>                                
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td align="left">Поля отмеченные - <font color="red">*</font> - обязательны к заполнению!</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td align="center">
-                                <input type="submit" value="Отправить" form="message" />
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </body>
-</html>
+<div class="container">
+    <div class="row">
+        <form id="message" method="POST" action="/guestbook/index?command=AddMessage">
+            <h3>Write message</h3>
+            <div class="form-group">
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="message-for-all" name="forAll" value="true" checked>
+                    <label class="custom-control-label" for="message-for-all">For all</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="message-for-admin" name="forAll" value="false">
+                    <label class="custom-control-label" for="message-for-admin">Only for administrators.</label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="guestbook">Guestbook name:</label>
+                <select class="form-control" name="guestbookId" id="guestbook">
+                    <c:forEach var="guestbook" items="${guestbookList}">
+                        <option value="${guestbook.id}">${guestbook.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <div class="form-group row">
+                <label for="message-text">Message text:</label>
+                <textarea class="form-control rounded-0" id="message-text" name="message" rows="10" required></textarea>
+            </div>
+
+            <div class="form-group row">
+                <label for="author-name">Name:</label>
+                <input type="text" class="form-control" id="author-name" name="authorName" placeholder="Enter name"
+                       required>
+            </div>
+
+            <div class="form-group row"><h5>You can provide extra info about yourself</h5></div>
+
+            <div class="form-group row">
+                <label for="phone">Phone:</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone">
+            </div>
+
+            <div class="form-group row">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<jsp:include page="includes/footer.jsp"/>
